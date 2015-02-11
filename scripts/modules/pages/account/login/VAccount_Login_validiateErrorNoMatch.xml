@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Valdiate error message after login with false profile data.</description>
+  <command name="waitForText" target="css=#main #primary .login-box.login-account #dwfrm_login .error-form" value="Sorry, this does not match our records. Check your spelling and try again."/>
+</scriptmodule>

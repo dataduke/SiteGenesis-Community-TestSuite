@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate profile data.</description>
+  <parameter name="firstname" desc="firstname"/>
+  <parameter name="lastname" desc="lastname"/>
+  <parameter name="email" desc="email"/>
+  <codecomment>Validate profile data</codecomment>
+  <command name="waitForElementPresent" target="id=dwfrm_profile_customer_firstname"/>
+  <command name="assertText" target="id=dwfrm_profile_customer_firstname" value="@{firstname}"/>
+  <command name="assertText" target="id=dwfrm_profile_customer_lastname" value="@{lastname}"/>
+  <command name="assertText" target="id=dwfrm_profile_customer_email" value="@{email}"/>
+</scriptmodule>

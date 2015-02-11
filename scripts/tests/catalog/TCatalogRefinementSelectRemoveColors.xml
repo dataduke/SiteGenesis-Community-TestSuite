@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testcase xmlns="http://xlt.xceptance.com/xlt-script/2" version="6" junit-test="true">
+  <tags>smoke</tags>
+  <description>Test select, remove and clear color refinement on catalog page.
+
+# 1. Setup and preparation
+
+- Start session, open homepage and delete all visible cookies
+
+# 2. Scope of test
+
+- Browse to category
+- Select, validate and remove color via name
+- Select three colors via position
+- Remove one color via breadcrumb
+- Remove two colors clear
+- Validate empty color list
+- Validate empty refinement list in breadcrumbs
+
+# 3. Clean up
+
+- End session and clean up created cookies
+</description>
+  <codecomment># Setup
+
+- Start session</codecomment>
+  <module name="modules.helper.FHelper_Session_flowToStartSession"/>
+  <codecomment># Scope</codecomment>
+  <codecomment>## Catalog
+
+- Go to catalog page
+- Validate page</codecomment>
+  <action name="GoToCategoryPage"/>
+  <module name="modules.global.headerfooternav.MGlobal_Nav_clickGoToCategoryLevel3">
+    <parameter name="positionLevel1" value="2"/>
+    <parameter name="positionLevel2" value="1"/>
+    <parameter name="positionLevel3" value="2"/>
+  </module>
+  <module name="modules.pages.catalog.VCatalog_validatePage"/>
+  <codecomment>## Catalog
+
+- Select color by clicking
+- Valdiate color selected
+- Unselect color by clicking again
+- Validate color unselected</codecomment>
+  <action name="RefineColorByLabel"/>
+  <module name="modules.pages.catalog.MCatalog_Refinement_clickColorLabel">
+    <parameter name="colorLabel" value="${colorLabel_blue}"/>
+  </module>
+  <module name="modules.pages.catalog.VCatalog_Refinement_validateColorLabelSelected">
+    <parameter name="colorLabel" value="${colorLabel_blue}"/>
+  </module>
+  <action name="RemoveColorByLabel"/>
+  <module name="modules.pages.catalog.MCatalog_Refinement_clickColorLabel">
+    <parameter name="colorLabel" value="${colorLabel_blue}"/>
+  </module>
+  <module name="modules.pages.catalog.VCatalog_Refinement_validateColorLabelUnselected">
+    <parameter name="colorLabel" value="${colorLabel_blue}"/>
+  </module>
+  <codecomment>## Catalog
+
+- Select three random colors
+- Valdiate colors</codecomment>
+  <action name="RefineColorByPostion"/>
+  <module name="modules.pages.catalog.MCatalog_Refinement_clickColorPosition">
+    <parameter name="colorPosition" value="${colorPosition_01}"/>
+    <parameter name="colorLabel_varName" value="colorLabel_01"/>
+  </module>
+  <module name="modules.pages.catalog.VCatalog_Refinement_validateColorLabelSelected">
+    <parameter name="colorLabel" value="${colorLabel_01}"/>
+  </module>
+  <action name="RefineColorByPostion"/>
+  <module name="modules.pages.catalog.MCatalog_Refinement_clickColorPosition">
+    <parameter name="colorPosition" value="${colorPosition_02}"/>
+    <parameter name="colorLabel_varName" value="colorLabel_02"/>
+  </module>
+  <module name="modules.pages.catalog.VCatalog_Refinement_validateColorLabelSelected">
+    <parameter name="colorLabel" value="${colorLabel_02}"/>
+  </module>
+  <action name="RefineColorByPostion"/>
+  <module name="modules.pages.catalog.MCatalog_Refinement_clickColorPosition">
+    <parameter name="colorPosition" value="${colorPosition_03}"/>
+    <parameter name="colorLabel_varName" value="colorLabel_03"/>
+  </module>
+  <module name="modules.pages.catalog.VCatalog_Refinement_validateColorLabelSelected">
+    <parameter name="colorLabel" value="${colorLabel_03}"/>
+  </module>
+  <codecomment>## Catalog
+
+- Remove filter by breadcrumb position
+- Validate color is unselected
+- Clear all color list
+- Validate color list is empty
+- Validate refinement list is empty</codecomment>
+  <action name="RemoveFilter"/>
+  <module name="modules.pages.catalog.MCatalog_Refinement_clickRemoveFilterPosition">
+    <parameter name="position" value="2"/>
+  </module>
+  <module name="modules.pages.catalog.VCatalog_Refinement_validateColorLabelUnselected">
+    <parameter name="colorLabel" value="${colorLabel_02}"/>
+  </module>
+  <action name="ClearColors"/>
+  <module name="modules.pages.catalog.MCatalog_Refinement_clickClearColorList"/>
+  <module name="modules.pages.catalog.VCatalog_Refinement_validateEmptyColorList"/>
+  <module name="modules.pages.catalog.VCatalog_Refinement_validateEmptyRefinementList"/>
+  <codecomment># Teardown
+
+- End session</codecomment>
+  <module name="modules.helper.FHelper_Session_flowToEndSession"/>
+</testcase>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Flow to validate order data via track order.
+
+- Start on homepage
+- Enter and submit check order on account login page
+- Validate order data in order summmary
+- End on homepage</description>
+  <parameter name="orderNumber" desc="order number"/>
+  <parameter name="orderDate" desc="order date"/>
+  <parameter name="orderEmail" desc="order email"/>
+  <parameter name="billingPostalCode" desc="billing postal code"/>
+  <parameter name="billingFirstname" desc="billing firstname"/>
+  <parameter name="billingLastname" desc="billing lastname"/>
+  <parameter name="billingAddress1" desc="billing address1"/>
+  <parameter name="billingAddress2" desc="billing address2"/>
+  <parameter name="billingCity" desc="billing city"/>
+  <parameter name="billingStatesStateShort" desc="billing states state short"/>
+  <parameter name="billingCountry" desc="billing country"/>
+  <parameter name="billingPhone" desc="billing phone"/>
+  <parameter name="paymentName" desc="payment name"/>
+  <parameter name="creditCardOwner" desc="credit card owner"/>
+  <parameter name="creditCardTypeShort" desc="credit card type short"/>
+  <parameter name="creditCardNumber" desc="credit card number"/>
+  <parameter name="creditCardMonth" desc="credit card month"/>
+  <parameter name="creditCardYear" desc="credit card year"/>
+  <parameter name="paymentAmount" desc="payment amount"/>
+  <parameter name="totalsSubtotal" desc="totals subtotal"/>
+  <parameter name="totalsShipping" desc="totals shipping"/>
+  <parameter name="totalsSalesTax" desc="totals sales tax"/>
+  <parameter name="totalsTotal" desc="totals total"/>
+  <parameter name="shippingFirstname" desc="shipping firstname"/>
+  <parameter name="shippingLastname" desc="shipping lastname"/>
+  <parameter name="shippingAddress1" desc="shipping address1"/>
+  <parameter name="shippingAddress2" desc="shipping address2"/>
+  <parameter name="shippingCity" desc="shipping city"/>
+  <parameter name="shippingStatesStateShort" desc="shipping states state short"/>
+  <parameter name="shippingPostalCode" desc="shipping postal code"/>
+  <parameter name="shippingCountry" desc="shipping country"/>
+  <parameter name="shippingPhone" desc="shipping phone"/>
+  <parameter name="shippingMethodName" desc="shipping method name"/>
+  <parameter name="shippingStatus" desc="shipping status"/>
+  <action name="GoToLogin"/>
+  <module name="modules.global.headerfooternav.MGlobal_Header_clickLogin"/>
+  <module name="modules.pages.account.login.VAccount_Login_validatePage"/>
+  <action name="GoToCheckOrderStatus"/>
+  <module name="modules.pages.account.login.MAccount_Login_enterClickGoToCheckOrderStatus">
+    <parameter name="orderNumber" value="@{orderNumber}"/>
+    <parameter name="orderEmail" value="@{orderEmail}"/>
+    <parameter name="billingPostalCode" value="@{billingPostalCode}"/>
+  </module>
+  <module name="modules.pages.account.orderhistory.VAccount_OrderHistory_OrderSummary_validatePage">
+    <parameter name="orderNumber" value="@{orderNumber}"/>
+  </module>
+  <module name="modules.pages.account.orderhistory.VAccount_OrderHistory_OrderSummary_validateOrderInformation">
+    <parameter name="orderNumber" value="@{orderNumber}"/>
+    <parameter name="orderDate" value="@{orderDate}"/>
+  </module>
+  <module name="modules.pages.account.orderhistory.VAccount_OrderHistory_OrderSummary_validateBillingAddress">
+    <parameter name="firstname" value="@{billingFirstname}"/>
+    <parameter name="lastname" value="@{billingLastname}"/>
+    <parameter name="address1" value="@{billingAddress1}"/>
+    <parameter name="address2" value="@{billingAddress2}"/>
+    <parameter name="city" value="@{billingCity}"/>
+    <parameter name="statesStateShort" value="@{billingStatesStateShort}"/>
+    <parameter name="postalCode" value="@{billingPostalCode}"/>
+    <parameter name="country" value="@{billingCountry}"/>
+    <parameter name="phone" value="@{billingPhone}"/>
+  </module>
+  <module name="modules.pages.account.orderhistory.VAccount_OrderHistory_OrderSummary_validateCreditCard">
+    <parameter name="paymentName" value="@{paymentName}"/>
+    <parameter name="owner" value="@{creditCardOwner}"/>
+    <parameter name="short" value="@{creditCardTypeShort}"/>
+    <parameter name="number" value="@{creditCardNumber}"/>
+    <parameter name="month" value="@{creditCardMonth}"/>
+    <parameter name="year" value="@{creditCardYear}"/>
+    <parameter name="paymentAmount" value="@{paymentAmount}"/>
+  </module>
+  <module name="modules.pages.account.orderhistory.VAccount_OrderHistory_OrderSummary_validateTotals">
+    <parameter name="totalsSubtotal" value="@{totalsSubtotal}"/>
+    <parameter name="totalsShipping" value="@{totalsShipping}"/>
+    <parameter name="totalsSalesTax" value="@{totalsSalesTax}"/>
+    <parameter name="totalsTotal" value="@{totalsTotal}"/>
+  </module>
+  <module name="modules.pages.account.orderhistory.VAccount_OrderHistory_OrderSummary_validateShippingAddress">
+    <parameter name="firstname" value="@{shippingFirstname}"/>
+    <parameter name="lastname" value="@{shippingLastname}"/>
+    <parameter name="address1" value="@{shippingAddress1}"/>
+    <parameter name="address2" value="@{shippingAddress2}"/>
+    <parameter name="city" value="@{shippingCity}"/>
+    <parameter name="statesStateShort" value="@{shippingStatesStateShort}"/>
+    <parameter name="postalCode" value="@{shippingPostalCode}"/>
+    <parameter name="country" value="@{shippingCountry}"/>
+    <parameter name="phone" value="@{shippingPhone}"/>
+    <parameter name="shippingMethod_name" value="@{shippingMethodName}"/>
+    <parameter name="shippingStatus" value="@{shippingStatus}"/>
+  </module>
+  <action name="ReturnToShopping"/>
+  <module name="modules.pages.account.orderhistory.MAccount_OrderHistory_OrderSummary_clickReturnToShopping"/>
+</scriptmodule>

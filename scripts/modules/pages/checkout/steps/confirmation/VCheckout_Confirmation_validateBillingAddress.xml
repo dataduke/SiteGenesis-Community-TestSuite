@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate billing address.</description>
+  <parameter name="firstname" desc="firstname"/>
+  <parameter name="lastname" desc="lastname"/>
+  <parameter name="address1" desc="address1"/>
+  <parameter name="address2" desc="address2"/>
+  <parameter name="city" desc="city"/>
+  <parameter name="statesStateShort" desc="states state short"/>
+  <parameter name="postalCode" desc="postal code"/>
+  <parameter name="country" desc="country"/>
+  <parameter name="phone" desc="phone"/>
+  <codecomment>Validate column billing address</codecomment>
+  <command name="waitForText" target="css=#main #primary .order-confirmation-details .item-list .order-billing .mini-address-name" value="@{firstname} @{lastname}"/>
+  <command name="assertText" target="css=#main #primary .order-confirmation-details .item-list .order-billing .mini-address-location address" value="*@{address1}*"/>
+  <command name="assertText" target="css=#main #primary .order-confirmation-details .item-list .order-billing .mini-address-location address" value="*@{address2}*"/>
+  <command name="assertText" target="css=#main #primary .order-confirmation-details .item-list .order-billing .mini-address-location address" value="*@{city}*@{statesStateShort}*@{postalCode}*"/>
+  <command name="assertText" target="css=#main #primary .order-confirmation-details .item-list .order-billing .mini-address-location address" value="*@{country}*"/>
+  <command name="assertText" target="css=#main #primary .order-confirmation-details .item-list .order-billing .mini-address-location address" value="*@{phone}*"/>
+</scriptmodule>

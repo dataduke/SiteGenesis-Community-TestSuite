@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Enter and update product quantity by row via edit details.</description>
+  <parameter name="row" desc="row"/>
+  <parameter name="productQuantity" desc="product quantity"/>
+  <command name="click" target="css=#cart-table tbody tr:nth-of-type(@{row}) td.item-details .item-edit-details a"/>
+  <command name="waitForElementPresent" target="id=Quantity"/>
+  <command name="type" target="id=Quantity" value="@{productQuantity}"/>
+  <command name="clickAndWait" target="id=add-to-cart"/>
+</scriptmodule>

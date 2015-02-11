@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Click make default address.</description>
+  <parameter name="position" desc="position"/>
+  <command name="waitForElementPresent" target="css=#primary #addresses .address-list li:nth-of-type(@{position}) a.address-make-default"/>
+  <command name="clickAndWait" target="css=#primary #addresses .address-list li:nth-of-type(@{position}) a.address-make-default"/>
+</scriptmodule>

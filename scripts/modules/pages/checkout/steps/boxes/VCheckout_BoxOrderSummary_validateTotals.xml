@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate box order summary totals.</description>
+  <parameter name="shippingMethod_name" desc="shipping method name"/>
+  <parameter name="totalsSubtotal" desc="totals subtotal"/>
+  <parameter name="totalsShipping" desc="totals shipping"/>
+  <parameter name="totalsSalesTax" desc="totals sales tax"/>
+  <parameter name="totalsTotal" desc="totals total"/>
+  <codecomment>Validate totals in box order summary</codecomment>
+  <command name="store" target="css=#main #secondary .checkout-order-totals .order-totals-table" value="css_box_order_totals"/>
+  <command name="waitForText" target="${css_box_order_totals} .order-shipping td:nth-of-type(1)" value="*@{shippingMethod_name}*"/>
+  <command name="assertText" target="${css_box_order_totals} .order-subtotal td:nth-of-type(2)" value="@{totalsSubtotal}"/>
+  <command name="assertText" target="${css_box_order_totals} .order-shipping td:nth-of-type(2)" value="@{totalsShipping}"/>
+  <command name="assertText" target="${css_box_order_totals} .order-sales-tax td:nth-of-type(2)" value="@{totalsSalesTax}"/>
+  <command name="assertText" target="${css_box_order_totals} .order-total td:nth-of-type(2)" value="@{totalsTotal}"/>
+</scriptmodule>

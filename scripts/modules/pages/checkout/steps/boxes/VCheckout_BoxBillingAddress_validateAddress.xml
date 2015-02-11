@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate box billing address.</description>
+  <parameter name="firstname" desc="firstname"/>
+  <parameter name="lastname" desc="lastname"/>
+  <parameter name="address1" desc="address1"/>
+  <parameter name="address2" desc="address2"/>
+  <parameter name="country" desc="country"/>
+  <parameter name="statesStateShort" desc="states state short"/>
+  <parameter name="city" desc="city"/>
+  <parameter name="postal" desc="postal"/>
+  <codecomment>Validate box billing address</codecomment>
+  <command name="waitForText" target="css=#main #secondary .mini-billing-address .details div:nth-of-type(1)" value="@{firstname} @{lastname}"/>
+  <command name="assertText" target="css=#main #secondary .mini-billing-address .details div:nth-of-type(2)" value="@{address1}"/>
+  <command name="assertText" target="css=#main #secondary .mini-billing-address .details div:nth-of-type(3)" value="@{address2}"/>
+  <command name="assertText" target="css=#main #secondary .mini-billing-address .details div:nth-of-type(4)" value="@{city}*@{statesStateShort}*@{postal}"/>
+  <command name="assertText" target="css=#main #secondary .mini-billing-address .details div:nth-of-type(5)" value="@{country}"/>
+</scriptmodule>

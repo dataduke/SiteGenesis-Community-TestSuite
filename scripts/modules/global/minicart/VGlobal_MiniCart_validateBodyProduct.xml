@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate minicart row with product name, product quantity and product price total.</description>
+  <parameter name="row" desc="row"/>
+  <parameter name="productName" desc="product name"/>
+  <parameter name="productQuantity" desc="product quantity"/>
+  <parameter name="productPriceTotal" desc="product price total"/>
+  <command name="store" target="css=#header header #mini-cart .mini-cart-content .mini-cart-product:nth-of-type" value="css_minicart_product"/>
+  <command name="assertElementPresent" target="${css_minicart_product}(@{row}) .mini-cart-image"/>
+  <command name="assertText" target="${css_minicart_product}(@{row}) .mini-cart-name a" value="@{productName}">
+    <comment>Validate that the product name exists in css path.</comment>
+  </command>
+  <command name="assertElementPresent" target="${css_minicart_product}(@{row}) .mini-cart-attributes"/>
+  <command name="assertText" target="${css_minicart_product}(@{row}) .mini-cart-pricing span.value" value="@{productQuantity}">
+    <comment>Validate that the product quantity exists in css path.</comment>
+  </command>
+  <command name="assertText" target="${css_minicart_product}(@{row}) .mini-cart-pricing span.mini-cart-price" value="@{productPriceTotal}">
+    <comment>Validate that the product price exists in css path.</comment>
+  </command>
+  <command name="assertElementPresent" target="${css_minicart_product}(@{row}) .mini-cart-toggler"/>
+</scriptmodule>

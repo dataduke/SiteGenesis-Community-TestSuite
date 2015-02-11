@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testcase xmlns="http://xlt.xceptance.com/xlt-script/2" version="6" junit-test="true">
+  <tags>smoke</tags>
+  <description>Test browse hompage with basic functions.
+
+# 1. Setup and preparation
+
+- Start session, open homepage and delete all visible cookies
+
+# 2. Scope of test
+
+- Validate global header, navigation and footer
+- Validate hompage content
+
+# 3. Clean up
+
+- End session and clean up created cookies</description>
+  <codecomment># Setup
+
+- Start session</codecomment>
+  <module name="modules.helper.FHelper_Session_flowToStartSession"/>
+  <codecomment># Scope</codecomment>
+  <codecomment>## Homepage 
+
+- Validate global header, navigation and footer
+- Validate hompage content</codecomment>
+  <action name="ViewHomepage"/>
+  <module name="modules.global.headerfooternav.VGlobal_validateHeaderFooterNav"/>
+  <module name="modules.pages.homepage.VHomepage_validatePage"/>
+  <codecomment># Teardown
+
+- End session</codecomment>
+  <module name="modules.helper.FHelper_Session_flowToEndSession"/>
+</testcase>

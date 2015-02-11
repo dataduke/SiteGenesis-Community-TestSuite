@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Click color by label.</description>
+  <parameter name="colorLabel" desc="color label"/>
+  <command name="waitForElementPresent" target="css=#main #secondary .refinement.Color ul.Color li a[title=&quot;@{colorLabel}&quot;]"/>
+  <command name="click" target="css=#main #secondary .refinement.Color ul.Color li a[title=&quot;@{colorLabel}&quot;]"/>
+</scriptmodule>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate personal data page.</description>
+  <codecomment>Validate payment settings page</codecomment>
+  <command name="waitForElementPresent" target="css=#main .breadcrumb a.breadcrumb-element:nth-of-type(3)[title=&quot;Edit Account&quot;]"/>
+  <command name="assertText" target="css=#primary h1" value="Edit Account"/>
+  <command name="assertText" target="css=#primary #RegistrationForm fieldset:nth-of-type(1) legend" value="NAME*"/>
+  <command name="assertText" target="css=#primary #RegistrationForm fieldset:nth-of-type(2) legend" value="EMAIL / LOGIN INFORMATION*"/>
+</scriptmodule>

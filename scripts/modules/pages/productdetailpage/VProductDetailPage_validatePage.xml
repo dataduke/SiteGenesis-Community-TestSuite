@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate product detail page.</description>
+  <codecomment value="Validate main content of productdetailpage"/>
+  <command name="waitForElementPresent" target="css=#pdpMain.pdp-main"/>
+  <command name="assertElementPresent" target="css=h1.product-name"/>
+  <command name="assertElementPresent" target="css=.product-col-1.product-image-container .product-primary-image"/>
+  <command name="assertElementPresent" target="css=#thumbnails.product-thumbnails"/>
+  <command name="assertElementPresent" target="css=.product-col-2.product-detail"/>
+  <command name="assertElementPresent" target="css=#product-content"/>
+  <command name="assertElementPresent" target="css=#product-content .product-number"/>
+  <command name="assertElementPresent" target="css=#product-content .product-price"/>
+  <command name="assertElementPresent" target="css=#product-content .product-review-links"/>
+  <command name="assertElementPresent" target="css=#product-content .product-variations"/>
+  <command name="assertElementPresent" target="css=#product-content .product-add-to-cart"/>
+  <command name="assertElementPresent" target="css=#product-content .product-actions"/>
+  <command name="assertElementPresent" target="css=.recommendations.cross-sell"/>
+</scriptmodule>

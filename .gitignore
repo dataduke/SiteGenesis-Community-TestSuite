@@ -1,0 +1,7 @@
+.classpath
+.DS_Store
+.openscripts
+classes
+/.settings/
+/results/
+

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Convert number to last four digits only.</description>
+  <parameter name="number" desc="number"/>
+  <parameter name="numberLastFourDigits_varName" desc="last four digits of number as var name"/>
+  <command name="storeEval" target="&quot;@{number}&quot;.slice(-4)" value="@{numberLastFourDigits_varName}"/>
+</scriptmodule>

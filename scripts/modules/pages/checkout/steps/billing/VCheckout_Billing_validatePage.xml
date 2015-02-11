@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate billing page.</description>
+  <codecomment>Validate page title</codecomment>
+  <command name="waitForElementPresent" target="css=#main #primary h1"/>
+  <codecomment>Validate progress indicators</codecomment>
+  <command name="assertText" target="css=#main #primary .checkout-progress-indicator .step-1.inactive" value="*Shipping*"/>
+  <command name="assertText" target="css=#main #primary .checkout-progress-indicator .step-2.active" value="*Billing*"/>
+  <command name="assertText" target="css=#main #primary .checkout-progress-indicator .step-3.inactive" value="*Place Order*"/>
+  <codecomment>Validate primary fieldset billing address</codecomment>
+  <command name="store" target="css=#main #primary [class=&quot;checkout-billing address&quot;] fieldset:nth-of-type(1)" value="css_billing_address"/>
+  <command name="assertElementPresent" target="${css_billing_address} legend"/>
+  <command name="assertElementPresent" target="${css_billing_address} #dwfrm_billing_billingAddress_addToEmailList"/>
+  <command name="assertElementPresent" target="${css_billing_address} .privacy-policy"/>
+  <codecomment>Valdiate primary fieldset gift coupon</codecomment>
+  <command name="store" target="css=#main #primary [class=&quot;checkout-billing address&quot;] fieldset:nth-of-type(2) " value="css_gift_coupon"/>
+  <command name="assertElementPresent" target="${css_gift_coupon} legend"/>
+  <command name="assertElementPresent" target="${css_gift_coupon} #dwfrm_billing_couponCode"/>
+  <command name="assertElementPresent" target="${css_gift_coupon} #add-coupon"/>
+  <command name="assertElementPresent" target="${css_gift_coupon} #dwfrm_billing_giftCertCode"/>
+  <command name="assertElementPresent" target="${css_gift_coupon} #add-giftcert"/>
+  <command name="assertElementPresent" target="${css_gift_coupon} #check-giftcert"/>
+  <codecomment>Validate primary fieldset payment</codecomment>
+  <command name="store" target="css=#main #primary [class=&quot;checkout-billing address&quot;] fieldset:nth-of-type(3) " value="css_payment_method"/>
+  <command name="assertElementPresent" target="${css_payment_method} legend"/>
+  <command name="assertElementPresent" target="${css_payment_method} .payment-method-options"/>
+  <command name="assertElementPresent" target="${css_payment_method} .cvn-tip"/>
+  <codecomment>Validate secondary fieldset order summary</codecomment>
+  <command name="assertElementPresent" target="css=#main #secondary.nav.summary .section-header .section-header-note"/>
+  <command name="assertElementPresent" target="css=#main #secondary.nav.summary .checkout-mini-cart"/>
+  <command name="assertElementPresent" target="css=#main #secondary.nav.summary .checkout-order-totals"/>
+  <codecomment>Validate secondary fieldset shipping address</codecomment>
+  <command name="assertElementPresent" target="css=#main #secondary.nav.summary .mini-shipment .section-header .section-header-note"/>
+  <command name="assertElementPresent" target="css=#main #secondary.nav.summary .mini-shipment .details"/>
+</scriptmodule>

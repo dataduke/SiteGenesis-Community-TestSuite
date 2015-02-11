@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate row.</description>
+  <parameter name="row" desc="row"/>
+  <codecomment>Validate cart row structure</codecomment>
+  <command name="assertElementPresent" target="css=.cart-row:nth-of-type(@{row})"/>
+  <command name="assertElementPresent" target="css=.cart-row:nth-of-type(@{row}) .item-image img"/>
+  <command name="assertElementPresent" target="css=.cart-row:nth-of-type(@{row}) .item-details"/>
+  <command name="assertElementPresent" target="css=.cart-row:nth-of-type(@{row}) .item-quantity-details .item-user-actions button"/>
+  <command name="assertElementPresent" target="css=.cart-row:nth-of-type(@{row}) .item-quantity-details .item-user-actions a.add-to-wishlist"/>
+  <command name="assertElementPresent" target="css=.cart-row:nth-of-type(@{row}) .item-quantity-details .item-user-actions a.add-to-registry"/>
+  <command name="assertElementPresent" target="css=.cart-row:nth-of-type(@{row}) .item-quantity"/>
+  <command name="assertElementPresent" target="css=.cart-row:nth-of-type(@{row}) .item-quantity-details"/>
+  <command name="assertElementPresent" target="css=.cart-row:nth-of-type(@{row}) .item-price"/>
+  <command name="assertElementPresent" target="css=.cart-row:nth-of-type(@{row}) .item-total"/>
+</scriptmodule>

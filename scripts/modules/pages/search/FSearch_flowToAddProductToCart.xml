@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Flow to add (basic) product with quantity to cart.
+
+- Start on search
+- Search product via number
+- Set quantity on PDP
+- Store basic details on PDP
+- Add to cart on PDP
+- Go to Cart via global header link
+- Validate product row basic details
+- Store product price total
+- End on cart</description>
+  <parameter name="cartRow" desc="cart row"/>
+  <parameter name="productNumber" desc="product number"/>
+  <parameter name="productQuantity" desc="product quantity"/>
+  <parameter name="productName_varName" desc="product name as var name"/>
+  <parameter name="productNumber_varName" desc="product number as var name"/>
+  <parameter name="productQuantity_varName" desc="product quantity as var name"/>
+  <parameter name="productPriceSales_varName" desc="product price sales as var name"/>
+  <parameter name="productPriceTotal_varName" desc="price total as var name"/>
+  <codecomment># Search
+
+- Submit search string</codecomment>
+  <action name="Search"/>
+  <module name="modules.pages.search.MSearch_enterSubmitText">
+    <parameter name="searchText" value="@{productNumber}"/>
+  </module>
+  <codecomment># PDP
+
+- Set quantity
+- Store product basics
+- Add product to cart</codecomment>
+  <action name="PDPSetDetails"/>
+  <module name="modules.pages.productdetailpage.MProductDetailPage_enterQuantity">
+    <parameter name="productQuantity" value="@{productQuantity}"/>
+  </module>
+  <module name="modules.pages.productdetailpage.MProductDetailPage_storeBasicDetails">
+    <parameter name="productName_varName" value="@{productName_varName}"/>
+    <parameter name="productNumber_varName" value="@{productNumber_varName}"/>
+    <parameter name="productPriceSales_varName" value="@{productPriceSales_varName}"/>
+    <parameter name="productQuantity_varName" value="@{productQuantity_varName}"/>
+  </module>
+  <module name="modules.pages.productdetailpage.MProductDetailPage_clickAddToCart"/>
+  <codecomment># Cart 
+
+- Go to cart
+- Validate product basics
+- Store product price total</codecomment>
+  <action name="GoToCart"/>
+  <module name="modules.global.minicart.MGlobal_MiniCart_clickGoToCartViaHeaderLink"/>
+  <module name="modules.pages.cart.VCart_Row_validateProductBasicDetails">
+    <parameter name="row" value="@{cartRow}"/>
+    <parameter name="productName" value="${@{productName_varName}}"/>
+    <parameter name="productNumber" value="@{productNumber}"/>
+    <parameter name="productQuantity" value="${@{productQuantity_varName}}"/>
+    <parameter name="productPriceSales" value="${@{productPriceSales_varName}}"/>
+  </module>
+  <module name="modules.pages.cart.MCart_Row_storeProductPriceTotal">
+    <parameter name="row" value="@{cartRow}"/>
+    <parameter name="productPriceTotal_varName" value="@{productPriceTotal_varName}"/>
+  </module>
+</scriptmodule>

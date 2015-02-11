@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate box order summary product color and size attribute details.</description>
+  <parameter name="row" desc="row"/>
+  <parameter name="productColor" desc="product color"/>
+  <parameter name="productSize" desc="product size"/>
+  <codecomment>Validate product color and size in order summary box</codecomment>
+  <command name="store" target="css=#main #secondary .checkout-mini-cart .mini-cart-product:nth-of-type" value="css_box_minicart_product"/>
+  <command name="waitForText" target="${css_box_minicart_product}(@{row}) .mini-cart-attributes div:nth-of-type(1) .value " value="@{productColor}"/>
+  <command name="assertText" target="${css_box_minicart_product}(@{row}) .mini-cart-attributes div:nth-of-type(2) .value " value="@{productSize}"/>
+</scriptmodule>

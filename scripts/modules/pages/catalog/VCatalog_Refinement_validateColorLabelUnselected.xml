@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate color is not selected by label.</description>
+  <parameter name="colorLabel" desc="color label"/>
+  <command name="waitForNotElementPresent" target="css=#main #secondary .refinement.Color ul.Color .selected a[title=&quot;@{colorLabel}&quot;]"/>
+</scriptmodule>

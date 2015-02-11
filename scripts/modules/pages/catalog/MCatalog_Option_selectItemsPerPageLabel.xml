@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Select items per page via label.</description>
+  <parameter name="itemsPerPageLabel" desc="items per page label"/>
+  <command name="waitForElementPresent" target="css=#main #primary .search-result-options .items-per-page #grid-paging-header"/>
+  <command name="select" target="id=grid-paging-header" value="label=@{itemsPerPageLabel}"/>
+  <command name="pause" value="300">
+    <comment>SiteGenesis needs some time until javascript of dropdown menu is executed.</comment>
+  </command>
+  <command name="waitForText" target="css=#main #primary .search-result-options .items-per-page #grid-paging-header option[selected=&quot;selected&quot;]" value="@{itemsPerPageLabel}"/>
+  <command name="assertText" target="css=#main #primary .search-result-options .items-per-page #grid-paging-footer option[selected=&quot;selected&quot;]" value="@{itemsPerPageLabel}"/>
+</scriptmodule>

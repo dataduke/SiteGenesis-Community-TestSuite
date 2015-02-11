@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate items per page option.</description>
+  <parameter name="itemsPerPageLabel" desc="items per page label"/>
+  <command name="waitForElementPresent" target="css=#main #primary div.search-result-options:nth-of-type(2) .pagination .results-hits"/>
+  <command name="waitForText" target="css=#main #primary div.search-result-options:nth-of-type(2) .pagination .results-hits" value="*@{itemsPerPageLabel}*"/>
+  <command name="waitForText" target="css=#main #primary div.search-result-options:nth-of-type(4) .pagination .results-hits" value="*@{itemsPerPageLabel}*"/>
+</scriptmodule>

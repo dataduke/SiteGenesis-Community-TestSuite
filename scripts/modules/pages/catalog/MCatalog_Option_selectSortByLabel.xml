@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Select sort by via label.</description>
+  <parameter name="sortByLabel" desc="sort by  label"/>
+  <command name="waitForElementPresent" target="css=#main #primary .search-result-options .sort-by #grid-sort-header"/>
+  <command name="select" target="id=grid-sort-header" value="label=@{sortByLabel}"/>
+  <command name="pause" value="300">
+    <comment>SiteGenesis needs some time until javascript of dropdown menu is executed.</comment>
+  </command>
+  <command name="waitForText" target="css=#main #primary .search-result-options .sort-by #grid-sort-header option[selected]" value="@{sortByLabel}"/>
+  <command name="waitForText" target="css=#main #primary .search-result-options .sort-by #grid-sort-footer option[selected]" value="@{sortByLabel}"/>
+</scriptmodule>

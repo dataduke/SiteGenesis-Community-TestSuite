@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Click cancel data in address details dialog.</description>
+  <command name="waitForElementPresent" target="css=button[name=dwfrm_profile_address_cancel][type=submit]"/>
+  <command name="click" target="css=button[name=dwfrm_profile_address_cancel][type=submit]"/>
+  <command name="waitForNotElementPresent" target="css=form[name=&quot;dwfrm_profile_address&quot;]"/>
+</scriptmodule>

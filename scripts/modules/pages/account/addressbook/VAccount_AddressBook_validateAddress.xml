@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate address.</description>
+  <parameter name="position" desc="position"/>
+  <parameter name="title" desc="title"/>
+  <parameter name="firstname" desc="firstname"/>
+  <parameter name="lastname" desc="lastname"/>
+  <parameter name="address1" desc="address1"/>
+  <parameter name="address2" desc="address2"/>
+  <parameter name="country" desc="country"/>
+  <parameter name="statesStateShort" desc="states state short"/>
+  <parameter name="city" desc="city"/>
+  <parameter name="postalCode" desc="postal code"/>
+  <parameter name="phone" desc="phone"/>
+  <command name="waitForElementPresent" target="css=#main .breadcrumb a.breadcrumb-element:nth-of-type(3)[title=&quot;Addresses&quot;]"/>
+  <codecomment>Validate address data</codecomment>
+  <command name="store" target="css=#primary #addresses .address-list li:nth-of-type(@{position})" value="css_address"/>
+  <command name="waitForText" target="${css_address} .mini-address-title" value="@{title}"/>
+  <command name="assertText" target="${css_address} .mini-address-name" value="*@{firstname}*@{lastname}*"/>
+  <command name="assertText" target="${css_address} .mini-address-location address" value="@{address1}*"/>
+  <command name="assertText" target="${css_address} .mini-address-location address" value="*@{address2}*"/>
+  <command name="assertText" target="${css_address} .mini-address-location address" value="*@{city}, @{statesStateShort} @{postalCode}*"/>
+  <command name="assertText" target="${css_address} .mini-address-location address" value="*@{country}*"/>
+  <command name="assertText" target="${css_address} .mini-address-location address" value="*@{phone}"/>
+</scriptmodule>

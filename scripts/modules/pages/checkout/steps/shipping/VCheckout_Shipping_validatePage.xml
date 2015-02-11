@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate shipping page.</description>
+  <codecomment>Validate page title</codecomment>
+  <command name="waitForElementPresent" target="css=#main #primary h1"/>
+  <codecomment>Validate progress indicators</codecomment>
+  <command name="assertText" target="css=#main #primary .checkout-progress-indicator .step-1.active" value="*Shipping*"/>
+  <command name="assertText" target="css=#main #primary .checkout-progress-indicator .step-2.inactive" value="*Billing*"/>
+  <command name="assertText" target="css=#main #primary .checkout-progress-indicator .step-3.inactive" value="*Place Order*"/>
+  <codecomment>Validate primary fieldset shipping address</codecomment>
+  <command name="store" target="css=#main #primary [class=&quot;checkout-shipping address&quot;] fieldset:nth-of-type(1) " value="fieldsetShippingAddress"/>
+  <command name="assertElementPresent" target="${fieldsetShippingAddress} legend"/>
+  <command name="assertElementPresent" target="${fieldsetShippingAddress} .form-field-tooltip:not(.with-helper-text) .tooltip"/>
+  <command name="assertElementPresent" target="${fieldsetShippingAddress} .form-field-tooltip.with-helper-text .tooltip"/>
+  <codecomment>Validate primary fieldset shipping method</codecomment>
+  <command name="store" target="css=#main #primary #shipping-method-list fieldset:nth-of-type(1) " value="fieldsetShippingMethod"/>
+  <command name="assertElementPresent" target="${fieldsetShippingMethod} legend"/>
+  <command name="assertElementPresent" target="${fieldsetShippingMethod} [name=&quot;dwfrm_singleshipping_shippingAddress_shippingMethodID&quot;]"/>
+  <command name="assertElementPresent" target="${fieldsetShippingMethod} [data-layout=&quot;small tooltip-shipping&quot;]"/>
+  <codecomment>Validate save and continue button</codecomment>
+  <command name="assertElementPresent" target="css=#main #primary [type=&quot;submit&quot;]"/>
+  <codecomment>Validate secondary fieldset order summary</codecomment>
+  <command name="assertElementPresent" target="css=#main #secondary.nav.summary .section-header .section-header-note"/>
+  <command name="assertElementPresent" target="css=#main #secondary.nav.summary .checkout-mini-cart"/>
+  <command name="assertElementPresent" target="css=#main #secondary.nav.summary .checkout-order-totals"/>
+</scriptmodule>

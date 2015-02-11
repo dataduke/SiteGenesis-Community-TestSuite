@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Split credit card into the usual groups of four characters.</description>
+  <parameter name="creditCardNumber" desc="credit card number"/>
+  <parameter name="creditCardNumberGroups_varName" desc="credit card number groups"/>
+  <command name="storeEval" target="a = &quot;@{creditCardNumber}&quot;.match(/(.{4})(.{4})(.{4})(.{3,4})/); a[1] + &quot; &quot; + a[2] + &quot; &quot; + a[3] + &quot; &quot; + a[4];" value="@{creditCardNumberGroups_varName}">
+    <comment>This splits the creditcard number into four blocks of four digits or in case of a 15-digits AMEX into three groups of four and one group of three.
+
+* 340000000000009 = 3400 0000 0000 009 
+* 4111111111111111 = 4111 1111 1111 1111</comment>
+  </command>
+</scriptmodule>

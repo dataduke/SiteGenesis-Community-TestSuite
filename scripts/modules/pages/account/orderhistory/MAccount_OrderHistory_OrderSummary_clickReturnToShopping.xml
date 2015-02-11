@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Click return to shopping on order summary page.</description>
+  <command name="waitForElementPresent" target="css=#primary .order-detail-options a[title=&quot;Return to Shopping&quot;]"/>
+  <command name="click" target="css=#primary .order-detail-options a[title=&quot;Return to Shopping&quot;]"/>
+</scriptmodule>

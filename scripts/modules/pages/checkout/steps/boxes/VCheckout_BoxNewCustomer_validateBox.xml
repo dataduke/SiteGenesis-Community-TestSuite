@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate box new customer.</description>
+  <codecomment>Validate box new customer</codecomment>
+  <command name="waitForElementPresent" target="css=#main #secondary .login-box.login-create-account h2.section-header"/>
+  <command name="assertElementPresent" target="css=#main #secondary .login-box.login-create-account .login-box-content"/>
+  <command name="assertElementPresent" target="css=#main #secondary .login-box #RegistrationForm #dwfrm_profile_customer_firstname"/>
+  <command name="assertElementPresent" target="css=#main #secondary .login-box #RegistrationForm #dwfrm_profile_customer_lastname"/>
+  <command name="assertElementPresent" target="css=#main #secondary .login-box #RegistrationForm #dwfrm_profile_customer_email"/>
+  <command name="assertElementPresent" target="css=#main #secondary .login-box #RegistrationForm #dwfrm_profile_customer_emailconfirm"/>
+  <command name="assertElementPresent" target="css=#main #secondary .login-box #RegistrationForm #dwfrm_profile_login_password"/>
+  <command name="assertElementPresent" target="css=#main #secondary .login-box #RegistrationForm #dwfrm_profile_login_passwordconfirm"/>
+  <command name="assertElementPresent" target="css=#main #secondary .login-box #RegistrationForm [type=submit]"/>
+</scriptmodule>

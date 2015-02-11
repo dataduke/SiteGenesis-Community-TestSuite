@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Convert value to price (eg. 123456789 is converted to $ 1,234,567.89).</description>
+  <parameter name="priceValue" desc="price value"/>
+  <parameter name="price_varName" desc="price as var name"/>
+  <parameter name="priceCurrency" desc="price currency"/>
+  <parameter name="priceDecimalMark" desc="price decimal mark"/>
+  <parameter name="priceDigitGroupSeparators" desc="price digit group separators"/>
+  <command name="storeEval" target="&quot;@{priceValue}&quot;.length" value="digitsLength"/>
+  <command name="storeEval" target="(&quot;00&quot; + &quot;@{priceValue}&quot;).slice(-2)" value="digitsAfterMark"/>
+  <command name="storeEval" target="&quot;@{priceValue}&quot;.substring(0, (&quot;${digitsLength}&quot;-2))" value="digitsBeforeMark"/>
+  <command name="storeEval" target="&quot;${digitsBeforeMark}&quot;.replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, &quot;$1@{priceDigitGroupSeparators}&quot;)" value="digitsGroups">
+    <comment>Splits any length digit string into groups of three elements beginning from end of line separated by given delimiter.
+
+* 1 = 1
+* 12 = 12
+* 123 = 123
+* 1234 = 1.234
+* 12345 = 12.345
+* 123456 = 123.456
+* 1234567 = 1.234.567
+* 12345678 = 12.345.678
+* 123456789 = 123.456.789</comment>
+  </command>
+  <command name="storeEval" target="&quot;@{priceCurrency}&quot; + &quot;${digitsGroups}&quot; + &quot;@{priceDecimalMark}&quot; + &quot;${digitsAfterMark}&quot;" value="@{price_varName}"/>
+</scriptmodule>

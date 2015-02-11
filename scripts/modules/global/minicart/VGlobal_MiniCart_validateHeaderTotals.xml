@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate minicart on homepage with item count and total price in header details .</description>
+  <parameter name="totalsQuantity" desc="totals quantity (item count)"/>
+  <parameter name="totalsSubtotal" desc="totals subtotal"/>
+  <command name="waitForText" target="css=header #mini-cart .mini-cart-total a.mini-cart-link" value="*(@{totalsQuantity})*"/>
+  <command name="assertText" target="css=header #mini-cart .mini-cart-total a.mini-cart-link" value="*(@{totalsQuantity})*"/>
+  <command name="assertText" target="css=header #mini-cart .mini-cart-total a.mini-cart-link span.mini-cart-total-label" value="*@{totalsSubtotal}">
+    <comment>**Caution:** Browser window needs to be 1200 pixels wide to show totals subtotal in header.</comment>
+  </command>
+</scriptmodule>

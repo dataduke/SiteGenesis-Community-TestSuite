@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate credit card details dialog.</description>
+  <command name="waitForText" target="css=#dialog-container h1" value="*Add a Credit Card*"/>
+  <codecomment>Validate labels of required input fields</codecomment>
+  <command name="assertElementPresent" target="css=#dialog-container .dialog-required .required-indicator"/>
+  <command name="assertElementPresent" target="css= #dialog-container label[for=&quot;dwfrm_paymentinstruments_creditcards_newcreditcard_owner&quot;] .required-indicator"/>
+  <command name="assertElementPresent" target="css= #dialog-container label[for=&quot;dwfrm_paymentinstruments_creditcards_newcreditcard_type&quot;] .required-indicator"/>
+  <command name="assertElementPresent" target="css= #dialog-container div.form-row.required:nth-of-type(3) .required-indicator"/>
+  <command name="assertElementPresent" target="css= #dialog-container label[for=&quot;dwfrm_paymentinstruments_creditcards_newcreditcard_month&quot;] .required-indicator"/>
+  <command name="assertElementPresent" target="css= #dialog-container label[for=&quot;dwfrm_paymentinstruments_creditcards_newcreditcard_year&quot;] span.required-indicator"/>
+</scriptmodule>

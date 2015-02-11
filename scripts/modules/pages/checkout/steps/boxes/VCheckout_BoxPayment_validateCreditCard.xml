@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate box payment credit card</description>
+  <parameter name="paymentName" desc="payment name"/>
+  <parameter name="owner" desc="owner"/>
+  <parameter name="typeShort" desc="type short"/>
+  <parameter name="number" desc="number"/>
+  <parameter name="month" desc="month"/>
+  <parameter name="year" desc="year"/>
+  <parameter name="paymentAmount" desc="payment amount"/>
+  <codecomment>Validate box mini payment</codecomment>
+  <command name="store" target="css=#main #secondary .mini-payment-instrument .details" value="css_box_mini_payment"/>
+  <command name="waitForText" target="${css_box_mini_payment} div:nth-of-type(1)" value="@{paymentName}"/>
+  <command name="assertText" target="${css_box_mini_payment}" value="*@{owner}*"/>
+  <command name="assertText" target="${css_box_mini_payment}" value="*@{typeShort}*"/>
+  <codecomment>Validate hidden creditcard number with only last four digits shown</codecomment>
+  <command name="assertNotText" target="${css_box_mini_payment}" value="*@{number}*"/>
+  <module name="modules.helper.MHelper_Number_sliceLastFourDigits">
+    <parameter name="number" value="@{number}"/>
+    <parameter name="numberLastFourDigits_varName" value="numberLastFourDigits"/>
+  </module>
+  <command name="assertText" target="${css_box_mini_payment}" value="*${numberLastFourDigits}*"/>
+  <codecomment>Validate creditcard date as number format</codecomment>
+  <module name="modules.helper.MHelper_Date_convertIntoMonthNumberShort">
+    <parameter name="monthName" value="@{month}"/>
+    <parameter name="monthNumberShort_varName" value="monthNumberShort"/>
+  </module>
+  <module name="modules.helper.MHelper_Number_sliceLastTwoDigits">
+    <parameter name="number" value="${monthNumberShort}"/>
+    <parameter name="numberLastTwoDigits_varName" value="monthNumber"/>
+  </module>
+  <command name="assertText" target="${css_box_mini_payment}" value="*${monthNumber}.@{year}*"/>
+  <command name="assertText" target="${css_box_mini_payment} div:nth-of-type(2)" value="*@{paymentAmount}*"/>
+</scriptmodule>

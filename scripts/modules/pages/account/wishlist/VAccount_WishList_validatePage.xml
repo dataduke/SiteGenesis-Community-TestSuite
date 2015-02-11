@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate wishlist page.</description>
+  <command name="waitForElementPresent" target="css=#main .breadcrumb a.breadcrumb-element:nth-of-type(3)[title=&quot;Wish List&quot;]"/>
+  <command name="waitForText" target="css=#primary h1" value="*Find Someone's Wish List*"/>
+  <command name="assertElementPresent" target="css=#primary #dwfrm_wishlist_search #dwfrm_wishlist_search_lastname"/>
+  <command name="assertElementPresent" target="css=#primary #dwfrm_wishlist_search #dwfrm_wishlist_search_firstname"/>
+  <command name="assertElementPresent" target="css=#primary #dwfrm_wishlist_search #dwfrm_wishlist_search_email"/>
+  <command name="assertElementPresent" target="css=#primary #dwfrm_wishlist_search button[name=&quot;dwfrm_wishlist_search_search&quot;][type=&quot;submit&quot;]"/>
+  <command name="assertElementPresent" target="css=#primary #dwfrm_wishlist_shipping button[name=&quot;dwfrm_wishlist_addGiftCertificate&quot;]"/>
+  <command name="assertElementPresent" target="css=#primary #dwfrm_wishlist_share button[name=&quot;dwfrm_wishlist_setListPublic&quot;]"/>
+  <command name="assertElementPresent" target="css=#primary #dwfrm_wishlist_share a#send-to-friend"/>
+</scriptmodule>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate credit card data in payment settings.</description>
+  <parameter name="position" desc="position"/>
+  <parameter name="owner" desc="owner"/>
+  <parameter name="typeShort" desc="type short"/>
+  <parameter name="number" desc="number"/>
+  <parameter name="month" desc="month"/>
+  <parameter name="year" desc="year"/>
+  <command name="waitForElementPresent" target="css=#main .breadcrumb a.breadcrumb-element:nth-of-type(3)[title=&quot;Payment Settings&quot;]"/>
+  <codecomment>Validate credit card data</codecomment>
+  <command name="waitForElementCount" target="xpath=//ul[@class='payment-list']/li[contains(., '@{owner}')]" value="1">
+    <comment>This solution is not very nice, but due to the current state of the html (no structure in the address) and no predictability at which position a new address is displayed, the only one that works ok.</comment>
+  </command>
+  <command name="assertElementCount" target="xpath=//ul[@class='payment-list']/li[contains(., '@{typeShort}')]" value="1">
+    <comment>This solution is not very nice, but due to the current state of the html (no structure in the address) and no predictability at which position a new address is displayed, the only one that works ok.</comment>
+  </command>
+  <codecomment>Make sure the credit card number is not shown on the page</codecomment>
+  <command name="assertNotTextPresent" value="@{number}">
+    <comment>Simply scan over the page and ensure that the creditcard number is not listed. This is expensive and runs a little slower but it ensures that the number is not really accidentally included somewhere.</comment>
+  </command>
+  <module name="modules.helper.MHelper_Number_splitCreditCardIntoGroups">
+    <parameter name="creditCardNumber" value="@{number}"/>
+    <parameter name="creditCardNumberGroups_varName" value="numberGrouped"/>
+  </module>
+  <command name="assertNotTextPresent" value="${numberGrouped}">
+    <comment>Simply scan over the page and ensure that the creditcard number is not listed. This is expensive and runs a little slower but it ensures that the number is not really accidentally included somewhere.</comment>
+  </command>
+  <codecomment>Validate hidden creditcard number with only last four digits shown</codecomment>
+  <module name="modules.helper.MHelper_Number_sliceLastFourDigits">
+    <parameter name="number" value="@{number}"/>
+    <parameter name="numberLastFourDigits_varName" value="numberLastFourDigits"/>
+  </module>
+  <command name="assertElementCount" target="xpath=//ul[@class='payment-list']/li[contains(., '${numberLastFourDigits}')]" value="1"/>
+  <codecomment>Validate creditcard date as number format</codecomment>
+  <module name="modules.helper.MHelper_Date_convertIntoMonthNumberShort">
+    <parameter name="monthName" value="@{month}"/>
+    <parameter name="monthNumberShort_varName" value="monthNumberShort"/>
+  </module>
+  <module name="modules.helper.MHelper_Number_sliceLastTwoDigits">
+    <parameter name="number" value="${monthNumberShort}"/>
+    <parameter name="numberLastTwoDigits_varName" value="monthNumber"/>
+  </module>
+  <command name="assertElementCount" target="xpath=//ul[@class='payment-list']/li[contains(., '${monthNumber}.@{year}')]" value="1"/>
+</scriptmodule>

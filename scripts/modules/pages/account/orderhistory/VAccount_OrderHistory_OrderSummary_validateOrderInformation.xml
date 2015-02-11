@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate order information.</description>
+  <parameter name="orderNumber" desc="order number"/>
+  <parameter name="orderDate" desc="order date"/>
+  <codecomment>Validate column order information</codecomment>
+  <command name="store" target="css=#main #primary .item-list .order-information" value="css_column_order_information"/>
+  <codecomment>Match order date to pattern</codecomment>
+  <command name="assertElementPresent" target="${css_column_order_information} .order-date .label"/>
+  <command name="assertText" target="${css_column_order_information} .order-date .value" value="@{orderDate}"/>
+  <codecomment>Match order number to pattern</codecomment>
+  <command name="assertElementPresent" target="${css_column_order_information} .order-number .label"/>
+  <command name="assertText" target="${css_column_order_information} .order-number .value" value="@{orderNumber}"/>
+</scriptmodule>

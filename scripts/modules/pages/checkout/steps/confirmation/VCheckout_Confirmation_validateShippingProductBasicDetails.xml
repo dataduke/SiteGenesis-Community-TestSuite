@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate products basic details.</description>
+  <parameter name="row" desc="row"/>
+  <parameter name="productName" desc="product name"/>
+  <parameter name="productNumber" desc="product number"/>
+  <parameter name="productQuantity" desc="product quantity"/>
+  <parameter name="productPriceTotal" desc="product price total"/>
+  <codecomment>Validate column item details (name, number, quantity, price sales)</codecomment>
+  <command name="waitForText" target="css=#main #primary .order-shipment-table tbody tr:nth-of-type(@{row}) .line-item-details .product-list-item .name a" value="@{productName}"/>
+  <command name="assertText" target="css=#main #primary .order-shipment-table tbody tr:nth-of-type(@{row}) .line-item-details .product-list-item .sku .value" value="@{productNumber}"/>
+  <codecomment>Validate column quantity</codecomment>
+  <command name="assertText" target="css=#main #primary .order-shipment-table tbody tr:nth-of-type(@{row})  .line-item-quantity" value="@{productQuantity}"/>
+  <codecomment>Validate column price</codecomment>
+  <command name="assertText" target="css=#main #primary .order-shipment-table tbody tr:nth-of-type(@{row})  .line-item-price" value="*@{productPriceTotal}*"/>
+</scriptmodule>

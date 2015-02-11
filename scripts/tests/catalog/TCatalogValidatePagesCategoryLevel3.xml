@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testcase xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <tags>smoke</tags>
+  <description>Test validate pages of category level 3.
+
+# 1. Setup and preparation
+
+- Start session, open homepage and delete all visible cookies
+
+# 2. Scope of test
+
+- Go to all pages of category level 3
+- Validate all pages
+
+# 3. Clean up
+
+- End session and clean up created cookies</description>
+  <codecomment># Setup
+
+- Start session</codecomment>
+  <module name="modules.helper.FHelper_Session_flowToStartSession"/>
+  <codecomment>## Category Two
+
+- Go to category pages
+- Validate page</codecomment>
+  <action name="GoToCategoryPage"/>
+  <module name="modules.global.headerfooternav.MGlobal_Nav_clickGoToCategoryLevel3">
+    <parameter name="positionLevel1" value="2"/>
+    <parameter name="positionLevel2" value="1"/>
+    <parameter name="positionLevel3" value="1"/>
+  </module>
+  <module name="modules.pages.catalog.VCatalog_validatePage"/>
+  <action name="GoToCategoryPage"/>
+  <module name="modules.global.headerfooternav.MGlobal_Nav_clickGoToCategoryLevel3">
+    <parameter name="positionLevel1" value="2"/>
+    <parameter name="positionLevel2" value="1"/>
+    <parameter name="positionLevel3" value="6"/>
+  </module>
+  <module name="modules.pages.catalog.VCatalog_validatePage"/>
+  <action name="GoToCategoryPage"/>
+  <module name="modules.global.headerfooternav.MGlobal_Nav_clickGoToCategoryLevel3">
+    <parameter name="positionLevel1" value="2"/>
+    <parameter name="positionLevel2" value="2"/>
+    <parameter name="positionLevel3" value="1"/>
+  </module>
+  <module name="modules.pages.catalog.VCatalog_validatePage"/>
+  <action name="GoToCategoryPage"/>
+  <module name="modules.global.headerfooternav.MGlobal_Nav_clickGoToCategoryLevel3">
+    <parameter name="positionLevel1" value="2"/>
+    <parameter name="positionLevel2" value="2"/>
+    <parameter name="positionLevel3" value="3"/>
+  </module>
+  <module name="modules.pages.catalog.VCatalog_validatePage"/>
+  <action name="GoToCategoryPage"/>
+  <module name="modules.global.headerfooternav.MGlobal_Nav_clickGoToCategoryLevel3">
+    <parameter name="positionLevel1" value="2"/>
+    <parameter name="positionLevel2" value="3"/>
+    <parameter name="positionLevel3" value="1"/>
+  </module>
+  <module name="modules.pages.catalog.VCatalog_validatePage"/>
+  <action name="GoToCategoryPage"/>
+  <module name="modules.global.headerfooternav.MGlobal_Nav_clickGoToCategoryLevel3">
+    <parameter name="positionLevel1" value="2"/>
+    <parameter name="positionLevel2" value="3"/>
+    <parameter name="positionLevel3" value="2"/>
+  </module>
+  <module name="modules.pages.catalog.VCatalog_validatePage"/>
+  <codecomment>## Category Three
+
+- Go to category pages
+- Validate page</codecomment>
+  <action name="GoToCategoryPage"/>
+  <module name="modules.global.headerfooternav.MGlobal_Nav_clickGoToCategoryLevel3">
+    <parameter name="positionLevel1" value="3"/>
+    <parameter name="positionLevel2" value="1"/>
+    <parameter name="positionLevel3" value="1"/>
+  </module>
+  <module name="modules.pages.catalog.VCatalog_validatePage"/>
+  <action name="GoToCategoryPage"/>
+  <module name="modules.global.headerfooternav.MGlobal_Nav_clickGoToCategoryLevel3">
+    <parameter name="positionLevel1" value="3"/>
+    <parameter name="positionLevel2" value="1"/>
+    <parameter name="positionLevel3" value="5"/>
+  </module>
+  <module name="modules.pages.catalog.VCatalog_validatePage"/>
+  <action name="GoToCategoryPage"/>
+  <module name="modules.global.headerfooternav.MGlobal_Nav_clickGoToCategoryLevel3">
+    <parameter name="positionLevel1" value="3"/>
+    <parameter name="positionLevel2" value="2"/>
+    <parameter name="positionLevel3" value="1"/>
+  </module>
+  <module name="modules.pages.catalog.VCatalog_validatePage"/>
+  <action name="GoToCategoryPage"/>
+  <module name="modules.global.headerfooternav.MGlobal_Nav_clickGoToCategoryLevel3">
+    <parameter name="positionLevel1" value="3"/>
+    <parameter name="positionLevel2" value="2"/>
+    <parameter name="positionLevel3" value="3"/>
+  </module>
+  <module name="modules.pages.catalog.VCatalog_validatePage"/>
+  <codecomment># Teardown
+
+- End session</codecomment>
+  <module name="modules.helper.FHelper_Session_flowToEndSession"/>
+</testcase>

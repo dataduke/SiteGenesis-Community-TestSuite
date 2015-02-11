@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testcase xmlns="http://xlt.xceptance.com/xlt-script/2" version="6" junit-test="true">
+  <tags>smoke</tags>
+  <description>Test update profile data in account.
+
+# 1. Setup and preparation
+
+- Start session, open homepage and delete all visible cookies
+- Create new account with profile data
+
+# 2. Scope of test
+
+- Login using the prepared account
+- Update profile data (firstname, lastname and email)
+- Logout via corresponding link on account page
+- Login with new email
+- Validate new profile data
+- Logout via corresponding link on account page
+
+# 3. Clean up
+
+- End session and clean up created cookies
+</description>
+  <codecomment># Setup
+
+- Generate email 
+- Generate new email for account update
+- Generate password
+- Start session
+- Create account with profile data</codecomment>
+  <module name="modules.helper.MHelper_Random_generateEmail">
+    <parameter name="email_varName" value="email_01_varDynamic"/>
+  </module>
+  <module name="modules.helper.MHelper_Random_generateEmail">
+    <parameter name="email_varName" value="email_02_varDynamic"/>
+  </module>
+  <module name="modules.helper.MHelper_Random_generatePassword">
+    <parameter name="password_varName" value="password_varDynamic"/>
+  </module>
+  <module name="modules.helper.FHelper_Session_flowToStartSession"/>
+  <module name="modules.pages.homepage.FHomepage_flowToCreateNewAccount">
+    <parameter name="firstname" value="${firstname_01}"/>
+    <parameter name="lastname" value="${lastname_01}"/>
+    <parameter name="email" value="${email_01_varDynamic}"/>
+    <parameter name="password" value="${password_varDynamic}"/>
+  </module>
+  <codecomment># Scope</codecomment>
+  <codecomment>## Account
+
+- Login
+- Validate account page and nav
+- Validate firstname and last name from setup
+- Edit profile data (firstname, lastname and email)
+- Logout</codecomment>
+  <module name="modules.pages.homepage.FHomepage_flowToLoginAccount">
+    <parameter name="email" value="${email_01_varDynamic}"/>
+    <parameter name="password" value="${password_varDynamic}"/>
+  </module>
+  <action name="ViewAccount"/>
+  <module name="modules.pages.account.menu.VAccount_Menu_validatePage"/>
+  <module name="modules.pages.account.VAccount_validateNav"/>
+  <module name="modules.pages.account.menu.VAccount_Menu_validateCustomerName">
+    <parameter name="firstname" value="${firstname_01}"/>
+    <parameter name="lastname" value="${lastname_01}"/>
+  </module>
+  <module name="modules.pages.account.menu.FAccount_Menu_flowToEditProfile">
+    <parameter name="firstname" value="${firstname_02}"/>
+    <parameter name="lastname" value="${lastname_02}"/>
+    <parameter name="email" value="${email_02_varDynamic}"/>
+    <parameter name="password" value="${password_varDynamic}"/>
+  </module>
+  <action name="Logout"/>
+  <module name="modules.pages.account.menu.MAccount_Menu_clickLogout"/>
+  <codecomment>## Account
+
+- Login with new email
+- Validate account page and nav
+- Validate updated customer name
+- Logout</codecomment>
+  <module name="modules.pages.homepage.FHomepage_flowToLoginAccount">
+    <parameter name="email" value="${email_02_varDynamic}"/>
+    <parameter name="password" value="${password_varDynamic}"/>
+  </module>
+  <module name="modules.pages.account.menu.VAccount_Menu_validatePage"/>
+  <module name="modules.pages.account.VAccount_validateNav"/>
+  <module name="modules.pages.account.menu.VAccount_Menu_validateCustomerName">
+    <parameter name="firstname" value="${firstname_02}"/>
+    <parameter name="lastname" value="${lastname_02}"/>
+  </module>
+  <action name="Logout"/>
+  <module name="modules.pages.account.menu.MAccount_Menu_clickLogout"/>
+  <codecomment># Teardown
+
+- End session</codecomment>
+  <module name="modules.helper.FHelper_Session_flowToEndSession"/>
+</testcase>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="http://xlt.xceptance.com/xlt-script-data">
+  <firstname_01>${billingAddress_firstname}</firstname_01>
+  <lastname_01>${billingAddress_lastname}</lastname_01>
+  <firstname_02>Jörg</firstname_02>
+  <lastname_02>Müller</lastname_02>
+</data>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Select sort by via position.</description>
+  <parameter name="sortByPosition" desc="sort by position"/>
+  <parameter name="sortByLabel_varName" desc="sort by label as var name"/>
+  <command name="waitForElementPresent" target="css=#main #primary .search-result-options .sort-by #grid-sort-header"/>
+  <command name="storeText" target="css=#main #primary .search-result-options .sort-by #grid-sort-header option:nth-of-type(@{sortByPosition})" value="@{sortByLabel_varName}"/>
+  <command name="select" target="id=grid-sort-header" value="label=${@{sortByLabel_varName}}"/>
+  <command name="waitForText" target="css=#main #primary .search-result-options .sort-by #grid-sort-header option[selected]" value="${@{sortByLabel_varName}}"/>
+  <command name="waitForText" target="css=#main #primary .search-result-options .sort-by #grid-sort-footer option[selected]" value="${@{sortByLabel_varName}}"/>
+</scriptmodule>

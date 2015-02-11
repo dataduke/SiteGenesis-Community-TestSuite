@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate box order summary.</description>
+  <codecomment>Validate box order summary</codecomment>
+  <command name="waitForElementPresent" target="css=#main #secondary .section-header .section-header-note"/>
+  <command name="assertElementPresent" target="css=#main #secondary .checkout-mini-cart"/>
+  <command name="assertElementPresent" target="css=#main #secondary .checkout-order-totals"/>
+</scriptmodule>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="http://xlt.xceptance.com/xlt-script-data">
+  <productNumber_01>${productNumber_typeProduct}</productNumber_01>
+  <productQuantity_01>1</productQuantity_01>
+  <productNumber_02>${productNumber_typeOptionProduct}</productNumber_02>
+  <productQuantity_02>2</productQuantity_02>
+</data>

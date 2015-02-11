@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate box order summary product basic details.</description>
+  <parameter name="row" desc="row"/>
+  <parameter name="productName" desc="product name"/>
+  <parameter name="productQuantity" desc="product quantity"/>
+  <parameter name="productPriceTotal" desc="product price total"/>
+  <codecomment>Validate product in order summary box</codecomment>
+  <command name="store" target="css=#main #secondary .checkout-mini-cart .mini-cart-product:nth-of-type" value="css_box_minicart_product"/>
+  <command name="waitForElementPresent" target="${css_box_minicart_product}(@{row}) .mini-cart-image"/>
+  <command name="waitForText" target="${css_box_minicart_product}(@{row}) .mini-cart-name a" value="@{productName}"/>
+  <command name="waitForText" target="${css_box_minicart_product}(@{row}) .mini-cart-pricing .value" value="@{productQuantity}"/>
+  <command name="waitForText" target="${css_box_minicart_product}(@{row}) .mini-cart-pricing .mini-cart-price" value="@{productPriceTotal}"/>
+</scriptmodule>

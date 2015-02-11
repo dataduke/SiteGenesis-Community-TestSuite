@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate checkout start page.</description>
+  <codecomment>Validate browser check</codecomment>
+  <command name="waitForElementPresent" target="css=#main #browser-check"/>
+  <codecomment>Validate breadcrumb</codecomment>
+  <command name="assertElementPresent" target="css=#main .breadcrumb [title=&quot;Home&quot;]"/>
+  <command name="assertElementPresent" target="css=#main .breadcrumb [title=&quot;My Account&quot;]"/>
+  <codecomment>Validate primary</codecomment>
+  <command name="assertElementPresent" target="css=#main #primary h1"/>
+  <command name="assertElementPresent" target="css=#main #primary .col-1"/>
+  <command name="assertElementPresent" target="css=#main #primary .col-2"/>
+  <codecomment>Validate primary returning customer</codecomment>
+  <command name="assertElementPresent" target="css=#main #primary .col-1 .login-box.login-account .section-header"/>
+  <command name="assertElementPresent" target="css=#main #primary .col-1 .login-box.login-account .login-box-content #dwfrm_login .input-text.email-input.required"/>
+  <command name="assertElementPresent" target="css=#main #primary .col-1 .login-box.login-account .login-box-content #dwfrm_login .input-text.password-input.required"/>
+  <command name="assertElementPresent" target="css=#main #primary .col-1 .login-box.login-account .login-box-content #dwfrm_login #dwfrm_login_rememberme"/>
+  <command name="assertElementPresent" target="css=#main #primary .col-1 .login-box.login-account .login-box-content #dwfrm_login [type=&quot;Submit&quot;]"/>
+  <command name="assertElementPresent" target="css=#main #primary .col-1 .login-box.login-account .login-box-content #dwfrm_login #password-reset"/>
+  <command name="assertElementPresent" target="css=#main #primary .col-1 .login-box.login-account .login-box-content #dwfrm_oauthlogin"/>
+  <codecomment>Validate primary guest checkout</codecomment>
+  <command name="assertElementPresent" target="css=#main #primary .col-1 .login-box:not(.login-account) .section-header"/>
+  <command name="assertElementPresent" target="css=#main #primary .col-1 .login-box:not(.login-account) .login-box-content [name=&quot;dwfrm_login_unregistered&quot;]"/>
+  <codecomment>Validate primary new customer</codecomment>
+  <command name="assertElementPresent" target="css=#main #primary .col-2 .section-header"/>
+  <command name="assertElementPresent" target="css=#main #primary .col-2 .login-box-content [name=&quot;dwfrm_login_register&quot;]"/>
+  <codecomment>Validate secondary navigation and help</codecomment>
+  <command name="assertElementPresent" target="css=#main #secondary nav .secondary-navigation .content-asset"/>
+  <command name="assertElementPresent" target="css=#main #secondary .account-nav-asset"/>
+</scriptmodule>

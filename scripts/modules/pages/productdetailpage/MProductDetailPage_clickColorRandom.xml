@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Click product color randomly.</description>
+  <codecomment>Count all available color items</codecomment>
+  <command name="storeElementCount" target="css=.product-variations .attribute .value .swatches.Color li.selected" value="productColorSelectedCount"/>
+  <command name="storeElementCount" target="css=.product-variations .attribute .value .swatches.Color li.emptyswatch:not(.unselectable)" value="productColorNotSelectedCount"/>
+  <command name="storeEval" target="(${productColorSelectedCount} + ${productColorNotSelectedCount})" value="productColorAvailableCount"/>
+  <codecomment>Create random value from color item count</codecomment>
+  <module name="modules.helper.MHelper_Random_generateNumber">
+    <parameter name="numberMax" value="${productColorAvailableCount}"/>
+    <parameter name="number_varName" value="productColorRandom"/>
+  </module>
+  <codecomment>Click on generated random position of available color items</codecomment>
+  <module name="modules.pages.productdetailpage.MProductDetailPage_clickColorPosition">
+    <parameter name="MProductColorPosition" value="${productColorRandom}"/>
+  </module>
+</scriptmodule>

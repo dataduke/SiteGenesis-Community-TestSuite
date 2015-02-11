@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Click and go to product randomly on catalog page.</description>
+  <command name="storeXpathCount" target="//*[@id=&quot;search-result-items&quot;]/li" value="productCount"/>
+  <module name="modules.helper.MHelper_Random_generateNumber">
+    <parameter name="numberMax" value="${productCount}"/>
+    <parameter name="number_varName" value="productRandom"/>
+  </module>
+  <module name="modules.pages.catalog.MCatalog_Resuts_clickGoToProductPosition">
+    <parameter name="MProductPosition" value="${productRandom}"/>
+  </module>
+</scriptmodule>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Convert month name into month number (__Caution:__Works for english locale only).</description>
+  <parameter name="monthName" desc="month name"/>
+  <parameter name="monthNumberShort_varName" desc="month number short as var name"/>
+  <codecomment>Generate month number from short or full english month name</codecomment>
+  <command name="storeEval" target="&quot;January___February__March_____April_____May_______June______July______August____September_October___November__December__&quot;.indexOf(&quot;@{monthName}&quot;)/ 10 + 1" value="@{monthNumberShort_varName}"/>
+</scriptmodule>

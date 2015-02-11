@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Enter, click and go to check order status on account login page.</description>
+  <parameter name="orderNumber" desc="order number"/>
+  <parameter name="orderEmail" desc="order email"/>
+  <parameter name="billingPostalCode" desc="billing postal code"/>
+  <codecomment>Enter order data</codecomment>
+  <command name="waitForElementPresent" target="css= input#dwfrm_ordertrack_orderNumber"/>
+  <command name="type" target="css= input#dwfrm_ordertrack_orderNumber" value="@{orderNumber}"/>
+  <command name="type" target="css= input#dwfrm_ordertrack_orderEmail" value="@{orderEmail}"/>
+  <command name="type" target="css= input#dwfrm_ordertrack_postalCode" value="@{billingPostalCode}"/>
+  <command name="clickAndWait" target="css= button[name=&quot;dwfrm_ordertrack_findorder&quot;][type=&quot;submit&quot;]"/>
+</scriptmodule>

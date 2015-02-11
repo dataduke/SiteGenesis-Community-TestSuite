@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="http://xlt.xceptance.com/xlt-script-data">
+  <sortByPosition>3</sortByPosition>
+  <sortByLabel_bestMatches>Best Matches</sortByLabel_bestMatches>
+  <sortByLabel_priceLowToHigh>Price Low To High</sortByLabel_priceLowToHigh>
+  <sortByLabel_priceHighToLow>Price High To Low</sortByLabel_priceHighToLow>
+  <sortByLabel_productNameAToZ>Product Name A - Z</sortByLabel_productNameAToZ>
+  <sortByLabel_productNameZToA>Product Name Z - A</sortByLabel_productNameZToA>
+  <sortByLabel_brand>Brand</sortByLabel_brand>
+  <sortByLabel_mostPopular>Most Popular</sortByLabel_mostPopular>
+  <sortByLabel_topSellers>Top Sellers</sortByLabel_topSellers>
+</data>

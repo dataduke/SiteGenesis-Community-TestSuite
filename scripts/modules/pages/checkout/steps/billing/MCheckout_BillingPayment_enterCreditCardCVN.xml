@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Enter credit card cvn in payment on billing page.</description>
+  <parameter name="cvn" desc="cvn"/>
+  <command name="waitForElementPresent" target="css=.payment-method.payment-method-expanded .form-row.cvn.required input#dwfrm_billing_paymentMethods_creditCard_cvn"/>
+  <command name="type" target="css=.payment-method.payment-method-expanded .form-row.cvn.required input#dwfrm_billing_paymentMethods_creditCard_cvn" value="@{cvn}"/>
+</scriptmodule>

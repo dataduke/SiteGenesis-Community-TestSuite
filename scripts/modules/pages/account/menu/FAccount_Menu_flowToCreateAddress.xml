@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Flow to create new address in address book.
+
+- Start on account menu
+- Go to address book
+- Create, enter and submit address
+- Validate credit card data
+- End on account menu</description>
+  <parameter name="position" desc="position"/>
+  <parameter name="title" desc="title"/>
+  <parameter name="firstname" desc="firstname"/>
+  <parameter name="lastname" desc="lastname"/>
+  <parameter name="address1" desc="address1"/>
+  <parameter name="address2" desc="address2"/>
+  <parameter name="country" desc="country"/>
+  <parameter name="statesState" desc="states state"/>
+  <parameter name="statesStateShort" desc="states state short"/>
+  <parameter name="city" desc="city"/>
+  <parameter name="postalCode" desc="postal code"/>
+  <parameter name="phone" desc="phone"/>
+  <codecomment># Address Book
+
+- Go to address book
+- Validate page
+- Validate nav
+- Click create new address
+- Enter address data in dialog
+- Submit address data in dialog
+- Validate address in address book
+- Go to account menu</codecomment>
+  <action name="GoToAddressBook"/>
+  <module name="modules.pages.account.menu.MAccount_Menu_clickGoToAddressBook"/>
+  <module name="modules.pages.account.addressbook.VAccount_AddressBook_validatePage"/>
+  <module name="modules.pages.account.VAccount_validateNav"/>
+  <action name="CreateNewAddress"/>
+  <module name="modules.pages.account.addressbook.MAccount_AddressBook_clickCreateNewAddress"/>
+  <action name="CreateAddressDialog"/>
+  <module name="modules.pages.account.addressbook.MAccount_AddressBook_Dialog_enterAddress">
+    <parameter name="title" value="@{title}"/>
+    <parameter name="firstname" value="@{firstname}"/>
+    <parameter name="lastname" value="@{lastname}"/>
+    <parameter name="address1" value="@{address1}"/>
+    <parameter name="address2" value="@{address2}"/>
+    <parameter name="country" value="@{country}"/>
+    <parameter name="statesState" value="@{statesState}"/>
+    <parameter name="city" value="@{city}"/>
+    <parameter name="postalCode" value="@{postalCode}"/>
+    <parameter name="phone" value="@{phone}"/>
+  </module>
+  <module name="modules.pages.account.addressbook.MAccount_AddressBook_Dialog_clickCreate"/>
+  <module name="modules.pages.account.addressbook.VAccount_AddressBook_validateAddress">
+    <parameter name="position" value="@{position}"/>
+    <parameter name="title" value="@{title}"/>
+    <parameter name="firstname" value="@{firstname}"/>
+    <parameter name="lastname" value="@{lastname}"/>
+    <parameter name="address1" value="@{address1}"/>
+    <parameter name="address2" value="@{address2}"/>
+    <parameter name="country" value="@{country}"/>
+    <parameter name="statesStateShort" value="@{statesStateShort}"/>
+    <parameter name="city" value="@{city}"/>
+    <parameter name="postalCode" value="@{postalCode}"/>
+    <parameter name="phone" value="@{phone}"/>
+  </module>
+  <action name="GoToAccount"/>
+  <module name="modules.global.headerfooternav.MGlobal_Header_clickGoToAccountMenuViaCustomerName"/>
+</scriptmodule>

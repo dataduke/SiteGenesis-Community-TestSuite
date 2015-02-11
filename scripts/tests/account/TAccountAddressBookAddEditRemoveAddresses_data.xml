@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="http://xlt.xceptance.com/xlt-script-data">
+  <title_01>${shippingAddress_title}</title_01>
+  <firstname_01>${shippingAddress_firstname}</firstname_01>
+  <lastname_01>${shippingAddress_lastname}</lastname_01>
+  <address1_01>${shippingAddress_address1}</address1_01>
+  <address2_01>${shippingAddress_address2}</address2_01>
+  <country_01>${shippingAddress_country}</country_01>
+  <statesState_01>${shippingAddress_statesState}</statesState_01>
+  <statesStateShort_01>${shippingAddress_statesStateShort}</statesStateShort_01>
+  <city_01>${shippingAddress_city}</city_01>
+  <postalCode_01>${shippingAddress_postalCode}</postalCode_01>
+  <phone_01>${shippingAddress_phone}</phone_01>
+  <title_02>${billingAddress_title}</title_02>
+  <firstname_02>${billingAddress_firstname}</firstname_02>
+  <lastname_02>${billingAddress_lastname}</lastname_02>
+  <address1_02>${billingAddress_address1}</address1_02>
+  <address2_02>${billingAddress_address2}</address2_02>
+  <country_02>${billingAddress_country}</country_02>
+  <statesState_02>${billingAddress_statesState}</statesState_02>
+  <statesStateShort_02>${billingAddress_statesStateShort}</statesStateShort_02>
+  <postalCode_02>${billingAddress_postalCode}</postalCode_02>
+  <city_02>${billingAddress_city}</city_02>
+  <phone_02>${billingAddress_phone}</phone_02>
+  <title_03>Jena</title_03>
+  <address1_03>Leutragraben</address1_03>
+  <address2_03>2</address2_03>
+  <country_03>Germany</country_03>
+  <statesState_03>Other</statesState_03>
+  <statesStateShort_03>OTHER</statesStateShort_03>
+  <city_03>Jena</city_03>
+  <postalCode_03>07743</postalCode_03>
+  <phone_03>03641-411111</phone_03>
+</data>

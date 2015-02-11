@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Click and go to category at level 2 nested in level 1 via position.</description>
+  <parameter name="positionLevel1" desc="category position level 1"/>
+  <parameter name="positionLevel2" desc="category position level 2"/>
+  <codecomment>**Caution:** Mouse over is not needed due to scripts not being able to open this kind of implementation of flyouts. Click still works on non-visible element.</codecomment>
+  <command name="mouseOver" disabled="true" target="css=div#navigation nav ul.menu-category.level-1 li:nth-of-type(@{positionLevel1}) a.level-1">
+    <comment>**Caution:** Mouse over is not needed due to scripts not being able to open this kind of implementation of flyouts. Click still works on non-visible element.</comment>
+  </command>
+  <command name="clickAndWait" target="css=div#navigation nav ul.menu-category.level-1 li:nth-of-type(@{positionLevel1}) .level-2 ul.level-2 li:nth-of-type(@{positionLevel2}) a.level-2"/>
+</scriptmodule>

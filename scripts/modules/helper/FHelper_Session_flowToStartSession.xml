@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Flow to start session.
+
+- Start with open browser tab
+- Open homepage
+- Delete cookies
+- Open homepage
+- End on homepage</description>
+  <action name="StartSession"/>
+  <codecomment># Start
+
+- Open homepage
+- Delete cookies
+- Open homepage</codecomment>
+  <command name="open" value="${storefront_url}"/>
+  <command name="deleteAllVisibleCookies"/>
+  <command name="open" value="${storefront_url}"/>
+</scriptmodule>

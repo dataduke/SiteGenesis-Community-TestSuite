@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate cart is empty.</description>
+  <codecomment>Validate cart structure if empty</codecomment>
+  <command name="assertText" target="css=#primary h1" value="Your Shopping Cart"/>
+  <command name="assertText" target="css=#primary div" value="Your Shopping Cart is Empty"/>
+</scriptmodule>

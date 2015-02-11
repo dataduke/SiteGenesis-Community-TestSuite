@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testcase xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <tags>smoke</tags>
+  <description>Test select items per page option on catalog page.
+
+# 1. Setup and preparation
+
+- Start session, open homepage and delete all visible cookies
+
+# 2. Scope of test
+
+- Select Items per page via position
+- Validate result page
+- Select Items per page via random
+- Validate result page
+- Select Items per page via all labels
+- Validate result page
+
+# 3. Clean up
+
+- End session and clean up created cookies
+
+## Note 
+Executing this test case using script developer leads to the following message: 
+"The following test data placeholders could not be resolved: itemsPerPageCount Replay the script anyway?" 
+
+Please ignore this message, it is a known script developer issue (https://lab.xceptance.de/issues/2349).
+
+
+  
+
+</description>
+  <codecomment># Setup
+
+- Start session</codecomment>
+  <module name="modules.helper.FHelper_Session_flowToStartSession"/>
+  <codecomment># Scope</codecomment>
+  <codecomment>## Catalog
+
+- Go to catalog page
+- Validate page</codecomment>
+  <action name="GoToCategoryPage"/>
+  <module name="modules.global.headerfooternav.MGlobal_Nav_clickGoToCategoryLevel3">
+    <parameter name="positionLevel1" value="2"/>
+    <parameter name="positionLevel2" value="1"/>
+    <parameter name="positionLevel3" value="5"/>
+  </module>
+  <module name="modules.pages.catalog.VCatalog_validatePage"/>
+  <codecomment>## Catalog
+
+- Select items per page via position
+- Validate item count
+- Select items per page via random
+- Validate item count</codecomment>
+  <action name="SelectItemsPerPageViaPosition"/>
+  <module name="modules.pages.catalog.MCatalog_Option_selectItemsPerPagePositon">
+    <parameter name="itemsPerPagePosition" value="${itemsPerPagePosition}"/>
+    <parameter name="itemsPerPageLabel_varName" value="itemsPerPageLabel"/>
+  </module>
+  <module name="modules.pages.catalog.VCatalog_Option_validateItemsPerPage">
+    <parameter name="itemsPerPageLabel" value="${itemsPerPageLabel}"/>
+  </module>
+  <action name="SelectItemsPerPageViaRandom"/>
+  <module name="modules.pages.catalog.MCatalog_Option_selectItemsPerPageRandom">
+    <parameter name="itemsPerPageLabel_varName" value="itemsPerPageLabel_random"/>
+  </module>
+  <module name="modules.pages.catalog.VCatalog_Option_validateItemsPerPage">
+    <parameter name="itemsPerPageLabel" value="${itemsPerPageLabel_random}"/>
+  </module>
+  <codecomment>## Catalog
+
+- Select items per page via labels
+- Validate item counts</codecomment>
+  <action name="SelectItemsPerPage12"/>
+  <module name="modules.pages.catalog.MCatalog_Option_selectItemsPerPageLabel">
+    <parameter name="itemsPerPageLabel" value="${itemsPerPageLabel_12}"/>
+  </module>
+  <module name="modules.pages.catalog.VCatalog_Option_validateItemsPerPage">
+    <parameter name="itemsPerPageLabel" value="${itemsPerPageLabel_12}"/>
+  </module>
+  <action name="SelectItemsPerPage24"/>
+  <module name="modules.pages.catalog.MCatalog_Option_selectItemsPerPageLabel">
+    <parameter name="itemsPerPageLabel" value="${itemsPerPageLabel_24}"/>
+  </module>
+  <module name="modules.pages.catalog.VCatalog_Option_validateItemsPerPage">
+    <parameter name="itemsPerPageLabel" value="${itemsPerPageLabel_24}"/>
+  </module>
+  <action name="SelectItemsPerPage36"/>
+  <module name="modules.pages.catalog.MCatalog_Option_selectItemsPerPageLabel">
+    <parameter name="itemsPerPageLabel" value="${itemsPerPageLabel_36}"/>
+  </module>
+  <module name="modules.pages.catalog.VCatalog_Option_validateItemsPerPage">
+    <parameter name="itemsPerPageLabel" value="${itemsPerPageLabel_36}"/>
+  </module>
+  <action name="SelectItemsPerPage48"/>
+  <module name="modules.pages.catalog.MCatalog_Option_selectItemsPerPageLabel">
+    <parameter name="itemsPerPageLabel" value="${itemsPerPageLabel_48}"/>
+  </module>
+  <module name="modules.pages.catalog.VCatalog_Option_validateItemsPerPage">
+    <parameter name="itemsPerPageLabel" value="${itemsPerPageLabel_48}"/>
+  </module>
+  <action name="SelectItemsPerPageViewAll"/>
+  <module name="modules.pages.catalog.MCatalog_Option_selectItemsPerPageLabel">
+    <parameter name="itemsPerPageLabel" value="${itemsPerPageLabel_ViewAll}"/>
+  </module>
+  <module name="modules.pages.catalog.VCatalog_Option_validateItemsPerPageViewAll"/>
+  <codecomment># Teardown
+
+- End session</codecomment>
+  <module name="modules.helper.FHelper_Session_flowToEndSession"/>
+</testcase>

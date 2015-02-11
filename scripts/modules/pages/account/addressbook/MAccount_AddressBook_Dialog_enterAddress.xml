@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Enter data in address details dialog.</description>
+  <parameter name="title" desc="title"/>
+  <parameter name="firstname" desc="firstname"/>
+  <parameter name="lastname" desc="lastname"/>
+  <parameter name="address1" desc="address1"/>
+  <parameter name="address2" desc="address2"/>
+  <parameter name="country" desc="country"/>
+  <parameter name="statesState" desc="states state"/>
+  <parameter name="city" desc="city"/>
+  <parameter name="postalCode" desc="postal code"/>
+  <parameter name="phone" desc="phone"/>
+  <codecomment>Enter address data</codecomment>
+  <command name="store" target="css=#dwfrm_profile_address" value="css_address"/>
+  <command name="waitForElementPresent" target="${css_address}_firstname"/>
+  <command name="type" target="${css_address}_addressid" value="@{title}"/>
+  <command name="type" target="${css_address}_firstname" value="@{firstname}"/>
+  <command name="type" target="${css_address}_lastname" value="@{lastname}"/>
+  <command name="type" target="${css_address}_address1" value="@{address1}"/>
+  <command name="type" target="${css_address}_address2" value="@{address2}"/>
+  <command name="select" target="${css_address}_country" value="@{country}"/>
+  <command name="select" target="${css_address}_states_state" value="*@{statesState}*"/>
+  <command name="type" target="${css_address}_city" value="@{city}"/>
+  <command name="type" target="${css_address}_postal" value="@{postalCode}"/>
+  <command name="type" target="${css_address}_phone" value="@{phone}"/>
+</scriptmodule>

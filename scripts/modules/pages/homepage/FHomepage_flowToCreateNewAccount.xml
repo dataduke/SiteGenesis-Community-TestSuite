@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Flow to create a new customer with profile data.
+
+- Start on homepagee
+- Create account via global register in header
+- Validate profile data
+- Logout via global header link
+- End on homepage</description>
+  <parameter name="firstname" desc="firstname"/>
+  <parameter name="lastname" desc="lastname"/>
+  <parameter name="email" desc="email"/>
+  <parameter name="password" desc="password"/>
+  <codecomment># Account
+
+- Register new customer
+- Enter profile data
+- Validate profile data</codecomment>
+  <action name="GoToRegister"/>
+  <module name="modules.global.headerfooternav.MGlobal_Header_clickRegister"/>
+  <action name="Register"/>
+  <module name="modules.pages.account.personaldata.MAccount_PersonalData_enterProfile">
+    <parameter name="firstname" value="@{firstname}"/>
+    <parameter name="lastname" value="@{lastname}"/>
+    <parameter name="email" value="@{email}"/>
+    <parameter name="password" value="@{password}"/>
+  </module>
+  <module name="modules.pages.account.personaldata.MAccount_PersonalData_clickSubmitProfile"/>
+  <module name="modules.pages.account.menu.VAccount_Menu_validateCustomerName">
+    <parameter name="firstname" value="@{firstname}"/>
+    <parameter name="lastname" value="@{lastname}"/>
+  </module>
+  <codecomment># Global
+
+- Logout
+- Go to homepage</codecomment>
+  <action name="Logout"/>
+  <module name="modules.global.headerfooternav.MGlobal_Header_clickLogoutViaNotCustomerName"/>
+  <action name="GoToHomepage"/>
+  <module name="modules.global.headerfooternav.MGlobal_Header_clickGoToHomepageViaLogo"/>
+</scriptmodule>

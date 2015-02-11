@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate address details dialog.</description>
+  <command name="waitForText" target="css=#dialog-container [name=dwfrm_profile_address] fieldset legend" value="*ADDRESS DETAILS*"/>
+  <codecomment>Validate labels of required input fields</codecomment>
+  <command name="assertElementPresent" target="css=#dialog-container fieldset legend .dialog-required .required-indicator"/>
+  <command name="assertElementPresent" target="css= #dialog-container label[for=&quot;dwfrm_profile_address_addressid&quot;] .required-indicator"/>
+  <command name="assertElementPresent" target="css= #dialog-container label[for=&quot;dwfrm_profile_address_firstname&quot;] .required-indicator"/>
+  <command name="assertElementPresent" target="css= #dialog-container label[for=&quot;dwfrm_profile_address_lastname&quot;] .required-indicator"/>
+  <command name="assertElementPresent" target="css= #dialog-container label[for=&quot;dwfrm_profile_address_address1&quot;] .required-indicator"/>
+  <command name="assertElementPresent" target="css= #dialog-container label[for=&quot;dwfrm_profile_address_country&quot;] .required-indicator"/>
+  <command name="assertElementPresent" target="css= #dialog-container label[for=&quot;dwfrm_profile_address_states_state&quot;] .required-indicator"/>
+  <command name="assertElementPresent" target="css= #dialog-container label[for=&quot;dwfrm_profile_address_city&quot;] .required-indicator"/>
+  <command name="assertElementPresent" target="css= #dialog-container label[for=&quot;dwfrm_profile_address_postal&quot;] .required-indicator"/>
+  <command name="assertElementPresent" target="css= #dialog-container label[for=&quot;dwfrm_profile_address_phone&quot;] .required-indicator"/>
+</scriptmodule>

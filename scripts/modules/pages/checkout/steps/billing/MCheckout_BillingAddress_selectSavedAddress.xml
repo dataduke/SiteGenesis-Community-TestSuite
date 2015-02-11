@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Select billing address from saved address list.</description>
+  <parameter name="title" desc="title"/>
+  <command name="waitForText" target="css=#dwfrm_billing_addressList" value="*@{title}*"/>
+  <command name="select" target="css=#dwfrm_billing_addressList" value="*@{title}*"/>
+</scriptmodule>

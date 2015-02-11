@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="http://xlt.xceptance.com/xlt-script-data">
+  <productNumber_01>${productNumber_typeVariationProductColorSizeListPriceOnly}</productNumber_01>
+  <productQuantity_01>1</productQuantity_01>
+  <productNumber_02>${productNumber_typeVariationProductColorSizeSalesPrice}</productNumber_02>
+  <productQuantity_02>2</productQuantity_02>
+  <firstname>${billingAddress_firstname}</firstname>
+  <lastname>${billingAddress_lastname}</lastname>
+  <paymentName>${storefront_creditCard_paymentName}</paymentName>
+  <owner>${visaCreditCard_owner}</owner>
+  <type>${visaCreditCard_type}</type>
+  <typeShort>${visaCreditCard_typeShort}</typeShort>
+  <number>${visaCreditCard_number}</number>
+  <month>${visaCreditCard_month}</month>
+  <year>${visaCreditCard_year}</year>
+  <cvn>${visaCreditCard_cvn}</cvn>
+</data>

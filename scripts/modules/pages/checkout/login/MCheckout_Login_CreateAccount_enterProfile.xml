@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Enter profile data on create account at checkout login page.</description>
+  <parameter name="email" desc="email"/>
+  <parameter name="password" desc="password"/>
+  <parameter name="firstname" desc="firstname"/>
+  <parameter name="lastname" desc="lastname"/>
+  <codecomment>Enter profile data</codecomment>
+  <command name="waitForElementPresent" target="id=dwfrm_profile_customer_firstname"/>
+  <command name="type" target="id=dwfrm_profile_customer_firstname" value="@{firstname}"/>
+  <command name="type" target="id=dwfrm_profile_customer_lastname" value="@{lastname}"/>
+  <command name="type" target="id=dwfrm_profile_customer_email" value="@{email}"/>
+  <command name="type" target="id=dwfrm_profile_customer_emailconfirm" value="@{email}"/>
+  <command name="type" target="id=dwfrm_profile_login_password" value="@{password}"/>
+  <command name="type" target="id=dwfrm_profile_login_passwordconfirm" value="@{password}"/>
+</scriptmodule>

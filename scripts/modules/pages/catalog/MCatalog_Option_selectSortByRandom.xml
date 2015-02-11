@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Select sort by via random (without view all).</description>
+  <parameter name="sortByLabel_varName" desc="sort by label as var name"/>
+  <command name="storeElementCount" target="css=#main #primary .search-result-options .sort-by #grid-sort-header option" value="sortByCount"/>
+  <command name="storeEval" target="${sortByCount} - 1" value="sortByCountNotViewAll"/>
+  <module name="modules.helper.MHelper_Random_generateNumber">
+    <parameter name="numberMax" value="${sortByCountNotViewAll}"/>
+    <parameter name="number_varName" value="sortByRandom"/>
+  </module>
+  <module name="modules.pages.catalog.MCatalog_Option_selectSortByPosition">
+    <parameter name="sortByPosition" value="${sortByRandom}"/>
+    <parameter name="sortByLabel_varName" value="@{sortByLabel_varName}"/>
+  </module>
+</scriptmodule>

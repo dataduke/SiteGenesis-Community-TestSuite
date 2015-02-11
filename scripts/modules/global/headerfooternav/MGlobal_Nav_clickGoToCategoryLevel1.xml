@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Click and go to category level 1 via position.</description>
+  <parameter name="positionLevel1" desc="position level 1"/>
+  <command name="waitForElementPresent" target="css=div#navigation nav ul.menu-category.level-1 li:nth-of-type(@{positionLevel1}) a.level-1"/>
+  <command name="clickAndWait" target="css=div#navigation nav ul.menu-category.level-1 li:nth-of-type(@{positionLevel1}) a.level-1"/>
+</scriptmodule>

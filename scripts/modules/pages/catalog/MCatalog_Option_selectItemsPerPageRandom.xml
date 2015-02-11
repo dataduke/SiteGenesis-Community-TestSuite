@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Select items per page via random.</description>
+  <parameter name="itemsPerPageLabel_varName" desc="items per page label as var name"/>
+  <codecomment>View all (last element) needs other validator as numbers only</codecomment>
+  <command name="storeElementCount" target="css=#main #primary .search-result-options .items-per-page #grid-paging-header option" value="itemsPerPageCountWithViewAll"/>
+  <command name="storeEval" target="${itemsPerPageCountWithViewAll} - 1" value="itemsPerPageCount"/>
+  <module name="modules.helper.MHelper_Random_generateNumber">
+    <parameter name="numberMax" value="${itemsPerPageCount}"/>
+    <parameter name="number_varName" value="itemsPerPageRandom"/>
+  </module>
+  <module name="modules.pages.catalog.MCatalog_Option_selectItemsPerPagePositon">
+    <parameter name="itemsPerPagePosition" value="${itemsPerPageRandom}"/>
+    <parameter name="itemsPerPageLabel_varName" value="@{itemsPerPageLabel_varName}"/>
+  </module>
+</scriptmodule>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="http://xlt.xceptance.com/xlt-script-data">
+  <creditCard_cardType_Visa>Visa</creditCard_cardType_Visa>
+  <creditCard_cardType_Amex>Amex</creditCard_cardType_Amex>
+  <creditCard_cardType_MasterCard>MasterCard</creditCard_cardType_MasterCard>
+  <creditCard_cardType_Discover>Discover</creditCard_cardType_Discover>
+  <creditCard_owner_visa>Jane Buyer</creditCard_owner_visa>
+  <creditCard_number_visa>4111111111111111</creditCard_number_visa>
+  <creditCard_month_visa>label=December</creditCard_month_visa>
+  <creditCard_year_visa>label=2016</creditCard_year_visa>
+  <creditCard_cvn_visa>123</creditCard_cvn_visa>
+  <creditCard_owner>${creditCard_owner_${creditCard_cardType_Visa}}</creditCard_owner>
+</data>

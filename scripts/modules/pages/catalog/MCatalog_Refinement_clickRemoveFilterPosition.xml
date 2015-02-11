@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Click remove refinement in breadcrumb via position.</description>
+  <parameter name="position" desc="position"/>
+  <command name="storeEval" target="@{position} + 1" value="filterPositionAbsolute"/>
+  <command name="waitForElementPresent" target="css=#main .breadcrumb .breadcrumb-refinement span:nth-of-type(${filterPositionAbsolute}) a"/>
+  <command name="click" target="css=#main .breadcrumb .breadcrumb-refinement span:nth-of-type(${filterPositionAbsolute}) a"/>
+</scriptmodule>

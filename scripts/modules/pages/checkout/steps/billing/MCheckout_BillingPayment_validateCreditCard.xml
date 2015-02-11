@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate credit card data in payment on billing page.</description>
+  <parameter name="owner" desc="owner"/>
+  <parameter name="type" desc="type"/>
+  <parameter name="number" desc="number"/>
+  <parameter name="month" desc="month"/>
+  <parameter name="year" desc="year"/>
+  <parameter name="cvn" desc="cvn"/>
+  <command name="store" target="css=#dwfrm_billing_paymentMethods_creditCard" value="css_creditcard"/>
+  <command name="assertElementPresent" target="css=.payment-method-options .form-row [value=&quot;CREDIT_CARD&quot;][checked=&quot;checked&quot;]"/>
+  <command name="assertText" target="${css_creditcard}_owner" value="@{owner}"/>
+  <command name="assertText" disabled="true" target="${css_creditcard}_type option.select-option[selected=&quot;selected&quot;]" value="@{type}">
+    <comment>__Caution:__ Site Genesis currently doesn't select this value if loaded from saved credit cards.</comment>
+  </command>
+  <command name="assertNotText" target="${css_creditcard}_number" value="@{number}"/>
+  <module name="modules.helper.MHelper_Number_sliceLastFourDigits">
+    <parameter name="number" value="@{number}"/>
+    <parameter name="numberLastFourDigits_varName" value="numberLastFourDigits"/>
+  </module>
+  <command name="assertText" target="${css_creditcard}_number" value="*${numberLastFourDigits}*"/>
+  <command name="assertText" disabled="true" target="${css_creditcard}_month option.select-option[selected=&quot;selected&quot;]" value="@{month}">
+    <comment>__Caution:__ Site Genesis currently doesn't select this value if loaded from saved credit cards.</comment>
+  </command>
+  <command name="assertText" disabled="true" target="${css_creditcard}_year option.select-option[selected=&quot;selected&quot;]" value="@{year}">
+    <comment>__Caution:__ Site Genesis currently doesn't select this value if loaded from saved credit cards.</comment>
+  </command>
+  <command name="assertText" target="${css_creditcard}_cvn" value="@{cvn}"/>
+</scriptmodule>

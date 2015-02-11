@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Calculate product total price (based on: price sales x quantity = price total).</description>
+  <parameter name="productPriceSales" desc="product price sales"/>
+  <parameter name="productQuantity" desc="product quantity"/>
+  <parameter name="productPriceTotal_varName" desc="product total price as var name"/>
+  <parameter name="priceCurrency" desc="price currency"/>
+  <parameter name="priceDecimalMark" desc="price decimal mark"/>
+  <parameter name="priceDigitGroupSeparators" desc="price digit group seperators"/>
+  <module name="modules.helper.MHelper_Price_convertPriceToValue">
+    <parameter name="price" value="@{productPriceSales}"/>
+    <parameter name="priceValue_varName" value="priceValue"/>
+    <parameter name="priceCurrency" value="@{priceCurrency}"/>
+    <parameter name="priceDecimalMark" value="@{priceDecimalMark}"/>
+    <parameter name="priceDigitGroupSeparators" value="@{priceDigitGroupSeparators}"/>
+  </module>
+  <command name="storeEval" target="${priceValue} * @{productQuantity}" value="productPriceTotalValue"/>
+  <module name="modules.helper.MHelper_Price_convertValueToPrice">
+    <parameter name="priceValue" value="${productPriceTotalValue}"/>
+    <parameter name="price_varName" value="@{productPriceTotal_varName}"/>
+    <parameter name="priceCurrency" value="@{priceCurrency}"/>
+    <parameter name="priceDecimalMark" value="@{priceDecimalMark}"/>
+    <parameter name="priceDigitGroupSeparators" value="@{priceDigitGroupSeparators}"/>
+  </module>
+  <command name="storeEval" disabled="true" target="(function(p,q,t,c,currency){var total=p*q,remainder=total,s=[],factor;s.push(currency);while(remainder &gt; 1000) {s.push(Math.floor(remainder/1000).toFixed(0));remainder=remainder%1000;s.push(t);}if(s.length &gt; 0){if(remainder &lt; 100) s.push('0');if(remainder &lt; 10) s.push('0');}s.push(remainder.toFixed(2).replace('.',c));s.push(' ');return s.join('')})(${productPriceSales},@{productQuantity},',','.','@{priceCurrency}')" value="@{productPriceTotal_varName}">
+    <comment>__Complex solution:__ Calculate the total price and store the result as formatted text.</comment>
+  </command>
+</scriptmodule>

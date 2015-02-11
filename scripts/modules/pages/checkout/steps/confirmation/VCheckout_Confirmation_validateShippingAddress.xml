@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate shipping address.</description>
+  <parameter name="firstname" desc="firstname"/>
+  <parameter name="lastname" desc="lastname"/>
+  <parameter name="address1" desc="address1"/>
+  <parameter name="address2" desc="address2"/>
+  <parameter name="country" desc="country"/>
+  <parameter name="statesStateShort" desc="states state short"/>
+  <parameter name="city" desc="city"/>
+  <parameter name="postalCode" desc="postal code"/>
+  <parameter name="phone" desc="phone"/>
+  <parameter name="shippingMethod_name" desc="shipping method name"/>
+  <parameter name="shippingStatus" desc="shipping status"/>
+  <codecomment>Validate column shipping</codecomment>
+  <command name="store" target="css=#main #primary .order-confirmation-details .order-shipment-table .order-shipment-details" value="css_column_shipping"/>
+  <codecomment>Validate shipping address</codecomment>
+  <command name="waitForText" target="${css_column_shipping} .order-shipment-address .firstname" value="@{firstname}"/>
+  <command name="assertText" target="${css_column_shipping} .order-shipment-address .lastname" value="@{lastname}"/>
+  <command name="assertText" target="${css_column_shipping} .order-shipment-address .street" value="*@{address1}*@{address2}*"/>
+  <command name="assertText" target="${css_column_shipping} .order-shipment-address .location" value="*@{city}*@{statesStateShort}*@{postalCode}*"/>
+  <command name="assertText" target="${css_column_shipping} .order-shipment-address .country" value="@{country}"/>
+  <command name="assertText" target="${css_column_shipping} .order-shipment-address .phone" value="*@{phone}*"/>
+  <codecomment>Validate shipping method</codecomment>
+  <command name="assertText" target="${css_column_shipping} .shipping-method span:nth-of-type(2)" value="@{shippingMethod_name}"/>
+  <codecomment>Validate shipping status</codecomment>
+  <command name="assertText" target="${css_column_shipping} .shipping-status" value="*@{shippingStatus}*"/>
+</scriptmodule>

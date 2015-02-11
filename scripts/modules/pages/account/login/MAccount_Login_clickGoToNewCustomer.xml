@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Click and go to new customer on account login page.</description>
+  <action name="Account_Login_clickGoToNewCustomer"/>
+  <command name="clickAndWait" target="css=button[name=&quot;dwfrm_login_register&quot;][type=&quot;submit&quot;]"/>
+</scriptmodule>

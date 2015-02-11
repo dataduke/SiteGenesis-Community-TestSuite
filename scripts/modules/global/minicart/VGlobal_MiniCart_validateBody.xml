@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate minicart popup.</description>
+  <command name="store" target="css=#header header #mini-cart .mini-cart-content" value="css_minicart_content"/>
+  <command name="waitForElementPresent" target="${css_minicart_content} .mini-cart-header"/>
+  <command name="waitForElementPresent" target="${css_minicart_content} .mini-cart-products"/>
+  <command name="waitForElementPresent" target="${css_minicart_content} .mini-cart-totals"/>
+</scriptmodule>

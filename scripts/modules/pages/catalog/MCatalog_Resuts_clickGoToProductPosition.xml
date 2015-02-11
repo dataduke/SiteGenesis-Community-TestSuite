@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Click and go to product via postion on catalog page.</description>
+  <parameter name="MProductPosition" desc="product position"/>
+  <command name="waitForElementPresent" target="css=#search-result-items li:nth-of-type(@{MProductPosition}) .product-name a.name-link"/>
+  <command name="clickAndWait" target="css=#search-result-items li:nth-of-type(@{MProductPosition}) .product-name a.name-link"/>
+</scriptmodule>

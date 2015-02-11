@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Calculate totals quantity of two products (based on:  quantity 01 + quantity 02 = totals quantity).</description>
+  <parameter name="productQuantity_01" desc="product quantity 01"/>
+  <parameter name="productQuantity_02" desc="product quantity 02"/>
+  <parameter name="totalsQuantity_varName" desc="totals quantity as var name"/>
+  <command name="storeEval" target="@{productQuantity_01} + @{productQuantity_02}" value="@{totalsQuantity_varName}"/>
+</scriptmodule>

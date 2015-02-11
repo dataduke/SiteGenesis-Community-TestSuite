@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate empty product list in wishlist.</description>
+  <command name="waitForText" target="css=#primary h2" value="*You have no items on your wish list.*"/>
+  <command name="assertText" target="css=#primary a[title=&quot;Demandware SiteGenesis&quot;]" value="*Click here to start adding items.*"/>
+  <command name="assertNotElementPresent" target="css=#primary .item-list"/>
+</scriptmodule>

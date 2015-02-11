@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Convert date number long (MMM DD, YYYY e.g. Jan 18, 2015) into date number short (M/D/YY  e.g. 1/18/15).</description>
+  <parameter name="dateNumberLong" desc="date number long"/>
+  <parameter name="dateNumberShort_varName" desc="date number short as var name"/>
+  <codecomment>Get day as short number</codecomment>
+  <command name="storeEval" target="&quot;@{dateNumberLong}&quot;.match(/[0-9]{1,2}(?=,)/)" value="date_day"/>
+  <codecomment>Generate month as short number</codecomment>
+  <command name="storeEval" target="&quot;@{dateNumberLong}&quot;.match(/[A-Za-z]{3}/)" value="date_month_name_short"/>
+  <module name="modules.helper.MHelper_Date_convertIntoMonthNumberShort">
+    <parameter name="monthName" value="${date_month_name_short}"/>
+    <parameter name="monthNumberShort_varName" value="date_month"/>
+  </module>
+  <codecomment>Get year as short number</codecomment>
+  <command name="storeEval" target="&quot;@{dateNumberLong}&quot;.slice(-2)" value="date_year"/>
+  <command name="storeEval" target="&quot;${date_month}&quot; + &quot;/&quot; + &quot;${date_day}&quot; + &quot;/&quot; + &quot;${date_year}&quot;" value="@{dateNumberShort_varName}"/>
+</scriptmodule>

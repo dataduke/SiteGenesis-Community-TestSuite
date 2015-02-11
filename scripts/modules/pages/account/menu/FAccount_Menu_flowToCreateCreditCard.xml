@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Flow to create new credit card in payment settings.
+
+- Start on account menu
+- Go to payments settings
+- Create, enter and submit credit card data
+- Validate credit card data
+- End on account menu</description>
+  <parameter name="position" desc="position"/>
+  <parameter name="owner" desc="owner"/>
+  <parameter name="type" desc="type"/>
+  <parameter name="typeShort" desc="type short"/>
+  <parameter name="number" desc="number"/>
+  <parameter name="month" desc="month"/>
+  <parameter name="year" desc="year"/>
+  <codecomment># Payment Settings
+
+- Go to payment settings
+- Validate page
+- Validate nav
+- Add credit card
+- Enter data
+- Submit data
+- Validate data 
+- Go to account menu</codecomment>
+  <action name="GoToPaymentSettings"/>
+  <module name="modules.pages.account.menu.MAccount_Menu_clickGoToPaymentSettings"/>
+  <module name="modules.pages.account.paymentsettings.VAccount_PaymentSettings_validatePage"/>
+  <module name="modules.pages.account.VAccount_validateNav"/>
+  <action name="AddCreditCard"/>
+  <module name="modules.pages.account.paymentsettings.MAccount_PaymentSettings_clickAddCreditCard"/>
+  <action name="ApplyCreditCardDialog"/>
+  <module name="modules.pages.account.paymentsettings.MAccount_PaymentSettings_Dialog_enterCreditCard">
+    <parameter name="owner" value="@{owner}"/>
+    <parameter name="type" value="@{type}"/>
+    <parameter name="number" value="@{number}"/>
+    <parameter name="month" value="@{month}"/>
+    <parameter name="year" value="@{year}"/>
+  </module>
+  <module name="modules.pages.account.paymentsettings.MAccount_PaymentSettings_Dialog_clickApply"/>
+  <module name="modules.pages.account.paymentsettings.VAccount_PaymentSettings_validateCreditCard">
+    <parameter name="position" value="@{position}"/>
+    <parameter name="owner" value="@{owner}"/>
+    <parameter name="typeShort" value="@{typeShort}"/>
+    <parameter name="number" value="@{number}"/>
+    <parameter name="month" value="@{month}"/>
+    <parameter name="year" value="@{year}"/>
+  </module>
+  <action name="GoToAccount"/>
+  <module name="modules.global.headerfooternav.MGlobal_Header_clickGoToAccountMenuViaCustomerName"/>
+</scriptmodule>

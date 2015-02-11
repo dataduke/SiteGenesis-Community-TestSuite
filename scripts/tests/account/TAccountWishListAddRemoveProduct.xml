@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testcase xmlns="http://xlt.xceptance.com/xlt-script/2" version="6" junit-test="true">
+  <tags>smoke</tags>
+  <description>Test add product to wishlist.
+
+# 1. Setup and preparation
+
+- Start session, open homepage and delete all visible cookies
+- Create new account
+- Search product 01
+
+# 2. Scope of test
+
+- Store product details and add to wishlist
+- Login
+- Validate nav and page
+- Add product to wishlist
+- Validate product basic details
+- Remove product 01
+- Validate empty
+
+# 3. Clean up
+
+- Logout
+- End session and clean up created cookies</description>
+  <codecomment># Setup
+
+- Create mail
+- Create password
+- Start session
+- Create account</codecomment>
+  <module name="modules.helper.MHelper_Random_generateEmail">
+    <parameter name="email_varName" value="email_varDynamic"/>
+  </module>
+  <module name="modules.helper.MHelper_Random_generatePassword">
+    <parameter name="password_varName" value="password_varDynamic"/>
+  </module>
+  <module name="modules.helper.FHelper_Session_flowToStartSession"/>
+  <module name="modules.pages.homepage.FHomepage_flowToCreateNewAccount">
+    <parameter name="firstname" value="${firstname}"/>
+    <parameter name="lastname" value="${lastname}"/>
+    <parameter name="email" value="${email_varDynamic}"/>
+    <parameter name="password" value="${password_varDynamic}"/>
+  </module>
+  <codecomment># Scope</codecomment>
+  <codecomment>## ProductDetailPage
+
+- Search
+- Store product details
+- Add to wishlist</codecomment>
+  <action name="Search"/>
+  <module name="modules.pages.search.MSearch_enterSubmitText">
+    <parameter name="searchText" value="${productNumber}"/>
+  </module>
+  <action name="AddToWishList"/>
+  <module name="modules.pages.productdetailpage.MProductDetailPage_storeBasicDetails">
+    <parameter name="productName_varName" value="productName_varDynamic"/>
+    <parameter name="productNumber_varName" value="productNumber_varDynamic"/>
+    <parameter name="productPriceSales_varName" value="productPriceSales_varDynamic"/>
+    <parameter name="productQuantity_varName" value="productQuantity_varDynamic"/>
+  </module>
+  <module name="modules.pages.productdetailpage.MProductDetailPage_clickAddtoWishlist"/>
+  <codecomment>## Wishlist
+
+- Login
+- Validate nav and page
+- Validate product details
+- Remove product
+- Validate empty wishlist</codecomment>
+  <action name="Login"/>
+  <module name="modules.pages.account.login.MAccount_Login_enterClickReturningCustomer">
+    <parameter name="email" value="${email_varDynamic}"/>
+    <parameter name="password" value="${password_varDynamic}"/>
+  </module>
+  <action name="ViewWishList"/>
+  <module name="modules.pages.account.wishlist.VAccount_WishList_validatePage"/>
+  <module name="modules.pages.account.VAccount_validateNav"/>
+  <module name="modules.pages.account.wishlist.VAccount_WishList_Row_validateProductBasicDetails">
+    <parameter name="row" value="1"/>
+    <parameter name="productName" value="${productName_varDynamic}"/>
+    <parameter name="productNumber" value="${productNumber_varDynamic}"/>
+    <parameter name="productQuantity" value="${productQuantity_varDynamic}"/>
+    <parameter name="productPriceSales" value="${productPriceSales_varDynamic}"/>
+  </module>
+  <action name="RemoveProductFromWishList"/>
+  <module name="modules.pages.account.wishlist.MAccount_WishList_Row_clickRemoveProduct">
+    <parameter name="row" value="1"/>
+  </module>
+  <module name="modules.pages.account.wishlist.VAccount_WishList_validateEmptyProductList"/>
+  <codecomment># Teardown
+
+- Go to account menu
+- Logout
+- End session</codecomment>
+  <action name="GoToAccount"/>
+  <module name="modules.global.headerfooternav.MGlobal_Header_clickGoToAccountMenuViaCustomerName"/>
+  <action name="Logout"/>
+  <module name="modules.global.headerfooternav.MGlobal_Header_clickLogoutViaNotCustomerName"/>
+  <module name="modules.helper.FHelper_Session_flowToEndSession"/>
+</testcase>

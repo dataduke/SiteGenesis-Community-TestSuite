@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate payment settings page.</description>
+  <codecomment>Validate payment settings page</codecomment>
+  <command name="waitForElementPresent" target="css=#main .breadcrumb a.breadcrumb-element:nth-of-type(3)[title=&quot;Payment Settings&quot;]"/>
+  <command name="assertText" target="css=#primary h1" value="Credit Card Information"/>
+  <command name="assertText" target="css=#primary .section-header" value="CREDIT CARD INFORMATION*"/>
+  <command name="assertText" target="css=#primary .section-header a.add-card" value="Add a Credit Card"/>
+</scriptmodule>

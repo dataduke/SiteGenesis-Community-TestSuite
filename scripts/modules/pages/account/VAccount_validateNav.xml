@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate account navigation.</description>
+  <codecomment>Account secondary navigation</codecomment>
+  <command name="waitForElementPresent" target="css= #secondary.nav nav .secondary-navigation"/>
+  <command name="store" target="css= #secondary.nav nav .secondary-navigation span.toggle:nth-of-type" value="css_account_nav"/>
+  <command name="assertText" target="${css_account_nav}(1)" value="regexpi:My Account"/>
+  <command name="assertText" target="${css_account_nav}(2)" value="regexpi:Order Information"/>
+  <command name="assertText" target="${css_account_nav}(3)" value="regexpi:Wish List"/>
+  <command name="assertText" target="${css_account_nav}(4)" value="regexpi:Gift Registries"/>
+  <command name="assertText" target="css= #secondary.nav nav .secondary-navigation .content-asset .content-asset span.toggle:nth-of-type(1)" value="regexpi:Shop Confidently"/>
+  <codecomment>Account secondary nav asset</codecomment>
+  <command name="assertElementPresent" target="css= #secondary .account-nav-asset"/>
+  <command name="assertText" target="css= #secondary .account-nav-asset h2" value="Need Help?"/>
+</scriptmodule>

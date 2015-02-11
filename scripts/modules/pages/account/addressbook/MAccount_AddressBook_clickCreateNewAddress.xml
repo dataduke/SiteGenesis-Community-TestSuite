@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Click create new address.</description>
+  <command name="waitForElementPresent" target="css=#primary #addresses .section-header a.address-create"/>
+  <command name="click" target="css=#primary #addresses .section-header a.address-create"/>
+</scriptmodule>

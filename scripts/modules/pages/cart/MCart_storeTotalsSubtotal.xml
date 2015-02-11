@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Store totals subtotal.</description>
+  <parameter name="totalsSubtotal" desc="totals subtotal"/>
+  <codecomment>Store totals subtotal</codecomment>
+  <command name="storeText" target="css=.cart-order-totals table.order-totals-table tbody .order-subtotal td:nth-of-type(2)" value="@{totalsSubtotal}"/>
+</scriptmodule>

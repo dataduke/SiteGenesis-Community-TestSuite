@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="http://xlt.xceptance.com/xlt-script-data">
+  <firstname>${billingAddress_firstname}</firstname>
+  <lastname>${billingAddress_lastname}</lastname>
+  <paymentName>${storefront_creditCard_paymentName}</paymentName>
+  <owner>${amexCreditCard_owner}</owner>
+  <type>${amexCreditCard_type}</type>
+  <typeShort>${amexCreditCard_typeShort}</typeShort>
+  <number>${amexCreditCard_number}</number>
+  <month>${amexCreditCard_month}</month>
+  <year>${amexCreditCard_year}</year>
+  <cvn>${amexCreditCard_cvn}</cvn>
+  <productNumber_01>${productNumber_typeProduct}</productNumber_01>
+  <productQuantity_01>2</productQuantity_01>
+  <productNumber_02>${productNumber_typeOptionProduct}</productNumber_02>
+  <productQuantity_02>4</productQuantity_02>
+</data>

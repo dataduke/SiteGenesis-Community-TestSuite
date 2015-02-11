@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Enter address data on shipping page.</description>
+  <parameter name="firstname" desc="firstname"/>
+  <parameter name="lastname" desc="lastname"/>
+  <parameter name="address1" desc="address1"/>
+  <parameter name="address2" desc="address2"/>
+  <parameter name="country" desc="country"/>
+  <parameter name="statesState" desc="states state"/>
+  <parameter name="city" desc="city"/>
+  <parameter name="postalCode" desc="postal code"/>
+  <parameter name="phone" desc="phone"/>
+  <command name="store" target="css=#dwfrm_singleshipping_shippingAddress" value="css_shipping"/>
+  <command name="waitForElementPresent" target="${css_shipping}_addressFields_firstName"/>
+  <codecomment>Enter shipping data</codecomment>
+  <command name="type" target="${css_shipping}_addressFields_firstName" value="@{firstname}"/>
+  <command name="type" target="${css_shipping}_addressFields_lastName" value="@{lastname}"/>
+  <command name="type" target="${css_shipping}_addressFields_address1" value="@{address1}"/>
+  <command name="type" target="${css_shipping}_addressFields_address2" value="@{address2}"/>
+  <command name="select" target="${css_shipping}_addressFields_country" value="@{country}"/>
+  <command name="select" target="${css_shipping}_addressFields_states_state" value="*@{statesState}*"/>
+  <command name="type" target="${css_shipping}_addressFields_city" value="@{city}"/>
+  <command name="type" target="${css_shipping}_addressFields_postal" value="@{postalCode}"/>
+  <command name="type" target="${css_shipping}_addressFields_phone" value="@{phone}"/>
+</scriptmodule>

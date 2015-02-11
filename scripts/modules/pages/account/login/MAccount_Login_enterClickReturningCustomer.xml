@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Enter, click and go to returning customer on account login page.</description>
+  <parameter name="email" desc="email"/>
+  <parameter name="password" desc="password"/>
+  <codecomment>Enter Login Data</codecomment>
+  <command name="waitForElementPresent" target="css= #dwfrm_login.clearfix fieldset div:first-of-type input"/>
+  <command name="type" target="css= #dwfrm_login.clearfix fieldset div:first-of-type input" value="@{email}"/>
+  <command name="type" target="id=dwfrm_login_password" value="@{password}"/>
+  <command name="click" target="css=button[name=&quot;dwfrm_login_login&quot;][type=&quot;submit&quot;]"/>
+</scriptmodule>

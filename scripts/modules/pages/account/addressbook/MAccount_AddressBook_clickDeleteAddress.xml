@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Click delete address.</description>
+  <parameter name="position" desc="position"/>
+  <command name="waitForElementPresent" target="css=#main #primary #addresses .address-list li:nth-of-type(@{position}) a.address-delete"/>
+  <command name="storeElementCount" target="css=#main #primary #addresses .address-list li" value="count_addresses"/>
+  <command name="clickAndWait" target="css=#main #primary #addresses .address-list li:nth-of-type(@{position}) a.address-delete"/>
+  <command name="storeEval" target="${count_addresses} - 1" value="count_addresses_updated"/>
+  <command name="waitForElementCount" target="css=#main #primary #addresses .address-list li" value="${count_addresses_updated}"/>
+</scriptmodule>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="http://xlt.xceptance.com/xlt-script-data">
+  <itemsPerPagePosition>3</itemsPerPagePosition>
+  <itemsPerPageLabel_12>12</itemsPerPageLabel_12>
+  <itemsPerPageLabel_24>24</itemsPerPageLabel_24>
+  <itemsPerPageLabel_36>36</itemsPerPageLabel_36>
+  <itemsPerPageLabel_48>48</itemsPerPageLabel_48>
+  <itemsPerPageLabel_ViewAll>View All (*)</itemsPerPageLabel_ViewAll>
+</data>

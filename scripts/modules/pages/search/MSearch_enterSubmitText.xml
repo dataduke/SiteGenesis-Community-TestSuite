@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Enter and submit text in search.</description>
+  <parameter name="searchText" desc="search text"/>
+  <command name="type" target="id=q" value="@{searchText}"/>
+  <command name="clickAndWait" target="css= #navigation nav .header-search form input[type=submit]"/>
+</scriptmodule>

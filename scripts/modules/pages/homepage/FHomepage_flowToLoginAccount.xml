@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Flow to login as returning customer.
+
+- Start on homepage
+- Click login in header
+- Login as returning customer
+- End on account menu</description>
+  <parameter name="email" desc="email"/>
+  <parameter name="password" desc="password"/>
+  <codecomment># Global
+
+- Click login in header</codecomment>
+  <action name="Login"/>
+  <module name="modules.global.headerfooternav.MGlobal_Header_clickLogin"/>
+  <codecomment># Account
+
+- Validate page
+- Login as returning customer</codecomment>
+  <module name="modules.pages.account.login.VAccount_Login_validatePage"/>
+  <module name="modules.pages.account.login.MAccount_Login_enterClickReturningCustomer">
+    <parameter name="email" value="@{email}"/>
+    <parameter name="password" value="@{password}"/>
+  </module>
+  <command name="waitForElementPresent" target="css=.account-logout"/>
+</scriptmodule>

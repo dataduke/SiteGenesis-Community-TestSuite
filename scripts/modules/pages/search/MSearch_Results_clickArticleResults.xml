@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Click articles link in search results page.</description>
+  <command name="waitForText" target="css=#primary h1" value="Search Results"/>
+  <command name="assertText" target="css=#main #primary .no-hits-content-results" value="We've found*Article(s)"/>
+  <command name="click" target="css=#main #primary .no-hits-content-results a"/>
+</scriptmodule>

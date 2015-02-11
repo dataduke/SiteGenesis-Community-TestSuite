@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Select items per page via position.</description>
+  <parameter name="itemsPerPagePosition" desc="items per page position"/>
+  <parameter name="itemsPerPageLabel_varName" desc="items per page label as var name"/>
+  <command name="waitForElementPresent" target="css=#main #primary .search-result-options .items-per-page #grid-paging-header"/>
+  <command name="storeText" target="css=#main #primary .search-result-options .items-per-page #grid-paging-header option:nth-of-type(@{itemsPerPagePosition})" value="@{itemsPerPageLabel_varName}"/>
+  <command name="select" target="id=grid-paging-header" value="label=${@{itemsPerPageLabel_varName}}"/>
+  <command name="waitForText" target="css=#main #primary .search-result-options .items-per-page #grid-paging-header option[selected=&quot;selected&quot;]" value="${@{itemsPerPageLabel_varName}}"/>
+  <command name="waitForText" target="css=#main #primary .search-result-options .items-per-page #grid-paging-footer option[selected=&quot;selected&quot;]" value="${@{itemsPerPageLabel_varName}}"/>
+</scriptmodule>

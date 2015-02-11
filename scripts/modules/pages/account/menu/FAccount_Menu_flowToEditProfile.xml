@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Flow to edit personal data (profile).
+
+- Start on account menu
+- Go to personal data
+- Enter and submit profile
+- Valdiate customer name
+- End on account menu</description>
+  <parameter name="firstname" desc="firstname"/>
+  <parameter name="lastname" desc="lastname"/>
+  <parameter name="email" desc="email"/>
+  <parameter name="password" desc="password"/>
+  <codecomment># Personal Data
+
+- Go to personal data
+- Enter profile data
+- Submit profile data</codecomment>
+  <action name="GoToPersonalData"/>
+  <module name="modules.pages.account.menu.MAccount_Menu_clickGoToPersonalData"/>
+  <module name="modules.pages.account.personaldata.VAccount_PersonalData_validatePage"/>
+  <module name="modules.pages.account.VAccount_validateNav"/>
+  <action name="EnterProfile"/>
+  <module name="modules.pages.account.personaldata.MAccount_PersonalData_enterProfile">
+    <parameter name="firstname" value="@{firstname}"/>
+    <parameter name="lastname" value="@{lastname}"/>
+    <parameter name="email" value="@{email}"/>
+    <parameter name="password" value="@{password}"/>
+  </module>
+  <module name="modules.pages.account.personaldata.MAccount_PersonalData_clickSubmitProfile"/>
+  <module name="modules.pages.account.menu.VAccount_Menu_validateCustomerName">
+    <parameter name="firstname" value="@{firstname}"/>
+    <parameter name="lastname" value="@{lastname}"/>
+  </module>
+</scriptmodule>

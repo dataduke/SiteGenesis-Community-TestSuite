@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Store basic product details.</description>
+  <parameter name="productName_varName" desc="product name as var name"/>
+  <parameter name="productNumber_varName" desc="product numbe as var name"/>
+  <parameter name="productPriceSales_varName" desc="product sales price as var name"/>
+  <parameter name="productQuantity_varName" desc="product quantity as var name"/>
+  <command name="storeText" target="css=.product-name" value="@{productName_varName}"/>
+  <command name="storeText" target="css=.product-detail #product-content .product-number span" value="@{productNumber_varName}"/>
+  <command name="storeText" target="css=.product-detail #product-content .product-price .price-sales" value="@{productPriceSales_varName}"/>
+  <command name="storeText" target="id=Quantity" value="@{productQuantity_varName}"/>
+</scriptmodule>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Enter email on billing page.</description>
+  <parameter name="email" desc="email"/>
+  <command name="type" target="id=dwfrm_billing_billingAddress_email_emailAddress" value="@{email}"/>
+</scriptmodule>

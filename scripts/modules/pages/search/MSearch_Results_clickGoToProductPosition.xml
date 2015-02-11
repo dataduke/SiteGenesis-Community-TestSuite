@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Click go to product via postion on results page.</description>
+  <parameter name="position" desc="position"/>
+  <action name="ClickProductViaPosition"/>
+  <command name="waitForElementPresent" target="css=#search-result-items li:nth-of-type(@{position}) .product-image a.thumb-link img"/>
+  <command name="clickAndWait" target="css=#search-result-items li:nth-of-type(@{position}) .product-image a.thumb-link img"/>
+</scriptmodule>

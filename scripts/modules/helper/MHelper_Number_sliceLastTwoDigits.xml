@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Convert input number to two digit number (with leading zero if necessary).</description>
+  <parameter name="number" desc="number"/>
+  <parameter name="numberLastTwoDigits_varName" desc="last two digits of number as var name"/>
+  <codecomment>Add leading zero and slice with two digit offset.</codecomment>
+  <command name="storeEval" target="(&quot;0&quot; + &quot;@{number}&quot;).slice(-2)" value="@{numberLastTwoDigits_varName}"/>
+</scriptmodule>

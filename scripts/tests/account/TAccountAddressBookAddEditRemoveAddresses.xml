@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testcase xmlns="http://xlt.xceptance.com/xlt-script/2" version="6" junit-test="true">
+  <tags>smoke</tags>
+  <description>Test add, remove, edit, make default address data in account addressbook.
+
+# 1. Setup and preparation 
+
+- Start session, open homepage and delete all visible cookies
+- Create new account with profile data
+- Login to account using the global link in the header
+
+# 2. Scope of test
+
+- Go to address book
+- Validate nav, page and empty list
+- Add address and cancel dialog
+- Create two new addresses and validate both
+- Make second address default and validate resorting
+- Edit and cancel first address
+- Edit and submit second address
+- Remove both addresses and validate resorting
+- Validate empty list
+
+# 3. Clean up
+
+- Logout using the global link in the header
+- End session and clean up created cookies</description>
+  <codecomment># Setup
+
+- Generate email 
+- Generate password
+- Start session
+- Create account with profile data</codecomment>
+  <module name="modules.helper.MHelper_Random_generateEmail">
+    <parameter name="email_varName" value="email_varDynamic"/>
+  </module>
+  <module name="modules.helper.MHelper_Random_generatePassword">
+    <parameter name="password_varName" value="password_varDynamic"/>
+  </module>
+  <module name="modules.helper.FHelper_Session_flowToStartSession"/>
+  <module name="modules.pages.homepage.FHomepage_flowToCreateNewAccount">
+    <parameter name="firstname" value="${firstname_02}"/>
+    <parameter name="lastname" value="${lastname_02}"/>
+    <parameter name="email" value="${email_varDynamic}"/>
+    <parameter name="password" value="${password_varDynamic}"/>
+  </module>
+  <module name="modules.pages.homepage.FHomepage_flowToLoginAccount">
+    <parameter name="email" value="${email_varDynamic}"/>
+    <parameter name="password" value="${password_varDynamic}"/>
+  </module>
+  <codecomment># Scope</codecomment>
+  <codecomment>## Address Book
+
+- Go to address book
+- Validate nav
+- Validate page
+- Validate empty list</codecomment>
+  <action name="GoToAddressBook"/>
+  <module name="modules.pages.account.menu.MAccount_Menu_clickGoToAddressBook"/>
+  <module name="modules.pages.account.VAccount_validateNav"/>
+  <module name="modules.pages.account.addressbook.VAccount_AddressBook_validatePage"/>
+  <module name="modules.pages.account.addressbook.VAccount_AddressBook_validateEmptyAddressList"/>
+  <codecomment>## Address Book
+
+- Enter shipping address data in dialog
+- Submit shipping address data in dialog
+- Validateshipping address in address book</codecomment>
+  <action name="CreateNewAddress"/>
+  <module name="modules.pages.account.addressbook.MAccount_AddressBook_clickCreateNewAddress"/>
+  <action name="CreateAddressDialog"/>
+  <module name="modules.pages.account.addressbook.VAccount_AddressBook_validateDialog"/>
+  <module name="modules.pages.account.addressbook.MAccount_AddressBook_Dialog_enterAddress">
+    <parameter name="title" value="${title_01}"/>
+    <parameter name="firstname" value="${firstname_01}"/>
+    <parameter name="lastname" value="${lastname_01}"/>
+    <parameter name="address1" value="${address1_01}"/>
+    <parameter name="address2" value="${address2_01}"/>
+    <parameter name="country" value="${country_01}"/>
+    <parameter name="statesState" value="${statesState_01}"/>
+    <parameter name="city" value="${city_01}"/>
+    <parameter name="postalCode" value="${postalCode_01}"/>
+    <parameter name="phone" value="${phone_01}"/>
+  </module>
+  <module name="modules.pages.account.addressbook.MAccount_AddressBook_Dialog_clickCreate"/>
+  <module name="modules.pages.account.addressbook.VAccount_AddressBook_validateAddress">
+    <parameter name="position" value="1"/>
+    <parameter name="title" value="${title_01}"/>
+    <parameter name="firstname" value="${firstname_01}"/>
+    <parameter name="lastname" value="${lastname_01}"/>
+    <parameter name="address1" value="${address1_01}"/>
+    <parameter name="address2" value="${address2_01}"/>
+    <parameter name="country" value="${country_01}"/>
+    <parameter name="statesStateShort" value="${statesStateShort_01}"/>
+    <parameter name="city" value="${city_01}"/>
+    <parameter name="postalCode" value="${postalCode_01}"/>
+    <parameter name="phone" value="${phone_01}"/>
+  </module>
+  <module name="modules.pages.account.addressbook.VAccount_AddressBook_validateAddressDefault">
+    <parameter name="position" value="1"/>
+  </module>
+  <codecomment>## Address Book
+
+- Enter billing address data in dialog
+- Submit billing address data in dialog
+- Validate billing address in address book</codecomment>
+  <action name="CreateNewAddress"/>
+  <module name="modules.pages.account.addressbook.MAccount_AddressBook_clickCreateNewAddress"/>
+  <action name="CreateAddressDialog"/>
+  <module name="modules.pages.account.addressbook.VAccount_AddressBook_validateDialog"/>
+  <module name="modules.pages.account.addressbook.MAccount_AddressBook_Dialog_enterAddress">
+    <parameter name="title" value="${title_02}"/>
+    <parameter name="firstname" value="${firstname_02}"/>
+    <parameter name="lastname" value="${lastname_02}"/>
+    <parameter name="address1" value="${address1_02}"/>
+    <parameter name="address2" value="${address2_02}"/>
+    <parameter name="country" value="${country_02}"/>
+    <parameter name="statesState" value="${statesState_02}"/>
+    <parameter name="city" value="${city_02}"/>
+    <parameter name="postalCode" value="${postalCode_02}"/>
+    <parameter name="phone" value="${phone_02}"/>
+  </module>
+  <module name="modules.pages.account.addressbook.MAccount_AddressBook_Dialog_clickCreate"/>
+  <module name="modules.pages.account.addressbook.VAccount_AddressBook_validateAddress">
+    <parameter name="position" value="2"/>
+    <parameter name="title" value="${title_02}"/>
+    <parameter name="firstname" value="${firstname_02}"/>
+    <parameter name="lastname" value="${lastname_02}"/>
+    <parameter name="address1" value="${address1_02}"/>
+    <parameter name="address2" value="${address2_02}"/>
+    <parameter name="country" value="${country_02}"/>
+    <parameter name="statesStateShort" value="${statesStateShort_02}"/>
+    <parameter name="city" value="${city_02}"/>
+    <parameter name="postalCode" value="${postalCode_02}"/>
+    <parameter name="phone" value="${phone_02}"/>
+  </module>
+  <codecomment>## Address Book
+
+- Make second address default
+- Validate that address are resorted (default is shown at position 1)</codecomment>
+  <action name="MakeDefaultAddress"/>
+  <module name="modules.pages.account.addressbook.MAccount_AddressBook_clickMakeDefaultAddress">
+    <parameter name="position" value="2"/>
+  </module>
+  <module name="modules.pages.account.addressbook.VAccount_AddressBook_validateAddress">
+    <parameter name="position" value="1"/>
+    <parameter name="title" value="${title_02}"/>
+    <parameter name="firstname" value="${firstname_02}"/>
+    <parameter name="lastname" value="${lastname_02}"/>
+    <parameter name="address1" value="${address1_02}"/>
+    <parameter name="address2" value="${address2_02}"/>
+    <parameter name="country" value="${country_02}"/>
+    <parameter name="statesStateShort" value="${statesStateShort_02}"/>
+    <parameter name="city" value="${city_02}"/>
+    <parameter name="postalCode" value="${postalCode_02}"/>
+    <parameter name="phone" value="${phone_02}"/>
+  </module>
+  <module name="modules.pages.account.addressbook.VAccount_AddressBook_validateAddressDefault">
+    <parameter name="position" value="1"/>
+  </module>
+  <module name="modules.pages.account.addressbook.VAccount_AddressBook_validateAddress">
+    <parameter name="position" value="2"/>
+    <parameter name="title" value="${title_01}"/>
+    <parameter name="firstname" value="${firstname_01}"/>
+    <parameter name="lastname" value="${lastname_01}"/>
+    <parameter name="address1" value="${address1_01}"/>
+    <parameter name="address2" value="${address2_01}"/>
+    <parameter name="country" value="${country_01}"/>
+    <parameter name="statesStateShort" value="${statesStateShort_01}"/>
+    <parameter name="city" value="${city_01}"/>
+    <parameter name="postalCode" value="${postalCode_01}"/>
+    <parameter name="phone" value="${phone_01}"/>
+  </module>
+  <codecomment>## Address Book
+
+- Edit and cancel edit first address
+- Validate cancel of first address
+- Edit and apply second address
+- Validate edit of first address</codecomment>
+  <action name="EditAddress"/>
+  <module name="modules.pages.account.addressbook.MAccount_AddressBook_clickEditAddress">
+    <parameter name="position" value="1"/>
+  </module>
+  <module name="modules.pages.account.addressbook.VAccount_AddressBook_validateDialog"/>
+  <action name="CancelAddressDialog"/>
+  <module name="modules.pages.account.addressbook.MAccount_AddressBook_Dialog_clickCancel"/>
+  <module name="modules.pages.account.addressbook.VAccount_AddressBook_validateAddress">
+    <parameter name="position" value="1"/>
+    <parameter name="title" value="${title_02}"/>
+    <parameter name="firstname" value="${firstname_02}"/>
+    <parameter name="lastname" value="${lastname_02}"/>
+    <parameter name="address1" value="${address1_02}"/>
+    <parameter name="address2" value="${address2_02}"/>
+    <parameter name="country" value="${country_02}"/>
+    <parameter name="statesStateShort" value="${statesStateShort_02}"/>
+    <parameter name="city" value="${city_02}"/>
+    <parameter name="postalCode" value="${postalCode_02}"/>
+    <parameter name="phone" value="${phone_02}"/>
+  </module>
+  <action name="EditAddress"/>
+  <module name="modules.pages.account.addressbook.MAccount_AddressBook_clickEditAddress">
+    <parameter name="position" value="2"/>
+  </module>
+  <module name="modules.pages.account.addressbook.VAccount_AddressBook_validateDialog"/>
+  <action name="ApplyAddressDialog"/>
+  <module name="modules.pages.account.addressbook.MAccount_AddressBook_Dialog_enterAddress">
+    <parameter name="title" value="${title_03}"/>
+    <parameter name="firstname" value="${firstname_01}"/>
+    <parameter name="lastname" value="${lastname_01}"/>
+    <parameter name="address1" value="${address1_03}"/>
+    <parameter name="address2" value="${address2_03}"/>
+    <parameter name="country" value="${country_03}"/>
+    <parameter name="statesState" value="${statesState_03}"/>
+    <parameter name="city" value="${city_03}"/>
+    <parameter name="postalCode" value="${postalCode_03}"/>
+    <parameter name="phone" value="${phone_03}"/>
+  </module>
+  <module name="modules.pages.account.addressbook.MAccount_AddressBook_Dialog_clickApply"/>
+  <module name="modules.pages.account.addressbook.VAccount_AddressBook_validateAddress">
+    <parameter name="position" value="2"/>
+    <parameter name="title" value="${title_03}"/>
+    <parameter name="firstname" value="${firstname_01}"/>
+    <parameter name="lastname" value="${lastname_01}"/>
+    <parameter name="address1" value="${address1_03}"/>
+    <parameter name="address2" value="${address2_03}"/>
+    <parameter name="country" value="${country_03}"/>
+    <parameter name="statesStateShort" value="${statesStateShort_03}"/>
+    <parameter name="city" value="${city_03}"/>
+    <parameter name="postalCode" value="${postalCode_03}"/>
+    <parameter name="phone" value="${phone_03}"/>
+  </module>
+  <codecomment>## Address Book
+
+- Delete first address
+- Validate that second address is sorted to first position
+- Delete second address
+- Validate that address book is empty</codecomment>
+  <action name="EditAddress"/>
+  <module name="modules.pages.account.addressbook.MAccount_AddressBook_clickEditAddress">
+    <parameter name="position" value="1"/>
+  </module>
+  <module name="modules.pages.account.addressbook.VAccount_AddressBook_validateDialog"/>
+  <action name="DeleteAddressDialog"/>
+  <module name="modules.pages.account.addressbook.MAccount_AddressBook_Dialog_clickDelete"/>
+  <module name="modules.pages.account.addressbook.VAccount_AddressBook_validateAddress">
+    <parameter name="position" value="1"/>
+    <parameter name="title" value="${title_03}"/>
+    <parameter name="firstname" value="${firstname_01}"/>
+    <parameter name="lastname" value="${lastname_01}"/>
+    <parameter name="address1" value="${address1_03}"/>
+    <parameter name="address2" value="${address2_03}"/>
+    <parameter name="country" value="${country_03}"/>
+    <parameter name="statesStateShort" value="${statesStateShort_03}"/>
+    <parameter name="city" value="${city_03}"/>
+    <parameter name="postalCode" value="${postalCode_03}"/>
+    <parameter name="phone" value="${phone_03}"/>
+  </module>
+  <action name="DeleteAddress"/>
+  <module name="modules.pages.account.addressbook.MAccount_AddressBook_clickDeleteAddress">
+    <parameter name="position" value="1"/>
+  </module>
+  <module name="modules.pages.account.addressbook.VAccount_AddressBook_validateEmptyAddressList"/>
+  <codecomment># Teardown
+
+- Go to account menu
+- Logout
+- End session</codecomment>
+  <action name="GoToAccount"/>
+  <module name="modules.global.headerfooternav.MGlobal_Header_clickGoToAccountMenuViaCustomerName"/>
+  <action name="Logout"/>
+  <module name="modules.global.headerfooternav.MGlobal_Header_clickLogoutViaNotCustomerName"/>
+  <module name="modules.helper.FHelper_Session_flowToEndSession"/>
+</testcase>

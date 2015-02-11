@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate customer name on account page.</description>
+  <parameter name="firstname" desc="firstname"/>
+  <parameter name="lastname" desc="lastname"/>
+  <command name="waitForElementPresent" target="css=#primary h1"/>
+  <command name="waitForText" target="css=#primary h1" value="*My Account |*@{firstname}*@{lastname}*"/>
+  <command name="assertText" target="css=#header header ul.menu-utility-user li:first-of-type a" value="regexpi:@{firstname} @{lastname}"/>
+  <command name="assertText" target="css=#header header ul.menu-utility-user li:last-of-type a" value="regexpi:\( NOT @{firstname}\? \)">
+    <comment>escape special chars as question mark and brackets with backslash</comment>
+  </command>
+</scriptmodule>

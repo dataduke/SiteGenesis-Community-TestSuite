@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Click continue to next step.</description>
+  <command name="waitForNotElementPresent" target="css=button[name=&quot;dwfrm_billing_save&quot;][type=&quot;submit&quot;][disabled=&quot;disabled&quot;]">
+    <comment>Wait that the continue button will be enabled. Necessary for webdriver execution.</comment>
+  </command>
+  <command name="clickAndWait" target="css=button[name=&quot;dwfrm_billing_save&quot;][type=&quot;submit&quot;]"/>
+</scriptmodule>

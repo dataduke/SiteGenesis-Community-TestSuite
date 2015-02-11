@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testcase xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <tags>smoke</tags>
+  <description>Test select sort by option on catalog page.
+
+# 1. Setup and preparation
+
+- Start session, open homepage and delete all visible cookies
+
+# 2. Scope of test
+
+- Sort by via position
+- Validate result page
+- Sort by via random
+- Validate result page
+- Sort by via all labels
+- Validate result page
+
+# 3. Clean up
+
+- End session and clean up created cookies</description>
+  <codecomment># Setup
+
+- Start session</codecomment>
+  <module name="modules.helper.FHelper_Session_flowToStartSession"/>
+  <codecomment># Scope</codecomment>
+  <codecomment>## Catalog
+
+- Go to catalog page
+- Validate page</codecomment>
+  <action name="GoToCategoryPage"/>
+  <module name="modules.global.headerfooternav.MGlobal_Nav_clickGoToCategoryLevel3">
+    <parameter name="positionLevel1" value="2"/>
+    <parameter name="positionLevel2" value="1"/>
+    <parameter name="positionLevel3" value="3"/>
+  </module>
+  <module name="modules.pages.catalog.VCatalog_validatePage"/>
+  <codecomment>## Catalog
+
+- Sort by via position
+- Validate label
+- Sort by via random
+- Validate label</codecomment>
+  <action name="SelectSortByViaPosition"/>
+  <module name="modules.pages.catalog.MCatalog_Option_selectSortByPosition">
+    <parameter name="sortByPosition" value="${sortByPosition}"/>
+    <parameter name="sortByLabel_varName" value="sortByLabel"/>
+  </module>
+  <module name="modules.pages.catalog.VCatalog_Option_validateSortBy">
+    <parameter name="sortByLabel" value="${sortByLabel}"/>
+  </module>
+  <action name="SelectSortByViaRandom"/>
+  <module name="modules.pages.catalog.MCatalog_Option_selectSortByRandom">
+    <parameter name="sortByLabel_varName" value="sortByLabel_random"/>
+  </module>
+  <module name="modules.pages.catalog.VCatalog_Option_validateSortBy">
+    <parameter name="sortByLabel" value="${sortByLabel_random}"/>
+  </module>
+  <codecomment>## Catalog
+
+- Sort by via labels
+- Validate labels</codecomment>
+  <action name="SelectSortByPriceLowToHigh"/>
+  <module name="modules.pages.catalog.MCatalog_Option_selectSortByLabel">
+    <parameter name="sortByLabel" value="${sortByLabel_priceLowToHigh}"/>
+  </module>
+  <module name="modules.pages.catalog.VCatalog_Option_validateSortBy">
+    <parameter name="sortByLabel" value="${sortByLabel_priceLowToHigh}"/>
+  </module>
+  <action name="SelectSortByPriceHighToLow"/>
+  <module name="modules.pages.catalog.MCatalog_Option_selectSortByLabel">
+    <parameter name="sortByLabel" value="${sortByLabel_priceHighToLow}"/>
+  </module>
+  <module name="modules.pages.catalog.VCatalog_Option_validateSortBy">
+    <parameter name="sortByLabel" value="${sortByLabel_priceHighToLow}"/>
+  </module>
+  <action name="SelectSortByNameAToZ"/>
+  <module name="modules.pages.catalog.MCatalog_Option_selectSortByLabel">
+    <parameter name="sortByLabel" value="${sortByLabel_productNameAToZ}"/>
+  </module>
+  <module name="modules.pages.catalog.VCatalog_Option_validateSortBy">
+    <parameter name="sortByLabel" value="${sortByLabel_productNameAToZ}"/>
+  </module>
+  <action name="SelectSortByNameZToA"/>
+  <module name="modules.pages.catalog.MCatalog_Option_selectSortByLabel">
+    <parameter name="sortByLabel" value="${sortByLabel_productNameZToA}"/>
+  </module>
+  <module name="modules.pages.catalog.VCatalog_Option_validateSortBy">
+    <parameter name="sortByLabel" value="${sortByLabel_productNameZToA}"/>
+  </module>
+  <action name="SelectSortByBrand"/>
+  <module name="modules.pages.catalog.MCatalog_Option_selectSortByLabel">
+    <parameter name="sortByLabel" value="${sortByLabel_brand}"/>
+  </module>
+  <module name="modules.pages.catalog.VCatalog_Option_validateSortBy">
+    <parameter name="sortByLabel" value="${sortByLabel_brand}"/>
+  </module>
+  <action name="SelectSortByMostPopular"/>
+  <module name="modules.pages.catalog.MCatalog_Option_selectSortByLabel">
+    <parameter name="sortByLabel" value="${sortByLabel_mostPopular}"/>
+  </module>
+  <module name="modules.pages.catalog.VCatalog_Option_validateSortBy">
+    <parameter name="sortByLabel" value="${sortByLabel_mostPopular}"/>
+  </module>
+  <action name="SelectSortByBrand"/>
+  <module name="modules.pages.catalog.MCatalog_Option_selectSortByLabel">
+    <parameter name="sortByLabel" value="${sortByLabel_topSellers}"/>
+  </module>
+  <module name="modules.pages.catalog.VCatalog_Option_validateSortBy">
+    <parameter name="sortByLabel" value="${sortByLabel_topSellers}"/>
+  </module>
+  <action name="SelectSortByBestMatches"/>
+  <module name="modules.pages.catalog.MCatalog_Option_selectSortByLabel">
+    <parameter name="sortByLabel" value="${sortByLabel_bestMatches}"/>
+  </module>
+  <module name="modules.pages.catalog.VCatalog_Option_validateSortBy">
+    <parameter name="sortByLabel" value="${sortByLabel_bestMatches}"/>
+  </module>
+  <codecomment># Teardown
+
+- End session</codecomment>
+  <module name="modules.helper.FHelper_Session_flowToEndSession"/>
+</testcase>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Click delete credit card.</description>
+  <parameter name="position" desc="position"/>
+  <command name="waitForElementPresent" target="css=#main #primary .payment-list li:nth-of-type(@{position}) button.delete"/>
+  <command name="storeElementCount" target="css=#main #primary .payment-list li" value="count_credit_cards"/>
+  <command name="click" target="css=#main #primary .payment-list li:nth-of-type(@{position}) button.delete"/>
+  <command name="storeEval" target="${count_credit_cards} - 1" value="count_credit_cards_updated"/>
+  <command name="waitForElementCount" target="css=#main #primary .payment-list li" value="${count_credit_cards_updated}"/>
+</scriptmodule>

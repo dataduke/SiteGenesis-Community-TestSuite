@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Flow to validate personal data (profile).
+
+- Start on account menu
+- Go to personal data
+- Enter and submit profile
+- Validate customer name
+- End on account menu</description>
+  <parameter name="firstname" desc="firstname"/>
+  <parameter name="lastname" desc="lastname"/>
+  <parameter name="email" desc="email"/>
+  <codecomment># Personal Data
+
+- Go to personal data
+- Validate profile data
+- Go to account menu</codecomment>
+  <action name="GoToPersonalData"/>
+  <module name="modules.pages.account.menu.MAccount_Menu_clickGoToPersonalData"/>
+  <module name="modules.pages.account.personaldata.VAccount_PersonalData_validateProfile">
+    <parameter name="firstname" value="@{firstname}"/>
+    <parameter name="lastname" value="@{lastname}"/>
+    <parameter name="email" value="@{email}"/>
+  </module>
+  <action name="GoToAccount"/>
+  <module name="modules.global.headerfooternav.MGlobal_Header_clickGoToAccountMenuViaCustomerName"/>
+</scriptmodule>

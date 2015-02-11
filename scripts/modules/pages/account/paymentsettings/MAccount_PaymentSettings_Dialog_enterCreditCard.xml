@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Enter data in credit card details dialog.</description>
+  <parameter name="owner" desc="owner"/>
+  <parameter name="type" desc="type"/>
+  <parameter name="number" desc="number"/>
+  <parameter name="month" desc="month"/>
+  <parameter name="year" desc="year"/>
+  <command name="waitForElementPresent" target="id=dwfrm_paymentinstruments_creditcards_newcreditcard_owner"/>
+  <command name="type" target="dwfrm_paymentinstruments_creditcards_newcreditcard_owner" value="@{owner}"/>
+  <command name="select" target="id=dwfrm_paymentinstruments_creditcards_newcreditcard_type" value="@{type}"/>
+  <command name="type" target="css=#CreditCardForm fieldset .form-row:nth-of-type(3) input" value="@{number}"/>
+  <command name="select" target="id=dwfrm_paymentinstruments_creditcards_newcreditcard_month" value="@{month}"/>
+  <command name="select" target="id=dwfrm_paymentinstruments_creditcards_newcreditcard_year" value="@{year}"/>
+</scriptmodule>

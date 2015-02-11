@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Store product price total via cart row.</description>
+  <parameter name="row" desc="row"/>
+  <parameter name="productPriceTotal_varName" desc="product price total as var name"/>
+  <codecomment>Store product price total (depends on price sales and quantity)</codecomment>
+  <command name="storeText" target="css=#cart-table tbody tr:nth-of-type(@{row}) td.item-total .price-total" value="@{productPriceTotal_varName}"/>
+</scriptmodule>

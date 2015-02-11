@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Enter product quantity.</description>
+  <parameter name="productQuantity" desc="product quantity"/>
+  <command name="waitForElementPresent" target="css=#main #primary #pdpMain #product-content .product-add-to-cart .quantity #Quantity"/>
+  <command name="type" target="css=#main #primary #pdpMain #product-content .product-add-to-cart .quantity #Quantity" value="@{productQuantity}"/>
+</scriptmodule>

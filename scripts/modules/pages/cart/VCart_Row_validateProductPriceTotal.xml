@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate row with product price total.</description>
+  <parameter name="row" desc="row"/>
+  <parameter name="productPriceTotal" desc="product price total"/>
+  <codecomment>Validate product price total (depends on price sales and quantity)</codecomment>
+  <command name="assertText" target="css=#cart-table tbody tr:nth-of-type(@{row}) td.item-total .price-total" value="@{productPriceTotal}"/>
+</scriptmodule>

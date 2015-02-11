@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Click remove product from wishlist.</description>
+  <parameter name="row" desc="row"/>
+  <command name="storeEval" target="@{row} + 1" value="position"/>
+  <command name="click" target="css=#primary .item-list tr:nth-of-type(${position}) .item-dashboard .delete-item"/>
+</scriptmodule>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Valdiate shipping method price.</description>
+  <parameter name="position" desc="position"/>
+  <parameter name="price" desc="price"/>
+  <codecomment>Validate shipping method price at selected positon</codecomment>
+  <command name="assertText" target="css=#main #primary #shipping-method-list fieldset [for=&quot;shipping-method-00@{position}&quot;] span" value="@{price}"/>
+</scriptmodule>

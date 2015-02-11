@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Flow to end session.
+
+- Start on homepage
+- Open homepage
+- Delete cookies
+- Close homepage
+- End on homepage 
+- Close browser tab (optional)</description>
+  <action name="EndSession"/>
+  <codecomment># End - Clean up
+
+- Goto homepage
+- Delete cookies
+- Close homepage</codecomment>
+  <command name="waitForElementPresent" target="//*[@id='header']//img[1]"/>
+  <command name="pause" value="300">
+    <comment>SiteGenesis needs occasionally some time until page is loaded at batch testing.</comment>
+  </command>
+  <command name="clickAndWait" target="//*[@id='header']//img[1]"/>
+  <command name="waitForElementPresent" target="id=q">
+    <comment>Simple/short validation to make sure that the homepage is loaded</comment>
+  </command>
+  <codecomment>Delete Cookies</codecomment>
+  <command name="deleteAllVisibleCookies"/>
+  <codecomment>Close browser, please note, that it is disabled because it is not working with webdriver for now.</codecomment>
+  <command name="close" disabled="true"/>
+</scriptmodule>

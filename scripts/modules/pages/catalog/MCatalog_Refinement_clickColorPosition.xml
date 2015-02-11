@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Click color by position.</description>
+  <parameter name="colorPosition" desc="color positon"/>
+  <parameter name="colorLabel_varName" desc="color label as var name"/>
+  <command name="waitForElementPresent" target="xpath=/html/body[1]/div[2]/div[4]/div[4]/div[2]/ul[1]/li[@{colorPosition}]/a"/>
+  <command name="storeText" target="xpath=/html/body[1]/div[2]/div[4]/div[4]/div[2]/ul[1]/li[@{colorPosition}]/a" value="@{colorLabel_varName}"/>
+  <command name="click" target="xpath=/html/body[1]/div[2]/div[4]/div[4]/div[2]/ul[1]/li[@{colorPosition}]/a"/>
+</scriptmodule>

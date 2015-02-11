@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testcase xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <tags>smoke</tags>
+  <description>Test search for articles.
+
+# 1. Setup and preparation
+
+- Start session, open homepage and delete all visible cookies
+
+# 2. Scope of test
+
+- Search for text 
+- Leads to no products but found articles
+- Click articles link
+- Validate articles results page
+
+# 3. Clean up
+
+- End session and clean up created cookies</description>
+  <codecomment># Setup
+
+- Start session</codecomment>
+  <module name="modules.helper.FHelper_Session_flowToStartSession"/>
+  <codecomment># Scope</codecomment>
+  <codecomment>## Article Result
+
+- Search article content
+- Validiate PDP
+- Validiate PDP product number</codecomment>
+  <action name="Search"/>
+  <module name="modules.pages.search.MSearch_enterSubmitText">
+    <parameter name="searchText" value="${searchText}"/>
+  </module>
+  <module name="modules.pages.search.VSearch_validatePage">
+    <parameter name="searchText" value="${searchText}"/>
+  </module>
+  <action name="ViewArticles"/>
+  <module name="modules.pages.search.MSearch_Results_clickArticleResults"/>
+  <module name="modules.pages.search.VSearch_Results_validateArticleCatalog"/>
+  <module name="modules.helper.FHelper_Session_flowToEndSession"/>
+  <codecomment># Teardown
+
+- End session</codecomment>
+</testcase>

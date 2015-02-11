@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Click go to cart from minicart via header link.</description>
+  <command name="waitForVisible" target="css=.mini-cart-content .mini-cart-totals .mini-cart-link-cart"/>
+  <command name="mouseOver" target="css=header #mini-cart .mini-cart-total a.mini-cart-link">
+    <comment>Mouse over the mini cart link to make sure that the mini cart will be open.</comment>
+  </command>
+  <command name="clickAndWait" target="css=#mini-cart div.mini-cart-total a.mini-cart-link"/>
+</scriptmodule>

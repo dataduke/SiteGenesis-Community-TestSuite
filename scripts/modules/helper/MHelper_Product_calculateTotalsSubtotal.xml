@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Calculate totals subtotal of two products (based on: price 01 x quantity 01 + price 02 x quantity 02  = totals subtotal).</description>
+  <parameter name="productPriceSales_01" desc="product price sales 01"/>
+  <parameter name="productQuantity_01" desc="product quantity 01"/>
+  <parameter name="productPriceSales_02" desc="product price sales 02"/>
+  <parameter name="productQuantity_02" desc="product quantity 02"/>
+  <parameter name="totalsSubtotal_varName" desc="totals subtotal as var name"/>
+  <parameter name="priceCurrency" desc="price currency"/>
+  <parameter name="priceDecimalMark" desc="price decimal mark"/>
+  <parameter name="priceDigitGroupSeparators" desc="price digit group seperators"/>
+  <module name="modules.helper.MHelper_Price_convertPriceToValue">
+    <parameter name="price" value="@{productPriceSales_01}"/>
+    <parameter name="priceValue_varName" value="priceValue_01"/>
+    <parameter name="priceCurrency" value="@{priceCurrency}"/>
+    <parameter name="priceDecimalMark" value="@{priceDecimalMark}"/>
+    <parameter name="priceDigitGroupSeparators" value="@{priceDigitGroupSeparators}"/>
+  </module>
+  <module name="modules.helper.MHelper_Price_convertPriceToValue">
+    <parameter name="price" value="@{productPriceSales_02}"/>
+    <parameter name="priceValue_varName" value="priceValue_02"/>
+    <parameter name="priceCurrency" value="@{priceCurrency}"/>
+    <parameter name="priceDecimalMark" value="@{priceDecimalMark}"/>
+    <parameter name="priceDigitGroupSeparators" value="@{priceDigitGroupSeparators}"/>
+  </module>
+  <command name="storeEval" target=" ${priceValue_01} * @{productQuantity_01} + ${priceValue_02} * @{productQuantity_02}" value="totalsSubtotalValue"/>
+  <module name="modules.helper.MHelper_Price_convertValueToPrice">
+    <parameter name="priceValue" value="${totalsSubtotalValue}"/>
+    <parameter name="price_varName" value="@{totalsSubtotal_varName}"/>
+    <parameter name="priceCurrency" value="@{priceCurrency}"/>
+    <parameter name="priceDecimalMark" value="@{priceDecimalMark}"/>
+    <parameter name="priceDigitGroupSeparators" value="@{priceDigitGroupSeparators}"/>
+  </module>
+</scriptmodule>

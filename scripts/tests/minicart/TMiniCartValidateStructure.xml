@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testcase xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <tags>smoke</tags>
+  <description>Test add and remove product in mini cart.
+**Caution:** Browser window needs to be 1200 pixels wide to show totals subtotal in header.
+
+# 1. Setup and preparation
+
+- Start session, open homepage and delete all visible cookies
+- Add basic product to cart
+
+# 2. Scope of test
+
+- Validate mini cart header
+- Validate mini cart header items
+- Open mini cart body
+- Validate product inside mini cart body
+- Validate subtotal inside mini cart body
+- Remove product from cart
+- Validate empty cart
+- Validate empty mini cart
+
+# 3. Clean up
+
+- End session and clean up created cookies</description>
+  <codecomment># Setup
+
+- Start Session
+- Add product to cart</codecomment>
+  <module name="modules.helper.FHelper_Session_flowToStartSession"/>
+  <module name="modules.pages.search.FSearch_flowToAddProductToCart">
+    <parameter name="cartRow" value="1"/>
+    <parameter name="productNumber" value="${productNumber}"/>
+    <parameter name="productQuantity" value="${productQuantity}"/>
+    <parameter name="productName_varName" value="productName_varDynamic"/>
+    <parameter name="productNumber_varName" value="productNumber_varDynamic"/>
+    <parameter name="productQuantity_varName" value="productQuantity_varDynamic"/>
+    <parameter name="productPriceSales_varName" value="productPriceSales_varDynamic"/>
+    <parameter name="productPriceTotal_varName" value="productPriceTotal_varDynamic"/>
+  </module>
+  <codecomment># Scope</codecomment>
+  <codecomment>## Mini Cart
+
+- Validate header
+- Validate header items
+- Open body
+- Validate body product
+- Validate body subtotal</codecomment>
+  <action name="VIewMiniCart"/>
+  <module name="modules.global.minicart.VGlobal_MiniCart_validateHeader"/>
+  <module name="modules.global.minicart.VGlobal_MiniCart_validateHeaderTotals">
+    <comment>**Caution:** Browser window needs to be 1200 pixels wide to show totals subtotal in header.</comment>
+    <parameter name="totalsQuantity" value="${productQuantity_varDynamic}"/>
+    <parameter name="totalsSubtotal" value="${productPriceTotal_varDynamic}"/>
+  </module>
+  <module name="modules.global.minicart.MGlobal_MiniCart_hoverBody"/>
+  <module name="modules.global.minicart.VGlobal_MiniCart_validateBody"/>
+  <module name="modules.global.minicart.VGlobal_MiniCart_validateBodyProduct">
+    <parameter name="row" value="1"/>
+    <parameter name="productName" value="${productName_varDynamic}"/>
+    <parameter name="productQuantity" value="${productQuantity_varDynamic}"/>
+    <parameter name="productPriceTotal" value="${productPriceTotal_varDynamic}"/>
+  </module>
+  <module name="modules.global.minicart.VGlobal_MiniCart_validateBodySubtotal">
+    <parameter name="totalsSubtotal" value="${productPriceTotal_varDynamic}"/>
+  </module>
+  <codecomment>## Cart
+
+- Remove product
+- Validate empty cart</codecomment>
+  <action name="RemoveProduct"/>
+  <module name="modules.pages.cart.MCart_Row_clickRemoveProduct">
+    <parameter name="row" value="1"/>
+  </module>
+  <module name="modules.pages.cart.VCart_validateEmptyProductList"/>
+  <codecomment>## Mini Cart
+
+- Validate empty</codecomment>
+  <module name="modules.global.minicart.VGlobal_MiniCart_validateEmpty"/>
+  <codecomment># Teardown
+
+- End session</codecomment>
+  <module name="modules.helper.FHelper_Session_flowToEndSession"/>
+</testcase>

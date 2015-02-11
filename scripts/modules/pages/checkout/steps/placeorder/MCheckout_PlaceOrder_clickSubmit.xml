@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Click submit on place order page.</description>
+  <command name="waitForElementPresent" target="css=button[value=&quot;Submit Order&quot;][type=&quot;submit&quot;]"/>
+  <command name="clickAndWait" target="css=button[value=&quot;Submit Order&quot;][type=&quot;submit&quot;]"/>
+</scriptmodule>

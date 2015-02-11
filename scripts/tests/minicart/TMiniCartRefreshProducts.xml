@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testcase xmlns="http://xlt.xceptance.com/xlt-script/2" version="6" junit-test="true">
+  <tags>smoke</tags>
+  <description>Test refresh products with update quantity and resort rows in mini cart.
+**Caution:** Browser window needs to be 1200 pixels wide to show totals subtotal in header.
+
+# 1. Setup and preparation
+
+- Start session, open homepage and delete all visible cookies
+- Add product 01 to cart (quantity 1)
+- Add product 02 to cart (quantity 2)
+- Store subtotal
+
+# 2. Scope of test
+
+## Product 01 and 02 - Validate products
+
+- Validate header items
+- Validate body product 01 in row 2
+- Validate body product 02 in row 1
+- Validate body subtotal
+
+## Product 01 and 02 - Change quantities
+
+- Change product 01 quantity to 3
+- Change product 02 quantity to 4
+- Validate updated header items
+- Validate updated mini cart body product 01 in row 2
+- Validate updated mini cart body product 02 in row 1
+- Validate updated mini cart body subtotal
+
+## Product 01 and 02 - Remove and rearrange rows
+
+- Remove product 02
+- Validate updated mini cart body product 01 in row 1
+- Remove product 01
+- Validate empty cart
+- Validate empty mini cart
+
+# 3. Clean up
+
+- End session and clean up created cookies</description>
+  <codecomment># Setup
+
+- Start Session
+- Add product to cart with quantity 1
+- Add product to cart with quantity 2
+- Store cart subtotal</codecomment>
+  <module name="modules.helper.FHelper_Session_flowToStartSession"/>
+  <module name="modules.pages.search.FSearch_flowToAddProductToCart">
+    <parameter name="cartRow" value="1"/>
+    <parameter name="productNumber" value="${productNumber_01}"/>
+    <parameter name="productQuantity" value="${productQuantity_01}"/>
+    <parameter name="productName_varName" value="productName_01_varDynamic"/>
+    <parameter name="productNumber_varName" value="productNumber_01_varDynamic"/>
+    <parameter name="productQuantity_varName" value="productQuantity_01_varDynamic"/>
+    <parameter name="productPriceSales_varName" value="productPriceSales_01_varDynamic"/>
+    <parameter name="productPriceTotal_varName" value="productPriceTotal_01_varDynamic"/>
+  </module>
+  <module name="modules.pages.search.FSearch_flowToAddProductToCart">
+    <parameter name="cartRow" value="2"/>
+    <parameter name="productNumber" value="${productNumber_02}"/>
+    <parameter name="productQuantity" value="${productQuantity_02}"/>
+    <parameter name="productName_varName" value="productName_02_varDynamic"/>
+    <parameter name="productNumber_varName" value="productNumber_02_varDynamic"/>
+    <parameter name="productQuantity_varName" value="productQuantity_02_varDynamic"/>
+    <parameter name="productPriceSales_varName" value="productPriceSales_02_varDynamic"/>
+    <parameter name="productPriceTotal_varName" value="productPriceTotal_02_varDynamic"/>
+  </module>
+  <module name="modules.pages.cart.MCart_storeTotalsSubtotal">
+    <parameter name="totalsSubtotal" value="totalsSubtotal_varDynamic"/>
+  </module>
+  <codecomment># Scope</codecomment>
+  <codecomment>------------------------------------------------------------</codecomment>
+  <codecomment>## Product 01 and 02 - Validate products</codecomment>
+  <codecomment>------------------------------------------------------------</codecomment>
+  <codecomment>## Mini Cart
+
+- Validate header
+- Validate header items
+- Open body
+- Validate body product
+- Validate body subtotal</codecomment>
+  <action name="VIewMiniCart"/>
+  <module name="modules.global.minicart.VGlobal_MiniCart_validateHeader"/>
+  <module name="modules.global.minicart.VGlobal_MiniCart_validateHeaderTotals">
+    <parameter name="totalsQuantity" value="3"/>
+    <parameter name="totalsSubtotal" value="${totalsSubtotal_varDynamic}"/>
+  </module>
+  <module name="modules.global.minicart.MGlobal_MiniCart_hoverBody"/>
+  <module name="modules.global.minicart.VGlobal_MiniCart_validateBody"/>
+  <module name="modules.global.minicart.VGlobal_MiniCart_validateBodyProduct">
+    <parameter name="row" value="2"/>
+    <parameter name="productName" value="${productName_01_varDynamic}"/>
+    <parameter name="productQuantity" value="${productQuantity_01_varDynamic}"/>
+    <parameter name="productPriceTotal" value="${productPriceTotal_01_varDynamic}"/>
+  </module>
+  <module name="modules.global.minicart.VGlobal_MiniCart_validateBodyProduct">
+    <parameter name="row" value="1"/>
+    <parameter name="productName" value="${productName_02_varDynamic}"/>
+    <parameter name="productQuantity" value="${productQuantity_02_varDynamic}"/>
+    <parameter name="productPriceTotal" value="${productPriceTotal_02_varDynamic}"/>
+  </module>
+  <module name="modules.global.minicart.VGlobal_MiniCart_validateBodySubtotal">
+    <parameter name="totalsSubtotal" value="${totalsSubtotal_varDynamic}"/>
+  </module>
+  <codecomment>------------------------------------------------------------</codecomment>
+  <codecomment>## Product 01 and 02 - Change quantities</codecomment>
+  <codecomment>------------------------------------------------------------</codecomment>
+  <codecomment>## Cart
+
+- Change product 01 quantity to 3
+- Change product 02 quantity to 4
+- Store product row price total
+- Store subtotal</codecomment>
+  <action name="UpdateQuantity"/>
+  <module name="modules.pages.cart.MCart_Row_enterUpdateProductQuantity">
+    <parameter name="row" value="1"/>
+    <parameter name="productQuantity" value="3"/>
+  </module>
+  <module name="modules.pages.cart.MCart_Row_storeProductPriceTotal">
+    <parameter name="row" value="1"/>
+    <parameter name="productPriceTotal_varName" value="productPriceTotal_01_varDynamic"/>
+  </module>
+  <action name="UpdateQuantity"/>
+  <module name="modules.pages.cart.MCart_Row_enterUpdateProductQuantity">
+    <parameter name="row" value="2"/>
+    <parameter name="productQuantity" value="4"/>
+  </module>
+  <module name="modules.pages.cart.MCart_Row_storeProductPriceTotal">
+    <parameter name="row" value="2"/>
+    <parameter name="productPriceTotal_varName" value="productPriceTotal_02_varDynamic"/>
+  </module>
+  <module name="modules.pages.cart.MCart_storeTotalsSubtotal">
+    <parameter name="totalsSubtotal" value="totalsSubtotal_varDynamic"/>
+  </module>
+  <codecomment>## Mini Cart
+
+- Validate header items (update 01)
+- Open body
+- Validate body product 01
+- Validate body product 02
+- Validate body subtotal (update 01)</codecomment>
+  <action name="ViewMiniCart"/>
+  <module name="modules.global.minicart.VGlobal_MiniCart_validateHeaderTotals">
+    <parameter name="totalsQuantity" value="7"/>
+    <parameter name="totalsSubtotal" value="${totalsSubtotal_varDynamic}"/>
+  </module>
+  <module name="modules.global.minicart.MGlobal_MiniCart_hoverBody"/>
+  <module name="modules.global.minicart.VGlobal_MiniCart_validateBodyProduct">
+    <parameter name="row" value="2"/>
+    <parameter name="productName" value="${productName_01_varDynamic}"/>
+    <parameter name="productQuantity" value="3"/>
+    <parameter name="productPriceTotal" value="${productPriceTotal_01_varDynamic}"/>
+  </module>
+  <module name="modules.global.minicart.VGlobal_MiniCart_validateBodyProduct">
+    <parameter name="row" value="1"/>
+    <parameter name="productName" value="${productName_02_varDynamic}"/>
+    <parameter name="productQuantity" value="4"/>
+    <parameter name="productPriceTotal" value="${productPriceTotal_02_varDynamic}"/>
+  </module>
+  <module name="modules.global.minicart.VGlobal_MiniCart_validateBodySubtotal">
+    <parameter name="totalsSubtotal" value="${totalsSubtotal_varDynamic}"/>
+  </module>
+  <codecomment>------------------------------------------------------------</codecomment>
+  <codecomment>## Product 01 and 02 - Remove and resort rows</codecomment>
+  <codecomment>------------------------------------------------------------</codecomment>
+  <codecomment>## Cart
+
+- Remove product 02
+- Store subtotal (update 02)</codecomment>
+  <action name="RemoveProduct"/>
+  <module name="modules.pages.cart.MCart_Row_clickRemoveProduct">
+    <parameter name="row" value="2"/>
+  </module>
+  <module name="modules.pages.cart.MCart_storeTotalsSubtotal">
+    <parameter name="totalsSubtotal" value="totalsSubtotal_varDynamic"/>
+  </module>
+  <codecomment>## Mini Cart
+
+- Validate header items (update 02)
+- Open body
+- Validate body product 01
+- Validate body subtotal (update 02)</codecomment>
+  <action name="ViewMiniCart"/>
+  <module name="modules.global.minicart.VGlobal_MiniCart_validateHeaderTotals">
+    <parameter name="totalsQuantity" value="3"/>
+    <parameter name="totalsSubtotal" value="${totalsSubtotal_varDynamic}"/>
+  </module>
+  <module name="modules.global.minicart.MGlobal_MiniCart_hoverBody"/>
+  <module name="modules.global.minicart.VGlobal_MiniCart_validateBodyProduct">
+    <parameter name="row" value="1"/>
+    <parameter name="productName" value="${productName_01_varDynamic}"/>
+    <parameter name="productQuantity" value="3"/>
+    <parameter name="productPriceTotal" value="${productPriceTotal_01_varDynamic}"/>
+  </module>
+  <module name="modules.global.minicart.VGlobal_MiniCart_validateBodySubtotal">
+    <parameter name="totalsSubtotal" value="${totalsSubtotal_varDynamic}"/>
+  </module>
+  <codecomment>## Cart
+
+- Remove product 01
+- Validate empty cart</codecomment>
+  <action name="RemoveProduct"/>
+  <module name="modules.pages.cart.MCart_Row_clickRemoveProduct">
+    <parameter name="row" value="1"/>
+  </module>
+  <module name="modules.pages.cart.VCart_validateEmptyProductList"/>
+  <codecomment>## Mini Cart
+
+- Validate empty</codecomment>
+  <module name="modules.global.minicart.VGlobal_MiniCart_validateEmpty"/>
+  <codecomment># Teardown
+
+- End session</codecomment>
+  <module name="modules.helper.FHelper_Session_flowToEndSession"/>
+</testcase>

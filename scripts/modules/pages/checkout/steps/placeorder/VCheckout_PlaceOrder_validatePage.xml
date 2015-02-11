@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate place order page.</description>
+  <codecomment>Validate page title</codecomment>
+  <command name="waitForElementPresent" target="css=#main #primary h1"/>
+  <codecomment>Validate progress indicators</codecomment>
+  <command name="assertText" target="css=#main #primary .checkout-progress-indicator .step-1.inactive" value="*Shipping*"/>
+  <command name="assertText" target="css=#main #primary .checkout-progress-indicator .step-2.inactive" value="*Billing*"/>
+  <command name="assertText" target="css=#main #primary .checkout-progress-indicator .step-3.active" value="*Place Order*"/>
+  <codecomment>Validate cart table head</codecomment>
+  <command name="assertElementPresent" target="css=#main #primary.primary-content h1"/>
+  <command name="assertText" target="css=#main #primary #cart-table.item-list .section-header:nth-of-type(1)" value="regexpi:PRODUCT"/>
+  <command name="assertText" target="css=#main #primary #cart-table.item-list .section-header:nth-of-type(2)" value="regexpi:QTY"/>
+  <command name="assertText" target="css=#main #primary #cart-table.item-list .section-header:nth-of-type(3)" value="regexpi:PRICE"/>
+  <command name="assertElementPresent" target="css=#main #primary #cart-table.item-list tbody"/>
+  <codecomment>Validate order totals</codecomment>
+  <command name="store" target="css=#main #primary .order-summary-footer .place-order-totals table.order-totals-table" value="css_order_totals"/>
+  <command name="assertElementPresent" target="${css_order_totals} thead"/>
+  <command name="assertElementPresent" target="${css_order_totals} .order-subtotal"/>
+  <command name="assertElementPresent" target="${css_order_totals} .order-shipping"/>
+  <command name="assertElementPresent" target="${css_order_totals} .order-sales-tax"/>
+  <command name="assertElementPresent" target="${css_order_totals} .order-total"/>
+  <codecomment>Validate order summary footer</codecomment>
+  <command name="assertElementPresent" target="css=#main #primary .order-summary-footer .summary-help"/>
+  <command name="assertElementPresent" target="css=#main #primary .order-summary-footer form.submit-order .back-to-cart"/>
+  <command name="assertElementPresent" target="css=#main #primary .order-summary-footer form.submit-order [type=&quot;submit&quot;]"/>
+  <codecomment>Validate secondary fieldset order summary</codecomment>
+  <command name="assertElementPresent" target="css=#main #secondary.nav.summary .section-header .section-header-note"/>
+  <command name="assertElementPresent" target="css=#main #secondary.nav.summary .checkout-mini-cart "/>
+  <command name="assertElementPresent" target="css=#main #secondary.nav.summary .checkout-order-totals"/>
+  <codecomment>Validate secondary fieldset shipping address</codecomment>
+  <command name="assertElementPresent" target="css=#main #secondary.nav.summary .mini-shipment .section-header .section-header-note"/>
+  <command name="assertElementPresent" target="css=#main #secondary.nav.summary .mini-shipment .details"/>
+  <codecomment>Validate secondary fieldset billing address</codecomment>
+  <command name="assertElementPresent" target="css=#main #secondary.nav.summary .mini-billing-address .section-header .section-header-note"/>
+  <command name="assertElementPresent" target="css=#main #secondary.nav.summary .mini-billing-address .details"/>
+  <codecomment>Validate secondary fieldset payment method</codecomment>
+  <command name="assertElementPresent" target="css=#main #secondary.nav.summary .mini-payment-instrument .section-header .section-header-note"/>
+  <command name="assertElementPresent" target="css=#main #secondary.nav.summary .mini-payment-instrument .details"/>
+</scriptmodule>

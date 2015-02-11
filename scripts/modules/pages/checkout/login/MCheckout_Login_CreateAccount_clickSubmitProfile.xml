@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Click submit profile data on create account at checkout login page.</description>
+  <command name="clickAndWait" target="name=dwfrm_profile_confirm value=Apply"/>
+</scriptmodule>

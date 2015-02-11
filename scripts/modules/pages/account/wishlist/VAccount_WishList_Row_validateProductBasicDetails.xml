@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate product basic details in wishlist.</description>
+  <parameter name="row" desc="row"/>
+  <parameter name="productName" desc="product name"/>
+  <parameter name="productNumber" desc="product number"/>
+  <parameter name="productQuantity" desc="product quantity"/>
+  <parameter name="productPriceSales" desc="product price sales"/>
+  <command name="storeEval" target="@{row} + 1" value="position"/>
+  <command name="store" target="css= .item-list tr:nth-of-type(${position}) " value="css_wish_list_row"/>
+  <command name="assertText" target="${css_wish_list_row} .item-details .product-list-item .name " value="@{productName}"/>
+  <command name="assertText" target="${css_wish_list_row} .item-details .product-list-item .sku .value" value="@{productNumber}"/>
+  <command name="assertText" target="${css_wish_list_row} .item-details .product-list-item .price-sales" value="@{productPriceSales}"/>
+  <command name="assertText" target="${css_wish_list_row} .input-text" value="@{productQuantity}"/>
+</scriptmodule>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="http://xlt.xceptance.com/xlt-script-data">
+  <firstname>${billingAddress_firstname}</firstname>
+  <lastname>${billingAddress_lastname}</lastname>
+  <owner_01>${visaCreditCard_owner}</owner_01>
+  <type_01>${visaCreditCard_type}</type_01>
+  <typeShort_01>${visaCreditCard_typeShort}</typeShort_01>
+  <number_01>${visaCreditCard_number}</number_01>
+  <month_01>${visaCreditCard_month}</month_01>
+  <year_01>${visaCreditCard_year}</year_01>
+  <owner_02>${amexCreditCard_owner}</owner_02>
+  <type_02>${amexCreditCard_type}</type_02>
+  <typeShort_02>${amexCreditCard_typeShort}</typeShort_02>
+  <number_02>${amexCreditCard_number}</number_02>
+  <month_02>${amexCreditCard_month}</month_02>
+  <year_02>${amexCreditCard_year}</year_02>
+</data>

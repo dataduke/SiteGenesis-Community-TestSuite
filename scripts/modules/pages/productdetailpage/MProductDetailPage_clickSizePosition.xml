@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Click product size by given count number.</description>
+  <parameter name="productSizePosition" desc="product size position"/>
+  <command name="click" target="css=#product-content div.product-variations ul li.attribute div.value ul.swatches.size li:not(.unselectable):not(.selected-value):not(.size-chart-link):nth-of-type(@{productSizePosition}) a"/>
+</scriptmodule>

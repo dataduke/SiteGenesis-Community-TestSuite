@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate header, footer and navigation.</description>
+  <codecomment>Validate header</codecomment>
+  <command name="waitForElementPresent" target="css=#header header .primary-logo"/>
+  <command name="assertElementPresent" target="css=#header header #mini-cart"/>
+  <command name="assertElementPresent" target="css=#header header .menu-utility-user li:first-of-type a"/>
+  <command name="assertElementPresent" target="css=#header header .menu-utility-user li:last-of-type a"/>
+  <command name="assertElementPresent" target="css=#header header .menu-utility li:first-of-type a"/>
+  <command name="assertElementPresent" target="css=#header header .menu-utility li:last-of-type a"/>
+  <command name="assertElementPresent" target="css=#header header .header-banner"/>
+  <codecomment>Validate navigation</codecomment>
+  <command name="assertElementPresent" target="css=#navigation nav ul.menu-category.level-1.clearfix li.first"/>
+  <command name="assertElementPresent" target="css=#navigation nav ul.menu-category.level-1.clearfix li.last"/>
+  <command name="assertElementPresent" target="css=#navigation nav .header-search"/>
+  <codecomment>Validate main content</codecomment>
+  <command name="assertElementPresent" target="css=#main"/>
+  <codecomment>Validate footer</codecomment>
+  <command name="assertElementPresent" target="css=#footer footer .content-asset ul.menu-footer.menu.pipe li:first-of-type a"/>
+  <command name="assertElementPresent" target="css=#footer footer .content-asset ul.menu-footer.menu.pipe li:last-of-type a"/>
+  <command name="assertElementPresent" target="css=#footer footer .content-asset .copyright"/>
+</scriptmodule>

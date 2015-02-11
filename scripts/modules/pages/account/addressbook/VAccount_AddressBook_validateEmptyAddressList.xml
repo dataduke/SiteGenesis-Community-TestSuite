@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate empty address list.</description>
+  <command name="waitForElementPresent" target="css=#main .breadcrumb a.breadcrumb-element:nth-of-type(3)[title=&quot;Addresses&quot;]"/>
+  <command name="assertNotElementPresent" target="css=#main #primary #addresses .address-list"/>
+</scriptmodule>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Generate random number from given range maximum.</description>
+  <parameter name="numberMax" desc="max number"/>
+  <parameter name="number_varName" desc="number as var name"/>
+  <command name="store" target="${RANDOM.Number(1,@{numberMax})}" value="@{number_varName}"/>
+</scriptmodule>

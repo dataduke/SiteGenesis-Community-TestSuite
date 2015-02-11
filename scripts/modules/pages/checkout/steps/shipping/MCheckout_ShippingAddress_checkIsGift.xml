@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Check is gift with message.</description>
+  <parameter name="giftYesNo" desc="yes or no"/>
+  <parameter name="giftOptionalMessage" desc="message with max. 250 characters"/>
+  <command name="check" target="css=#main #primary #is-gift-@{giftYesNo}"/>
+  <command name="waitForElementPresent" target="css=#main #primary #dwfrm_singleshipping_shippingAddress_giftMessage"/>
+  <command name="type" target="css=#main #primary #dwfrm_singleshipping_shippingAddress_giftMessage" value="@{giftOptionalMessage}"/>
+</scriptmodule>

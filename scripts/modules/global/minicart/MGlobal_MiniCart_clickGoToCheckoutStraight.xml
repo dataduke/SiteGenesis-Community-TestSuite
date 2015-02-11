@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Click go straight to checkout as returning and logged in customer via minicart body link.</description>
+  <command name="waitForVisible" target="id=mini-cart"/>
+  <command name="clickAndWait" target="css=div#mini-cart div.mini-cart-total a.mini-cart-link"/>
+  <command name="clickAndWait" target="link=or Go Straight to Checkout »"/>
+</scriptmodule>

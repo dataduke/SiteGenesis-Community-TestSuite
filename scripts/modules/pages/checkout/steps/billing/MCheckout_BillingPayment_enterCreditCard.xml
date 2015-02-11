@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Enter credit card data in payment on billing page.</description>
+  <parameter name="owner" desc="owner"/>
+  <parameter name="type" desc="type"/>
+  <parameter name="number" desc="number"/>
+  <parameter name="month" desc="month"/>
+  <parameter name="year" desc="year"/>
+  <parameter name="cvn" desc="cvn"/>
+  <command name="store" target="css=#dwfrm_billing_paymentMethods_creditCard" value="css_creditcard"/>
+  <command name="check" target="css=.payment-method-options .form-row [value=&quot;CREDIT_CARD&quot;]"/>
+  <command name="type" target="${css_creditcard}_owner" value="@{owner}"/>
+  <command name="select" target="${css_creditcard}_type" value="@{type}"/>
+  <command name="type" target="${css_creditcard}_number" value="@{number}"/>
+  <command name="select" target="${css_creditcard}_month" value="@{month}"/>
+  <command name="select" target="${css_creditcard}_year" value="@{year}"/>
+  <command name="type" target="${css_creditcard}_cvn" value="@{cvn}"/>
+</scriptmodule>

@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testcase xmlns="http://xlt.xceptance.com/xlt-script/2" version="6" junit-test="true">
+  <tags>smoke</tags>
+  <description>Test guest checkout with one variation product with color and size, one address and visa. 
+
+# 1. Setup and preparation
+
+- Start session, open homepage and delete all visible cookies
+- Add variation product having color and size to cart (quantity 1)
+
+# 2. Scope of test
+
+- Start guest checkout
+- Enter new address and use preselected  default shipping method
+- Use same as shipping address for billing and use payment method credit card (visa)
+- Validate place order page
+- Validate order confirmation page
+- Go to account
+- Validate customer name and profile
+- Validate order via order history
+- Logout
+
+# 3. Clean up
+
+- End session and clean up created cookies</description>
+  <codecomment># Setup
+
+- Generate mail
+- Generate password
+- Start session
+- Add variation product to cart (quantity 1)
+- Store cart subtotal
+- Go to checkout login</codecomment>
+  <module name="modules.helper.MHelper_Random_generateEmail">
+    <parameter name="email_varName" value="email_varDynamic"/>
+  </module>
+  <module name="modules.helper.MHelper_Random_generatePassword">
+    <parameter name="password_varName" value="password_varDynamic"/>
+  </module>
+  <module name="modules.helper.FHelper_Session_flowToStartSession"/>
+  <module name="modules.pages.search.FSearch_flowToAddProductWithColorSizeToCart">
+    <parameter name="cartRow" value="1"/>
+    <parameter name="productNumber" value="${productNumber}"/>
+    <parameter name="productQuantity" value="${productQuantity}"/>
+    <parameter name="productName_varName" value="productName_varDynamic"/>
+    <parameter name="productNumber_varName" value="productNumber_varDynamic"/>
+    <parameter name="productColor_varName" value="productColor_varDynamic"/>
+    <parameter name="productSize_varName" value="productSize_varDynamic"/>
+    <parameter name="productQuantity_varName" value="productQuantity_varDynamic"/>
+    <parameter name="productPriceSales_varName" value="productPriceSales_varDynamic"/>
+    <parameter name="productPriceTotal_varName" value="productPriceTotal_varDynamic"/>
+  </module>
+  <action name="ViewCart"/>
+  <module name="modules.pages.cart.MCart_storeTotalsSubtotal">
+    <parameter name="totalsSubtotal" value="totalSubtotal_varDynamic"/>
+  </module>
+  <codecomment># Scope</codecomment>
+  <codecomment>## Checkout Login
+- Validate page
+- Login as guest</codecomment>
+  <action name="GoToCOLogin"/>
+  <module name="modules.pages.cart.MCart_clickGoToCheckoutLogin"/>
+  <module name="modules.pages.checkout.login.VCheckout_Login_validatePage"/>
+  <action name="COLoginGoToGuest"/>
+  <module name="modules.pages.checkout.login.MCheckout_Login_clickGoToGuest"/>
+  <codecomment>## Shipping
+
+- Validate page
+- Enter data 
+- Store data
+- Continue</codecomment>
+  <module name="modules.pages.checkout.steps.shipping.VCheckout_Shipping_validatePage"/>
+  <module name="modules.pages.checkout.steps.shipping.VCheckout_Shipping_validateCheckedValues">
+    <parameter name="shippingAddress_useAsBillingAddress" value="${storefront_shippingAddress_useAsBillingAddress}"/>
+    <parameter name="shippingAddress_isGift" value="${storefront_shippingAddress_isGift}"/>
+    <parameter name="shippingMethod_position" value="${storefront_shippingMethod_position}"/>
+  </module>
+  <module name="modules.pages.checkout.steps.boxes.VCheckout_BoxOrderSummary_validateBox"/>
+  <module name="modules.pages.checkout.steps.boxes.VCheckout_BoxOrderSummary_validateProductBasicDetails">
+    <parameter name="row" value="1"/>
+    <parameter name="productName" value="${productName_varDynamic}"/>
+    <parameter name="productQuantity" value="${productQuantity_varDynamic}"/>
+    <parameter name="productPriceTotal" value="${productPriceTotal_varDynamic}"/>
+  </module>
+  <module name="modules.pages.checkout.steps.boxes.VCheckout_BoxOrderSummary_validateProductColorSize">
+    <parameter name="row" value="1"/>
+    <parameter name="productColor" value="${productColor_varDynamic}"/>
+    <parameter name="productSize" value="${productSize_varDynamic}"/>
+  </module>
+  <module name="modules.pages.checkout.steps.boxes.VCheckout_BoxOrderSummary_validateTotalsSubtotal">
+    <parameter name="totalsSubtotal" value="${totalSubtotal_varDynamic}"/>
+  </module>
+  <action name="COShipping"/>
+  <module name="modules.pages.checkout.steps.shipping.MCheckout_ShippingAddress_enterAddress">
+    <parameter name="firstname" value="${firstname}"/>
+    <parameter name="lastname" value="${lastname}"/>
+    <parameter name="address1" value="${address1}"/>
+    <parameter name="address2" value="${address2}"/>
+    <parameter name="country" value="${country}"/>
+    <parameter name="statesState" value="${statesState}"/>
+    <parameter name="city" value="${city}"/>
+    <parameter name="postalCode" value="${postalCode}"/>
+    <parameter name="phone" value="${phone}"/>
+  </module>
+  <module name="modules.pages.checkout.steps.shipping.MCheckout_ShippingAddress_checkUseAsBillingAddress"/>
+  <module name="modules.pages.checkout.steps.shipping.MCheckout_ShippingMethod_checkPosition">
+    <parameter name="positon" value="${shippingMethod_position}"/>
+  </module>
+  <module name="modules.pages.checkout.steps.boxes.MCheckout_BoxOrderSummary_storeTotals">
+    <parameter name="shippingMethod_name" value="${shippingMethod_name}"/>
+    <parameter name="totalsShipping_varName" value="totalsShipping_varDynamic"/>
+    <parameter name="totalsSalesTax_varName" value="totalsSalesTax_varDynamic"/>
+    <parameter name="totalsTotal_varName" value="totalsTotal_varDynamic"/>
+  </module>
+  <module name="modules.pages.checkout.steps.shipping.VCheckout_ShippingMethod_validatePrice">
+    <parameter name="position" value="${shippingMethod_position}"/>
+    <parameter name="price" value="${totalsShipping_varDynamic}"/>
+  </module>
+  <module name="modules.pages.checkout.steps.shipping.MCheckout_Shipping_clickContinue">
+    <comment>Save shipping data and continue checkout</comment>
+  </module>
+  <codecomment>## Billing
+
+- Validate page
+- Enter data 
+- Store data
+- Continue</codecomment>
+  <module name="modules.pages.checkout.steps.billing.VCheckout_Billing_validatePage"/>
+  <module name="modules.pages.checkout.steps.boxes.VCheckout_BoxOrderSummary_validateBox"/>
+  <module name="modules.pages.checkout.steps.boxes.VCheckout_BoxOrderSummary_validateProductBasicDetails">
+    <parameter name="row" value="1"/>
+    <parameter name="productName" value="${productName_varDynamic}"/>
+    <parameter name="productQuantity" value="${productQuantity_varDynamic}"/>
+    <parameter name="productPriceTotal" value="${productPriceTotal_varDynamic}"/>
+  </module>
+  <module name="modules.pages.checkout.steps.boxes.VCheckout_BoxOrderSummary_validateProductColorSize">
+    <parameter name="row" value="1"/>
+    <parameter name="productColor" value="${productColor_varDynamic}"/>
+    <parameter name="productSize" value="${productSize_varDynamic}"/>
+  </module>
+  <module name="modules.pages.checkout.steps.boxes.VCheckout_BoxOrderSummary_validateTotals">
+    <parameter name="shippingMethod_name" value="${shippingMethod_name}"/>
+    <parameter name="totalsSubtotal" value="${totalSubtotal_varDynamic}"/>
+    <parameter name="totalsShipping" value="${totalsShipping_varDynamic}"/>
+    <parameter name="totalsSalesTax" value="${totalsSalesTax_varDynamic}"/>
+    <parameter name="totalsTotal" value="${totalsTotal_varDynamic}"/>
+  </module>
+  <module name="modules.pages.checkout.steps.boxes.VCheckout_BoxShippingAddress_validateAddress">
+    <parameter name="firstname" value="${firstname}"/>
+    <parameter name="lastname" value="${lastname}"/>
+    <parameter name="address1" value="${address1}"/>
+    <parameter name="address2" value="${address2}"/>
+    <parameter name="country" value="${country}"/>
+    <parameter name="statesStateShort" value="${statesStateShort}"/>
+    <parameter name="city" value="${city}"/>
+    <parameter name="postal" value="${postalCode}"/>
+    <parameter name="shippingMethod_name" value="${shippingMethod_name}"/>
+  </module>
+  <action name="COBilling"/>
+  <module name="modules.pages.checkout.steps.billing.MCheckout_BillingAddress_enterEmail">
+    <parameter name="email" value="${email_varDynamic}"/>
+  </module>
+  <module name="modules.pages.checkout.steps.billing.MCheckout_BillingPayment_enterCreditCard">
+    <parameter name="owner" value="${owner}"/>
+    <parameter name="type" value="${type}"/>
+    <parameter name="number" value="${number}"/>
+    <parameter name="month" value="${month}"/>
+    <parameter name="year" value="${year}"/>
+    <parameter name="cvn" value="${cvn}"/>
+  </module>
+  <module name="modules.pages.checkout.steps.billing.MCheckout_Billing_clickContinue"/>
+  <codecomment>## Place Order
+
+- Validate page
+- Enter data 
+- Store data
+- Submit data</codecomment>
+  <action name="COPlaceOrder"/>
+  <module name="modules.pages.checkout.steps.placeorder.VCheckout_PlaceOrder_validatePage"/>
+  <module name="modules.pages.checkout.steps.placeorder.VCheckout_PlaceOrder_validateProductBasicDetails">
+    <parameter name="row" value="1"/>
+    <parameter name="productName" value="${productName_varDynamic}"/>
+    <parameter name="productNumber" value="${productNumber_varDynamic}"/>
+    <parameter name="productQuantity" value="${productQuantity_varDynamic}"/>
+    <parameter name="productPriceTotal" value="${productPriceTotal_varDynamic}"/>
+  </module>
+  <module name="modules.pages.checkout.steps.placeorder.VCheckout_PlaceOrder_validateProductColorSize">
+    <parameter name="row" value="1"/>
+    <parameter name="productColor" value="${productColor_varDynamic}"/>
+    <parameter name="productSize" value="${productSize_varDynamic}"/>
+  </module>
+  <module name="modules.pages.checkout.steps.placeorder.VCheckout_PlaceOrder_validateTotals">
+    <parameter name="totalsSubtotal" value="${totalSubtotal_varDynamic}"/>
+    <parameter name="totalsShipping" value="${totalsShipping_varDynamic}"/>
+    <parameter name="totalsSalesTax" value="${totalsSalesTax_varDynamic}"/>
+    <parameter name="totalsTotal" value="${totalsTotal_varDynamic}"/>
+  </module>
+  <module name="modules.pages.checkout.steps.boxes.VCheckout_BoxOrderSummary_validateTotals">
+    <parameter name="shippingMethod_name" value="${shippingMethod_name}"/>
+    <parameter name="totalsSubtotal" value="${totalSubtotal_varDynamic}"/>
+    <parameter name="totalsShipping" value="${totalsShipping_varDynamic}"/>
+    <parameter name="totalsSalesTax" value="${totalsSalesTax_varDynamic}"/>
+    <parameter name="totalsTotal" value="${totalsTotal_varDynamic}"/>
+  </module>
+  <module name="modules.pages.checkout.steps.boxes.VCheckout_BoxShippingAddress_validateAddress">
+    <parameter name="firstname" value="${firstname}"/>
+    <parameter name="lastname" value="${lastname}"/>
+    <parameter name="address1" value="${address1}"/>
+    <parameter name="address2" value="${address2}"/>
+    <parameter name="country" value="${country}"/>
+    <parameter name="statesStateShort" value="${statesStateShort}"/>
+    <parameter name="city" value="${city}"/>
+    <parameter name="postal" value="${postalCode}"/>
+    <parameter name="shippingMethod_name" value="${shippingMethod_name}"/>
+  </module>
+  <module name="modules.pages.checkout.steps.boxes.VCheckout_BoxBillingAddress_validateAddress">
+    <parameter name="firstname" value="${firstname}"/>
+    <parameter name="lastname" value="${lastname}"/>
+    <parameter name="address1" value="${address1}"/>
+    <parameter name="address2" value="${address2}"/>
+    <parameter name="country" value="${country}"/>
+    <parameter name="statesStateShort" value="${statesStateShort}"/>
+    <parameter name="city" value="${city}"/>
+    <parameter name="postal" value="${postalCode}"/>
+  </module>
+  <module name="modules.pages.checkout.steps.boxes.VCheckout_BoxPayment_validateCreditCard">
+    <parameter name="paymentName" value="${paymentName}"/>
+    <parameter name="owner" value="${owner}"/>
+    <parameter name="typeShort" value="${typeShort}"/>
+    <parameter name="number" value="${number}"/>
+    <parameter name="month" value="${month}"/>
+    <parameter name="year" value="${year}"/>
+    <parameter name="paymentAmount" value="${totalsTotal_varDynamic}"/>
+  </module>
+  <module name="modules.pages.checkout.steps.placeorder.MCheckout_PlaceOrder_clickSubmit"/>
+  <codecomment>## Order Confirmation
+
+- Validate page
+- Validate all specific order data</codecomment>
+  <action name="COConfirmation"/>
+  <module name="modules.pages.checkout.steps.confirmation.VCheckout_Confirmation_validatePage"/>
+  <module name="modules.pages.checkout.steps.confirmation.VCheckout_Confirmation_validateOrderInformation">
+    <parameter name="orderDatePattern" value="${storefront_orderDatePattern}"/>
+    <parameter name="orderNumberPattern" value="${storefront_orderNumberPattern}"/>
+  </module>
+  <module name="modules.pages.checkout.steps.confirmation.VCheckout_Confirmation_validateBillingAddress">
+    <parameter name="firstname" value="${firstname}"/>
+    <parameter name="lastname" value="${lastname}"/>
+    <parameter name="address1" value="${address1}"/>
+    <parameter name="address2" value="${address2}"/>
+    <parameter name="city" value="${city}"/>
+    <parameter name="statesStateShort" value="${statesStateShort}"/>
+    <parameter name="postalCode" value="${postalCode}"/>
+    <parameter name="country" value="${country}"/>
+    <parameter name="phone" value="${phone}"/>
+  </module>
+  <module name="modules.pages.checkout.steps.confirmation.VCheckout_Confirmation_validateCreditCard">
+    <parameter name="paymentName" value="${paymentName}"/>
+    <parameter name="owner" value="${owner}"/>
+    <parameter name="typeShort" value="${typeShort}"/>
+    <parameter name="number" value="${number}"/>
+    <parameter name="month" value="${month}"/>
+    <parameter name="year" value="${year}"/>
+    <parameter name="paymentAmount" value="${totalsTotal_varDynamic}"/>
+  </module>
+  <module name="modules.pages.checkout.steps.confirmation.VCheckout_Confirmation_validateTotals">
+    <parameter name="totalsSubtotal" value="${totalSubtotal_varDynamic}"/>
+    <parameter name="totalsShipping" value="${totalsShipping_varDynamic}"/>
+    <parameter name="totalsSalesTax" value="${totalsSalesTax_varDynamic}"/>
+    <parameter name="totalsTotal" value="${totalsTotal_varDynamic}"/>
+  </module>
+  <module name="modules.pages.checkout.steps.confirmation.VCheckout_Confirmation_validateShippingAddress">
+    <parameter name="firstname" value="${firstname}"/>
+    <parameter name="lastname" value="${lastname}"/>
+    <parameter name="address1" value="${address1}"/>
+    <parameter name="address2" value="${address2}"/>
+    <parameter name="country" value="${country}"/>
+    <parameter name="statesStateShort" value="${statesStateShort}"/>
+    <parameter name="city" value="${city}"/>
+    <parameter name="postalCode" value="${postalCode}"/>
+    <parameter name="phone" value="${phone}"/>
+    <parameter name="shippingMethod_name" value="${shippingMethod_name}"/>
+    <parameter name="shippingStatus" value="${storefront_shippingStatus}"/>
+  </module>
+  <module name="modules.pages.checkout.steps.confirmation.VCheckout_Confirmation_validateShippingProductBasicDetails">
+    <parameter name="row" value="1"/>
+    <parameter name="productName" value="${productName_varDynamic}"/>
+    <parameter name="productNumber" value="${productNumber_varDynamic}"/>
+    <parameter name="productQuantity" value="${productQuantity_varDynamic}"/>
+    <parameter name="productPriceTotal" value="${productPriceTotal_varDynamic}"/>
+  </module>
+  <module name="modules.pages.checkout.steps.confirmation.VCheckout_Confirmation_validateShippingProductColorSize">
+    <parameter name="row" value="1"/>
+    <parameter name="productColor" value="${productColor_varDynamic}"/>
+    <parameter name="productSize" value="${productSize_varDynamic}"/>
+  </module>
+  <module name="modules.pages.checkout.steps.confirmation.MCheckout_Confirmation_storeOrderInformation">
+    <parameter name="orderNumber_varName" value="orderNumber_varDynamic"/>
+    <parameter name="orderDate_varName" value="orderDate_varDynamic"/>
+  </module>
+  <module name="modules.pages.checkout.steps.boxes.VCheckout_BoxNewCustomer_validateBox"/>
+  <module name="modules.pages.checkout.steps.boxes.VCheckout_BoxNewCustomer_validateProfile">
+    <parameter name="billingAddress_firstname" value="${firstname}"/>
+    <parameter name="billingAddress_lastname" value="${lastname}"/>
+    <parameter name="billingAddress_email" value="${email_varDynamic}"/>
+  </module>
+  <action name="COConfirmationNewCustomer"/>
+  <module name="modules.pages.checkout.steps.boxes.MCheckout_BoxNewCustomer_enterClickSubmit">
+    <parameter name="email" value="${email_varDynamic}"/>
+    <parameter name="password" value="${password_varDynamic}"/>
+  </module>
+  <codecomment># Account
+
+- Validate customer name
+- Validate profile in personal data
+- Validate order in order history
+- Logout</codecomment>
+  <module name="modules.pages.account.menu.VAccount_Menu_validateCustomerName">
+    <parameter name="firstname" value="${firstname}"/>
+    <parameter name="lastname" value="${lastname}"/>
+  </module>
+  <module name="modules.pages.account.menu.FAccount_Menu_flowToValidateProfile">
+    <parameter name="firstname" value="${firstname}"/>
+    <parameter name="lastname" value="${lastname}"/>
+    <parameter name="email" value="${email_varDynamic}"/>
+  </module>
+  <module name="modules.pages.account.menu.FAccount_Menu_flowToValidateOrderViaOrderHistory">
+    <parameter name="position" value="1"/>
+    <parameter name="orderNumber" value="${orderNumber_varDynamic}"/>
+    <parameter name="orderDate" value="${orderDate_varDynamic}"/>
+    <parameter name="shippingAddress_firstname" value="${firstname}"/>
+    <parameter name="shippingAddress_lastname" value="${lastname}"/>
+    <parameter name="totalsTotal" value="${totalsTotal_varDynamic}"/>
+  </module>
+  <codecomment># Teardown
+
+- Logout
+- End session</codecomment>
+  <action name="Logout"/>
+  <module name="modules.global.headerfooternav.MGlobal_Header_clickLogoutViaNotCustomerName"/>
+  <module name="modules.helper.FHelper_Session_flowToEndSession"/>
+</testcase>

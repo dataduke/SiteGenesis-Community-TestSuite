@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Click logout on account page.</description>
+  <command name="waitForElementPresent" target="css=#primary.primary-content h1 span.account-logout a"/>
+  <command name="clickAndWait" target="css=#primary.primary-content h1 span.account-logout a"/>
+  <codecomment>Verify Logout</codecomment>
+  <command name="waitForText" target="css=#header .menu-utility-user li:first-of-type a" value="*LOGIN*"/>
+</scriptmodule>

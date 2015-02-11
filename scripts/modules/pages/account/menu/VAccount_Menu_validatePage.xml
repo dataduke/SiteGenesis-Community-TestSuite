@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate account page.</description>
+  <codecomment>Account breadcrumb</codecomment>
+  <command name="waitForElementPresent" target="css= #main .breadcrumb a.breadcrumb-element:nth-of-type(1)[title=&quot;Home&quot;]"/>
+  <command name="assertText" target="css= #main .breadcrumb a.breadcrumb-element:nth-of-type(2)" value="My Account"/>
+  <codecomment>Account primary menu</codecomment>
+  <command name="assertElementPresent" target="css= #primary h1"/>
+  <command name="store" target="css= #primary.primary-content div.content-asset ul.account-options li:nth-of-type" value="css_account_menu"/>
+  <command name="assertText" target="${css_account_menu}(1) a" value="Personal Data">
+    <comment>check first label</comment>
+  </command>
+  <command name="assertText" target="${css_account_menu}(2) a" value="Orders"/>
+  <command name="assertText" target="${css_account_menu}(3) a" value="Addresses"/>
+  <command name="assertText" target="${css_account_menu}(4) a" value="Wish List"/>
+  <command name="assertText" target="${css_account_menu}(5) a" value="Payment Settings"/>
+  <command name="assertText" target="${css_account_menu}(6) a" value="Gift Registries"/>
+</scriptmodule>

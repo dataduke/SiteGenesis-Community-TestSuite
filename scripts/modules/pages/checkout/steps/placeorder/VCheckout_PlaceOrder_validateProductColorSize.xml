@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate product in cart row on place order page</description>
+  <parameter name="row" desc="row"/>
+  <parameter name="productColor" desc="product color"/>
+  <parameter name="productSize" desc="product size"/>
+  <command name="assertText" target="css=#cart-table tbody tr:nth-of-type(@{row}) td.item-details .product-list-item div:nth-of-type(3) .value " value="@{productColor}"/>
+  <command name="assertText" target="css=#cart-table tbody tr:nth-of-type(@{row}) td.item-details .product-list-item div:nth-of-type(4) .value" value="@{productSize}"/>
+</scriptmodule>

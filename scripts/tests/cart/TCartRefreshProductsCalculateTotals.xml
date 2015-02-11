@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testcase xmlns="http://xlt.xceptance.com/xlt-script/2" version="6" junit-test="true">
+  <tags>smoke</tags>
+  <description>Test refresh products and calculate sums with update quantity and resort rows in cart.
+
+# 1. Setup and preparation
+
+- Start session, open homepage and delete all visible cookies.
+
+# 2. Scope of test
+
+## Product 01 - Change quantity via update cart
+
+- Add product 01 to cart (quantity 1).
+- Validate product and subtotal.
+- Increase quantity to random value via update cart function.
+- Calculate formatted total product price based on updated quantity.
+- Validate product price and subtotal.
+
+## Product 02 - Change quantity via edit dialog
+
+- Add product 02 to cart (quantity 2).
+- Calculate formatted total product price.
+- Calculate subtotal and number of items for both products.
+- Validate both products and subtotal.
+- Increase product 02 quantity to random value via edit details dialog.
+- Calculate new subtotal and number of items for both products.
+- Validate calculated values in mini cart header.
+- Validate both products and subtotal on cart page.
+
+## Product 01 and 02 - Remove and rearrange rows
+
+- Remove product 01.
+- Validate product 02 is still in cart.
+- Validate subtotal.
+- Remove product 02.
+- Validate emty cart.
+
+# 3. Clean up
+
+- End session and clean up created cookies.</description>
+  <codecomment># Setup
+
+- Start Session</codecomment>
+  <module name="modules.helper.FHelper_Session_flowToStartSession"/>
+  <codecomment># Scope</codecomment>
+  <codecomment>------------------------------------------------------------</codecomment>
+  <codecomment>## Product 01 - Change quantity via update cart</codecomment>
+  <codecomment>------------------------------------------------------------</codecomment>
+  <codecomment>### Search
+
+- Add product 01 to cart</codecomment>
+  <module name="modules.pages.search.FSearch_flowToAddProductToCart">
+    <comment>Add the first product with quantity 1 to the cart. The output value of productPriceTotal is "unused" because it will be calculated in the test and validated against the storefront presentation.</comment>
+    <parameter name="cartRow" value="1"/>
+    <parameter name="productNumber" value="${productNumber_01}"/>
+    <parameter name="productQuantity" value="${productQuantity_01}"/>
+    <parameter name="productName_varName" value="productName_01_varDynamic"/>
+    <parameter name="productNumber_varName" value="productNumber_01_varDynamic"/>
+    <parameter name="productQuantity_varName" value="productQuantity_01_varDynamic"/>
+    <parameter name="productPriceSales_varName" value="productPriceSales_01_varDynamic"/>
+    <parameter name="productPriceTotal_varName" value="unused"/>
+  </module>
+  <codecomment>### Cart
+
+- Validate cart page 
+- Validate product 01 row structure
+- Validate product 01 price total</codecomment>
+  <action name="ViewCart"/>
+  <module name="modules.pages.cart.VCart_validatePage"/>
+  <module name="modules.pages.cart.VCart_Row_validateRow">
+    <parameter name="row" value="1"/>
+  </module>
+  <module name="modules.pages.cart.VCart_Row_validateProductPriceTotal">
+    <parameter name="row" value="1"/>
+    <parameter name="productPriceTotal" value="${productPriceSales_01_varDynamic}"/>
+  </module>
+  <codecomment>### Cart
+
+- __Update cart__: Increase product 01 quantity with random value from range
+- Calculate product 01 clean price
+- Calculate product 01 formatted total price
+- Validate product 01 basic details
+- Validate product 01 total price</codecomment>
+  <action name="UpdateQuantity"/>
+  <command name="store" target="${RANDOM.Number(2,4)}" value="productQuantity_01_varDynamic">
+    <comment>Generate a random quantity and store the value.</comment>
+  </command>
+  <module name="modules.pages.cart.MCart_Row_enterUpdateProductQuantity">
+    <parameter name="row" value="1"/>
+    <parameter name="productQuantity" value="${productQuantity_01_varDynamic}"/>
+  </module>
+  <module name="modules.helper.MHelper_Product_calculateProductPriceTotal">
+    <parameter name="productPriceSales" value="${productPriceSales_01_varDynamic}"/>
+    <parameter name="productQuantity" value="${productQuantity_01_varDynamic}"/>
+    <parameter name="productPriceTotal_varName" value="productPriceTotal_01_varDynamic"/>
+    <parameter name="priceCurrency" value="${storefront_priceCurrency}"/>
+    <parameter name="priceDecimalMark" value="${storefront_priceDecimalMark}"/>
+    <parameter name="priceDigitGroupSeparators" value="${storefront_priceDigitGroupSeparators}"/>
+  </module>
+  <module name="modules.pages.cart.VCart_Row_validateProductBasicDetails">
+    <parameter name="row" value="1"/>
+    <parameter name="productName" value="${productName_01_varDynamic}"/>
+    <parameter name="productNumber" value="${productNumber_01_varDynamic}"/>
+    <parameter name="productQuantity" value="${productQuantity_01_varDynamic}"/>
+    <parameter name="productPriceSales" value="${productPriceSales_01_varDynamic}"/>
+  </module>
+  <module name="modules.pages.cart.VCart_Row_validateProductPriceTotal">
+    <parameter name="row" value="1"/>
+    <parameter name="productPriceTotal" value="${productPriceTotal_01_varDynamic}"/>
+  </module>
+  <codecomment>------------------------------------------------------------</codecomment>
+  <codecomment>## Product 02 - Change quantity via edit dialog</codecomment>
+  <codecomment>------------------------------------------------------------</codecomment>
+  <codecomment>### Search
+
+- Add product 02 to cart (quantity 2)</codecomment>
+  <module name="modules.pages.search.FSearch_flowToAddProductToCart">
+    <comment>Add the second product with quantity 2 to the cart. The output value of productPriceTotal is "unused" because it will be calculated in the test and validated against the storefront presentation.</comment>
+    <parameter name="cartRow" value="2"/>
+    <parameter name="productNumber" value="${productNumber_02}"/>
+    <parameter name="productQuantity" value="${productQuantity_02}"/>
+    <parameter name="productName_varName" value="productName_02_varDynamic"/>
+    <parameter name="productNumber_varName" value="productNumber_02_varDynamic"/>
+    <parameter name="productQuantity_varName" value="productQuantity_02_varDynamic"/>
+    <parameter name="productPriceSales_varName" value="productPriceSales_02_varDynamic"/>
+    <parameter name="productPriceTotal_varName" value="unused"/>
+  </module>
+  <codecomment>### Helper
+
+- Calculate product price total 02
+- Calculate product totals quantity
+- Calculate product totals subtotal</codecomment>
+  <action name="ViewCartAndCalculateTotals"/>
+  <module name="modules.helper.MHelper_Product_calculateProductPriceTotal">
+    <parameter name="productPriceSales" value="${productPriceSales_02_varDynamic}"/>
+    <parameter name="productQuantity" value="${productQuantity_02_varDynamic}"/>
+    <parameter name="productPriceTotal_varName" value="productPriceTotal_02_varDynamic"/>
+    <parameter name="priceCurrency" value="${storefront_priceCurrency}"/>
+    <parameter name="priceDecimalMark" value="${storefront_priceDecimalMark}"/>
+    <parameter name="priceDigitGroupSeparators" value="${storefront_priceDigitGroupSeparators}"/>
+  </module>
+  <module name="modules.helper.MHelper_Product_calculateTotalsQuantity">
+    <parameter name="productQuantity_01" value="${productQuantity_01_varDynamic}"/>
+    <parameter name="productQuantity_02" value="${productQuantity_02_varDynamic}"/>
+    <parameter name="totalsQuantity_varName" value="totalsQuantity_varDynamic"/>
+  </module>
+  <module name="modules.helper.MHelper_Product_calculateTotalsSubtotal">
+    <parameter name="productPriceSales_01" value="${productPriceSales_01_varDynamic}"/>
+    <parameter name="productQuantity_01" value="${productQuantity_01_varDynamic}"/>
+    <parameter name="productPriceSales_02" value="${productPriceSales_02_varDynamic}"/>
+    <parameter name="productQuantity_02" value="${productQuantity_02_varDynamic}"/>
+    <parameter name="totalsSubtotal_varName" value="totalsSubtotal_varDynamic"/>
+    <parameter name="priceCurrency" value="${storefront_priceCurrency}"/>
+    <parameter name="priceDecimalMark" value="${storefront_priceDecimalMark}"/>
+    <parameter name="priceDigitGroupSeparators" value="${storefront_priceDigitGroupSeparators}"/>
+  </module>
+  <codecomment>### Cart
+
+- Validate product 01 basic details
+- Validate product 01 basic price total
+- Validate product 02 basic details
+- Validate product 02 basic price total
+- Validate totals subtotal</codecomment>
+  <module name="modules.pages.cart.VCart_Row_validateProductBasicDetails">
+    <parameter name="row" value="1"/>
+    <parameter name="productName" value="${productName_01_varDynamic}"/>
+    <parameter name="productNumber" value="${productNumber_01_varDynamic}"/>
+    <parameter name="productQuantity" value="${productQuantity_01_varDynamic}"/>
+    <parameter name="productPriceSales" value="${productPriceSales_01_varDynamic}"/>
+  </module>
+  <module name="modules.pages.cart.VCart_Row_validateProductPriceTotal">
+    <parameter name="row" value="1"/>
+    <parameter name="productPriceTotal" value="${productPriceTotal_01_varDynamic}"/>
+  </module>
+  <module name="modules.pages.cart.VCart_Row_validateProductBasicDetails">
+    <parameter name="row" value="2"/>
+    <parameter name="productName" value="${productName_02_varDynamic}"/>
+    <parameter name="productNumber" value="${productNumber_02_varDynamic}"/>
+    <parameter name="productQuantity" value="${productQuantity_02_varDynamic}"/>
+    <parameter name="productPriceSales" value="${productPriceSales_02_varDynamic}"/>
+  </module>
+  <module name="modules.pages.cart.VCart_Row_validateProductPriceTotal">
+    <parameter name="row" value="2"/>
+    <parameter name="productPriceTotal" value="${productPriceTotal_02_varDynamic}"/>
+  </module>
+  <module name="modules.pages.cart.VCart_validatePageTotalsSubtotal">
+    <parameter name="totalsSubtotal" value="${totalsSubtotal_varDynamic}"/>
+  </module>
+  <codecomment>### Cart
+
+- __Edit dialog__: Increase product 02 quantity with random value from range</codecomment>
+  <action name="UpdateQuantityViaEdit"/>
+  <command name="store" target="${RANDOM.Number(7,9)}" value="productQuantity_02_varDynamic">
+    <comment>Generate a random quantity and store the value.</comment>
+  </command>
+  <module name="modules.pages.cart.MCart_Row_Dialog_enterUpdateProductQuantity">
+    <parameter name="row" value="2"/>
+    <parameter name="productQuantity" value="${productQuantity_02_varDynamic}"/>
+  </module>
+  <codecomment>### Helper
+
+- Calculate product price total 02
+- Calculate product totals quantity
+- Calculate product totals subtotal</codecomment>
+  <module name="modules.helper.MHelper_Product_calculateProductPriceTotal">
+    <parameter name="productPriceSales" value="${productPriceSales_02_varDynamic}"/>
+    <parameter name="productQuantity" value="${productQuantity_02_varDynamic}"/>
+    <parameter name="productPriceTotal_varName" value="productPriceTotal_02_varDynamic"/>
+    <parameter name="priceCurrency" value="${storefront_priceCurrency}"/>
+    <parameter name="priceDecimalMark" value="${storefront_priceDecimalMark}"/>
+    <parameter name="priceDigitGroupSeparators" value="${storefront_priceDigitGroupSeparators}"/>
+  </module>
+  <module name="modules.helper.MHelper_Product_calculateTotalsQuantity">
+    <parameter name="productQuantity_01" value="${productQuantity_01_varDynamic}"/>
+    <parameter name="productQuantity_02" value="${productQuantity_02_varDynamic}"/>
+    <parameter name="totalsQuantity_varName" value="totalsQuantity_varDynamic"/>
+  </module>
+  <module name="modules.helper.MHelper_Product_calculateTotalsSubtotal">
+    <parameter name="productPriceSales_01" value="${productPriceSales_01_varDynamic}"/>
+    <parameter name="productQuantity_01" value="${productQuantity_01_varDynamic}"/>
+    <parameter name="productPriceSales_02" value="${productPriceSales_02_varDynamic}"/>
+    <parameter name="productQuantity_02" value="${productQuantity_02_varDynamic}"/>
+    <parameter name="totalsSubtotal_varName" value="totalsSubtotal_varDynamic"/>
+    <parameter name="priceCurrency" value="${storefront_priceCurrency}"/>
+    <parameter name="priceDecimalMark" value="${storefront_priceDecimalMark}"/>
+    <parameter name="priceDigitGroupSeparators" value="${storefront_priceDigitGroupSeparators}"/>
+  </module>
+  <codecomment>### Cart
+
+- Validate mini cart header items
+- Validate product 01 basic details
+- Validate product 01 price total
+- Validate product 02 basic details
+- Validate product 02 price total
+- Validate totals subtotal</codecomment>
+  <module name="modules.global.minicart.VGlobal_MiniCart_validateHeaderTotals">
+    <parameter name="totalsQuantity" value="${totalsQuantity_varDynamic}"/>
+    <parameter name="totalsSubtotal" value="${totalsSubtotal_varDynamic}"/>
+  </module>
+  <module name="modules.pages.cart.VCart_Row_validateProductBasicDetails">
+    <parameter name="row" value="1"/>
+    <parameter name="productName" value="${productName_01_varDynamic}"/>
+    <parameter name="productNumber" value="${productNumber_01_varDynamic}"/>
+    <parameter name="productQuantity" value="${productQuantity_01_varDynamic}"/>
+    <parameter name="productPriceSales" value="${productPriceSales_01_varDynamic}"/>
+  </module>
+  <module name="modules.pages.cart.VCart_Row_validateProductPriceTotal">
+    <parameter name="row" value="1"/>
+    <parameter name="productPriceTotal" value="${productPriceTotal_01_varDynamic}"/>
+  </module>
+  <module name="modules.pages.cart.VCart_Row_validateProductBasicDetails">
+    <parameter name="row" value="2"/>
+    <parameter name="productName" value="${productName_02_varDynamic}"/>
+    <parameter name="productNumber" value="${productNumber_02_varDynamic}"/>
+    <parameter name="productQuantity" value="${productQuantity_02_varDynamic}"/>
+    <parameter name="productPriceSales" value="${productPriceSales_02_varDynamic}"/>
+  </module>
+  <module name="modules.pages.cart.VCart_Row_validateProductPriceTotal">
+    <parameter name="row" value="2"/>
+    <parameter name="productPriceTotal" value="${productPriceTotal_02_varDynamic}"/>
+  </module>
+  <module name="modules.pages.cart.VCart_validatePageTotalsSubtotal">
+    <parameter name="totalsSubtotal" value="${totalsSubtotal_varDynamic}"/>
+  </module>
+  <codecomment>------------------------------------------------------------</codecomment>
+  <codecomment>## Product 01 and 02 - Remove and resort rows</codecomment>
+  <codecomment>------------------------------------------------------------</codecomment>
+  <codecomment>### Cart
+
+- Remove first product
+- Validate mini cart header items updated
+- Validate second item is still in cart
+- Validate totals subtotal is updated</codecomment>
+  <action name="RemoveProduct"/>
+  <module name="modules.pages.cart.MCart_Row_clickRemoveProduct">
+    <parameter name="row" value="1"/>
+  </module>
+  <module name="modules.global.minicart.VGlobal_MiniCart_validateHeaderTotals">
+    <parameter name="totalsQuantity" value="${productQuantity_02_varDynamic}"/>
+    <parameter name="totalsSubtotal" value="${productPriceTotal_02_varDynamic}"/>
+  </module>
+  <module name="modules.pages.cart.VCart_Row_validateProductBasicDetails">
+    <parameter name="row" value="1"/>
+    <parameter name="productName" value="${productName_02_varDynamic}"/>
+    <parameter name="productNumber" value="${productNumber_02_varDynamic}"/>
+    <parameter name="productQuantity" value="${productQuantity_02_varDynamic}"/>
+    <parameter name="productPriceSales" value="${productPriceSales_02_varDynamic}"/>
+  </module>
+  <module name="modules.pages.cart.VCart_Row_validateProductPriceTotal">
+    <parameter name="row" value="1"/>
+    <parameter name="productPriceTotal" value="${productPriceTotal_02_varDynamic}"/>
+  </module>
+  <module name="modules.pages.cart.VCart_validatePageTotalsSubtotal">
+    <parameter name="totalsSubtotal" value="${productPriceTotal_02_varDynamic}"/>
+  </module>
+  <codecomment>### Cart
+
+- Remove second product
+- Validate empty cart</codecomment>
+  <action name="RemoveProduct"/>
+  <module name="modules.pages.cart.MCart_Row_clickRemoveProduct">
+    <parameter name="row" value="1"/>
+  </module>
+  <module name="modules.pages.cart.VCart_validateEmptyProductList"/>
+  <codecomment># Teardown
+
+- End session</codecomment>
+  <module name="modules.helper.FHelper_Session_flowToEndSession"/>
+</testcase>

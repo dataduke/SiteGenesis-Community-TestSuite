@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate hompage main content.</description>
+  <codecomment>Validate main content</codecomment>
+  <command name="assertElementPresent" target="css=#main"/>
+  <command name="assertElementPresent" target="css=#main #homepage-slider ul#homepage-slides li.slide"/>
+  <command name="assertElementPresent" target="css=#main .home-bottom-slots"/>
+  <command name="assertElementPresent" target="css=#main .home-bottom form#email-alert-signup input[alt=Submit]"/>
+  <command name="assertElementPresent" target="css=#main #browser-check"/>
+</scriptmodule>

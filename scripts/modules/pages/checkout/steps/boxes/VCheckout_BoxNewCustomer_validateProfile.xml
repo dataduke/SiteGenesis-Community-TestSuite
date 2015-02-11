@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate box new customer profile data.</description>
+  <parameter name="billingAddress_firstname" desc="firstname"/>
+  <parameter name="billingAddress_lastname" desc="lastname"/>
+  <parameter name="billingAddress_email" desc="email"/>
+  <codecomment>Validate profile data in box new customer</codecomment>
+  <command name="waitForText" target="id=dwfrm_profile_customer_firstname" value="@{billingAddress_firstname}"/>
+  <command name="assertText" target="id=dwfrm_profile_customer_lastname" value="@{billingAddress_lastname}"/>
+  <command name="assertText" target="id=dwfrm_profile_customer_email" value="@{billingAddress_email}"/>
+</scriptmodule>

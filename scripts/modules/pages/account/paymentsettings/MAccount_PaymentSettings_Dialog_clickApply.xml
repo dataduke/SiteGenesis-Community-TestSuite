@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Click apply data in credit card details dialog.</description>
+  <command name="waitForElementPresent" target="css=#dialog-container #CreditCardForm button[type=&quot;submit&quot;]"/>
+  <command name="click" target="css=#dialog-container #CreditCardForm button[type=&quot;submit&quot;]"/>
+</scriptmodule>

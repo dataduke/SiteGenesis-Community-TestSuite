@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate order totals subtotal, shipping, sales tax and total.</description>
+  <parameter name="totalsSubtotal" desc="totals shipping"/>
+  <parameter name="totalsShipping" desc="totals shipping"/>
+  <parameter name="totalsSalesTax" desc="totals sales tax"/>
+  <parameter name="totalsTotal" desc="totals total"/>
+  <codecomment>Validate totals order summary footer in primary</codecomment>
+  <command name="store" target="css=#main #primary .order-summary-footer .place-order-totals table.order-totals-table" value="css_place_order_totals"/>
+  <command name="assertText" target="${css_place_order_totals} .order-subtotal td:nth-of-type(2)" value="@{totalsSubtotal}"/>
+  <command name="assertText" target="${css_place_order_totals} .order-shipping td:nth-of-type(2)" value="@{totalsShipping}"/>
+  <command name="assertText" target="${css_place_order_totals} .order-sales-tax td:nth-of-type(2)" value="@{totalsSalesTax}"/>
+  <command name="assertText" target="${css_place_order_totals} .order-total td:nth-of-type(2)" value="@{totalsTotal}"/>
+</scriptmodule>

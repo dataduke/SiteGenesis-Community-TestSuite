@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Enter and update product quantity of a product by row via update cart button.</description>
+  <parameter name="row" desc="row"/>
+  <parameter name="productQuantity" desc="product quantity"/>
+  <command name="type" target="css=#cart-table tbody tr:nth-of-type(@{row}) td.item-quantity input" value="@{productQuantity}"/>
+  <command name="clickAndWait" target="id=update-cart"/>
+</scriptmodule>

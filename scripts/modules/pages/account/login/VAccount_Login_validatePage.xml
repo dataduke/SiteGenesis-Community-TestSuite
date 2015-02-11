@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate account login page.</description>
+  <command name="waitForElementPresent" target="css=#main .breadcrumb .breadcrumb-element[title=&quot;My Account&quot;]"/>
+  <command name="assertElementPresent" target="css=#main .breadcrumb .breadcrumb-element[title=&quot;Home&quot;]"/>
+  <command name="assertText" target="css=#main #primary h1" value="My Account Login"/>
+  <command name="assertElementPresent" target="css=#main #primary .login-box.login-account"/>
+  <command name="assertElementPresent" target="css=#main #primary .login-box.login-order-track"/>
+  <command name="assertElementPresent" target="css=#main #primary .login-box.login-create-account"/>
+  <command name="assertText" target="css=#main #secondary nav .secondary-navigation" value="glob:*ACCOUNT SETTINGS*SHOP CONFIDENTLY*"/>
+</scriptmodule>

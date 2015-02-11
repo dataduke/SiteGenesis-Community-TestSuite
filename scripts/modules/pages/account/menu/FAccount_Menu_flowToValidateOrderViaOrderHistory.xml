@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Flow to validate order data in order history.
+
+- Start on account menu
+- Go to order history
+- Validate order data
+- End on account menu</description>
+  <parameter name="position" desc="position"/>
+  <parameter name="orderNumber" desc="order number"/>
+  <parameter name="orderDate" desc="order date"/>
+  <parameter name="shippingAddress_firstname" desc="shipping address firstname"/>
+  <parameter name="shippingAddress_lastname" desc="shipping address lastname"/>
+  <parameter name="totalsTotal" desc="totals total"/>
+  <codecomment># Order history
+
+- Go to order history
+- Validate page
+- Validate order data
+- Go to account menu</codecomment>
+  <action name="GoToOrderHistory"/>
+  <module name="modules.pages.account.menu.MAccount_Menu_clickGoToOrderHistory"/>
+  <module name="modules.pages.account.orderhistory.VAccount_OrderHistory_validatePage"/>
+  <module name="modules.pages.account.orderhistory.VAccount_OrderHistory_validateOrder">
+    <parameter name="position" value="@{position}"/>
+    <parameter name="orderNumber" value="@{orderNumber}"/>
+    <parameter name="orderDate" value="@{orderDate}"/>
+    <parameter name="shippingFirstname" value="@{shippingAddress_firstname}"/>
+    <parameter name="shippingLastname" value="@{shippingAddress_lastname}"/>
+    <parameter name="totalsTotal" value="@{totalsTotal}"/>
+  </module>
+  <action name="GoToAccount"/>
+  <module name="modules.global.headerfooternav.MGlobal_Header_clickGoToAccountMenuViaCustomerName"/>
+</scriptmodule>

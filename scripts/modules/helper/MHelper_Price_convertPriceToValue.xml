@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Convert price to value (eg. $ 1,234,567.89 is converted to 123456789).</description>
+  <parameter name="price" desc="price"/>
+  <parameter name="priceValue_varName" desc="price value as var name"/>
+  <parameter name="priceCurrency" desc="price currency"/>
+  <parameter name="priceDecimalMark" desc="price decimal mark"/>
+  <parameter name="priceDigitGroupSeparators" desc="price digit group separators"/>
+  <command name="storeEval" target="&quot;@{price}&quot;.replace(&quot;@{priceCurrency}&quot;, &quot;&quot;);" value="priceNoCurrency"/>
+  <command name="storeEval" target="&quot;${priceNoCurrency}&quot;.replace(&quot;@{priceDigitGroupSeparators}&quot;, &quot;&quot;)" value="priceNoSeparators"/>
+  <command name="storeEval" target="&quot;${priceNoSeparators}&quot;.replace(&quot;@{priceDecimalMark}&quot;, &quot;&quot;)" value="@{priceValue_varName}"/>
+  <command name="storeEval" disabled="true" target="(function(p){var r=/(?:(\d+)[,.](\d{3})|(\d{1,3}))[,.](\d{2})/,m=r.exec(p),n=0;for(var i=1;i&lt;m.length;i++){if(typeof(m[i])==='undefined'){continue}; n+=(parseInt(m[i])*(i===1?1000:i&lt;m.length-1?1:0.01))}return n})('@{price}');" value="@{priceValue_varName}">
+    <comment>__Complex solution:__ Splits given text into at most three groups of substrings containing numbers only. Each of these groups is parsed as integer and multiplied with its absolute value. Finally, the sum of these values is the final clean price.</comment>
+  </command>
+</scriptmodule>

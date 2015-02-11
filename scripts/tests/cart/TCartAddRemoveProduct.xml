@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testcase xmlns="http://xlt.xceptance.com/xlt-script/2" version="6" junit-test="true">
+  <tags>smoke</tags>
+  <description>Test add and remove product in cart.
+
+# 1. Setup and preparation
+
+- Start session, open homepage and delete all visible cookies
+- Add basic product to cart
+
+# 2. Scope of test
+
+- Validate cart page
+- Validate product row
+- Validate product row basic details
+- Validate product row total
+- Validate cart totals subtotal
+- Remove product
+- Validate empty cart
+
+# 3. Clean up
+
+- End session and clean up created cookies</description>
+  <codecomment># Setup
+
+- Start Session</codecomment>
+  <module name="modules.helper.FHelper_Session_flowToStartSession"/>
+  <module name="modules.pages.search.FSearch_flowToAddProductToCart">
+    <parameter name="cartRow" value="1"/>
+    <parameter name="productNumber" value="${productNumber}"/>
+    <parameter name="productQuantity" value="${productQuantity}"/>
+    <parameter name="productName_varName" value="productName_varDynamic"/>
+    <parameter name="productNumber_varName" value="productNumber_varDynamic"/>
+    <parameter name="productQuantity_varName" value="productQuantity_varDynamic"/>
+    <parameter name="productPriceSales_varName" value="productPriceSales_varDynamic"/>
+    <parameter name="productPriceTotal_varName" value="productPriceTotal_varDynamic"/>
+  </module>
+  <codecomment># Scope</codecomment>
+  <codecomment>## Cart
+
+- Validate cart page
+- Validate product row
+- Validate product row basics
+- Validate product row total
+- Validate cart totals subtotal</codecomment>
+  <action name="ViewCart"/>
+  <module name="modules.pages.cart.VCart_validatePage"/>
+  <module name="modules.pages.cart.VCart_Row_validateRow">
+    <parameter name="row" value="1"/>
+  </module>
+  <module name="modules.pages.cart.VCart_Row_validateProductBasicDetails">
+    <parameter name="row" value="1"/>
+    <parameter name="productName" value="${productName_varDynamic}"/>
+    <parameter name="productNumber" value="${productNumber_varDynamic}"/>
+    <parameter name="productQuantity" value="${productQuantity_varDynamic}"/>
+    <parameter name="productPriceSales" value="${productPriceSales_varDynamic}"/>
+  </module>
+  <module name="modules.pages.cart.VCart_Row_validateProductPriceTotal">
+    <parameter name="row" value="1"/>
+    <parameter name="productPriceTotal" value="${productPriceTotal_varDynamic}"/>
+  </module>
+  <module name="modules.pages.cart.VCart_validatePageTotalsSubtotal">
+    <parameter name="totalsSubtotal" value="${productPriceTotal_varDynamic}"/>
+  </module>
+  <codecomment>## Cart
+
+- Remove product
+- Validate empty cart</codecomment>
+  <action name="RemoveProduct"/>
+  <module name="modules.pages.cart.MCart_Row_clickRemoveProduct">
+    <parameter name="row" value="1"/>
+  </module>
+  <module name="modules.pages.cart.VCart_validateEmptyProductList"/>
+  <codecomment># Teardown
+
+- End session</codecomment>
+  <module name="modules.helper.FHelper_Session_flowToEndSession"/>
+</testcase>

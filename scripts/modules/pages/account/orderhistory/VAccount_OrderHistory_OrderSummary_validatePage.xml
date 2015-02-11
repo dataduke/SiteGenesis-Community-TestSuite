@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate page.</description>
+  <parameter name="orderNumber" desc="order number"/>
+  <codecomment>Validate breadcrumb</codecomment>
+  <command name="waitForText" target="css=#main .breadcrumb a.breadcrumb-element:last-of-type" value="@{orderNumber}"/>
+  <command name="assertElementPresent" target="css=#main .breadcrumb a.breadcrumb-element[title=&quot;Home&quot;]"/>
+  <command name="assertElementPresent" target="css=#main .breadcrumb a.breadcrumb-element[title=&quot;My Account&quot;]"/>
+  <command name="assertElementPresent" target="css=#main .breadcrumb a.breadcrumb-element[title=&quot;Order History&quot;]"/>
+  <codecomment>Valdiate primary table order summary</codecomment>
+  <command name="assertText" target="css=#main #primary h2" value="Order Summary"/>
+  <command name="assertText" target="css=#main #primary table.item-list th.section-header:nth-of-type(1)" value="regexpi:Order Information"/>
+  <command name="assertText" target="css=#main #primary table.item-list th.section-header:nth-of-type(2)" value="regexpi:Billing Address"/>
+  <command name="assertText" target="css=#main #primary table.item-list th.section-header:nth-of-type(3)" value="regexpi:Payment Method"/>
+  <command name="assertText" target="css=#main #primary table.item-list th.section-header:nth-of-type(4)" value="regexpi:Payment Total"/>
+  <codecomment>Validate primary table shipment</codecomment>
+  <command name="waitForText" target="css=#main #primary div.content-header" value="Shipment*"/>
+  <command name="assertText" target="css=#main #primary .order-shipment-table th.section-header:nth-of-type(1)" value="regexpi:Shipping To"/>
+  <command name="assertText" target="css=#main #primary .order-shipment-table th.section-header:nth-of-type(2)" value="regexpi:Item"/>
+  <command name="assertText" target="css=#main #primary .order-shipment-table th.section-header:nth-of-type(3)" value="regexpi:Quantity"/>
+  <command name="assertText" target="css=#main #primary .order-shipment-table th.section-header:nth-of-type(4)" value="regexpi:Price"/>
+  <codecomment>Validate primary actions</codecomment>
+  <command name="assertText" target="css=#main #primary .form-row.order-detail-options a" value="Return to Shopping"/>
+</scriptmodule>

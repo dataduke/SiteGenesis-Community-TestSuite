@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate cart page.</description>
+  <codecomment>Validate cart structure</codecomment>
+  <command name="waitForText" target="css=.breadcrumb a.breadcrumb-element:last-child" value="Cart"/>
+  <command name="assertElementPresent" target="css=#primary.primary-content"/>
+  <command name="assertText" target="css=#primary h1 " value="Your Shopping Cart"/>
+  <command name="assertText" target="css=#secondary h1 " value="Checkout"/>
+  <command name="assertElementPresent" target="css=#primary #cart-items-form"/>
+  <command name="assertElementPresent" target="css=#primary #cart-items-form #cart-table.item-list"/>
+  <command name="assertElementPresent" target="css=#primary .cart-actions"/>
+  <command name="assertElementPresent" target="css=#primary .cart-footer"/>
+  <command name="assertElementPresent" target="css=.cart-coupon-code #add-coupon"/>
+  <command name="assertElementPresent" target="css=.cart-order-totals #update-cart"/>
+  <command name="assertElementPresent" target="css=.cart-order-totals table.order-totals-table thead"/>
+  <command name="assertElementPresent" target="css=.cart-order-totals table.order-totals-table .order-subtotal"/>
+  <command name="assertElementPresent" target="css=.cart-order-totals table.order-totals-table .order-shipping"/>
+  <command name="assertElementPresent" target="css=.cart-order-totals table.order-totals-table .order-sales-tax"/>
+  <command name="assertElementPresent" target="css=.cart-order-totals table.order-totals-table .order-total"/>
+  <command name="assertElementPresent" target="css=#secondary.nav"/>
+</scriptmodule>

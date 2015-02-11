@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Store product color and product size attributes of variation products.</description>
+  <parameter name="productColor_varName" desc="product color as var name"/>
+  <parameter name="productSize_varName" desc="product size as var name"/>
+  <command name="storeText" target="css=.product-detail #product-content .product-variations .attribute .Color .selected-value" value="@{productColor_varName}"/>
+  <command name="storeText" target="css=.product-detail #product-content .product-variations .attribute .size .selected-value" value="@{productSize_varName}"/>
+</scriptmodule>

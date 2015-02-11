@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate results page if products found.</description>
+  <command name="waitForElementPresent" target="css=#main #primary .content-slot"/>
+  <command name="assertElementPresent" target="css=#main #primary .search-result-options .sort-by"/>
+  <command name="assertElementPresent" target="css=#main #primary .search-result-options .items-per-page"/>
+  <command name="assertElementPresent" target="css=#main #primary div.search-result-options:nth-of-type(2) .pagination .results-hits"/>
+  <command name="assertElementPresent" target="css=#main #primary .search-result-content ul#search-result-items"/>
+  <command name="assertElementPresent" target="css=#main #primary div.search-result-options:nth-of-type(4) .pagination .results-hits"/>
+  <command name="assertElementPresent" target="css=#main #primary .search-promo"/>
+  <command name="assertElementPresent" target="css=#main #secondary .refinement-header"/>
+</scriptmodule>

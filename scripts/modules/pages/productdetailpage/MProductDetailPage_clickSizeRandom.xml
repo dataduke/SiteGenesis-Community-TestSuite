@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Click product size randomly.</description>
+  <codecomment>Count all available size items</codecomment>
+  <command name="storeElementCount" target="css=.product-variations .attribute .value .swatches.size li.selected" value="productSizeSelectedCount"/>
+  <command name="storeElementCount" target="css=.product-variations .attribute .value .swatches.size li.emptyswatch:not(.unselectable)" value="productSizeNotSelectedCount"/>
+  <command name="storeEval" target="(${productSizeSelectedCount} + ${productSizeNotSelectedCount})" value="productSizeAvailableCount"/>
+  <codecomment>Generate random value from size item count</codecomment>
+  <module name="modules.helper.MHelper_Random_generateNumber">
+    <parameter name="numberMax" value="${productSizeAvailableCount}"/>
+    <parameter name="number_varName" value="productSizeRandom"/>
+  </module>
+  <codecomment>Click on generated random position of available size items</codecomment>
+  <module name="modules.pages.productdetailpage.MProductDetailPage_clickSizePosition">
+    <parameter name="productSizePosition" value="${productSizeRandom}"/>
+  </module>
+</scriptmodule>

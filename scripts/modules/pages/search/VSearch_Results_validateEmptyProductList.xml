@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate product not found page with shop suggestion</description>
+  <parameter name="searchText" desc="search text with no results"/>
+  <command name="assertText" target="css=#primary h1" value="Search Results"/>
+  <command name="waitForText" target="css=#primary.primary-content div.section-header p:first-of-type" value="regexpi:WE'RE SORRY, NO PRODUCTS WERE FOUND FOR YOUR SEARCH: @{searchText} "/>
+  <command name="assertText" target="css=#primary.primary-content div.section-header p:last-of-type" value="regexpi:DID YOU MEAN: [A-Z]+ \?"/>
+</scriptmodule>

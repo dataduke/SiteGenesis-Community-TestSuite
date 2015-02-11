@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testcase xmlns="http://xlt.xceptance.com/xlt-script/2" version="6" junit-test="true">
+  <tags>smoke</tags>
+  <description>Test search for multiple product results.
+
+# 1. Setup and preparation
+
+- Start session, open homepage and delete all visible cookies
+
+# 2. Scope of test
+
+- Search for text
+- Leads to multiple product results
+- Validate result page (similar to catalog page)
+- Select a product
+- Validate product detail page
+
+# 3. Clean up
+
+- End session and clean up created cookies</description>
+  <codecomment># Setup
+
+- Start session</codecomment>
+  <module name="modules.helper.FHelper_Session_flowToStartSession"/>
+  <codecomment># Scope</codecomment>
+  <codecomment>## Many Results
+
+- Search product color
+- Valdiate results page (similar to catalog page)
+- Validate search string
+- Go to random product
+- Valdiate PDP
+- Valdiate PDP product number</codecomment>
+  <action name="Search"/>
+  <module name="modules.pages.search.MSearch_enterSubmitText">
+    <parameter name="searchText" value="${searchText}"/>
+  </module>
+  <module name="modules.pages.search.VSearch_validatePage">
+    <parameter name="searchText" value="${searchText}"/>
+  </module>
+  <module name="modules.pages.search.VSearch_Results_validateProductCatalog"/>
+  <action name="PDP"/>
+  <module name="modules.pages.catalog.MCatalog_Results_clickGoToProductRandom"/>
+  <module name="modules.pages.productdetailpage.VProductDetailPage_validatePage"/>
+  <codecomment># Teardown
+
+- End session</codecomment>
+  <module name="modules.helper.FHelper_Session_flowToEndSession"/>
+</testcase>

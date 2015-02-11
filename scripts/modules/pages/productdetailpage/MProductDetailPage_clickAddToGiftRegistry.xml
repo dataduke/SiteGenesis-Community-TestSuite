@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Click add product to gift registry.</description>
+  <command name="clickAndWait" target="css=a[href*=&quot;GiftRegistry-AddProduct&quot;]"/>
+</scriptmodule>

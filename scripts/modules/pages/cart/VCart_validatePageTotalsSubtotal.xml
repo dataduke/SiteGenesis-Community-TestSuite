@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate totals subtotal.</description>
+  <parameter name="totalsSubtotal" desc="totals subtotal"/>
+  <codecomment>Validate totals subtotal</codecomment>
+  <command name="assertText" target="css=.cart-order-totals .order-subtotal" value="*@{totalsSubtotal}"/>
+</scriptmodule>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Click continue to next step.</description>
+  <command name="waitForElementPresent" target="css=button[name=&quot;dwfrm_singleshipping_shippingAddress_save&quot;][type=&quot;submit&quot;]"/>
+  <command name="clickAndWait" target="css=button[name=&quot;dwfrm_singleshipping_shippingAddress_save&quot;][type=&quot;submit&quot;]"/>
+</scriptmodule>

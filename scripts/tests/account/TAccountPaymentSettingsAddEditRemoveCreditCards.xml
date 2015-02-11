@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testcase xmlns="http://xlt.xceptance.com/xlt-script/2" version="6" junit-test="true">
+  <tags>smoke</tags>
+  <description>Test add, edit and remove credit card data in account payment settings.
+
+# 1. Setup and preparation 
+
+- Start session, open homepage and delete all visible cookies
+- Create new account with profile data
+- Login to account using the global link in the header
+
+# 2. Scope of test
+
+- Go to payment settings
+- Validate nav, page and empty list
+- Add credit card and cancel dialog
+- Create two new credit cards and validate both
+- Remove both credit cards and validate resorting
+- Validate empty list
+
+# 3. Clean up
+
+- Logout using the global link in the header
+- End session and clean up created cookies</description>
+  <codecomment># Setup
+
+- Generate email 
+- Generate password
+- Start session
+- Create account with profile data
+- Login to account</codecomment>
+  <module name="modules.helper.MHelper_Random_generateEmail">
+    <parameter name="email_varName" value="email_varDynamic"/>
+  </module>
+  <module name="modules.helper.MHelper_Random_generatePassword">
+    <parameter name="password_varName" value="password_varDynamic"/>
+  </module>
+  <module name="modules.helper.FHelper_Session_flowToStartSession"/>
+  <module name="modules.pages.homepage.FHomepage_flowToCreateNewAccount">
+    <parameter name="firstname" value="${firstname}"/>
+    <parameter name="lastname" value="${lastname}"/>
+    <parameter name="email" value="${email_varDynamic}"/>
+    <parameter name="password" value="${password_varDynamic}"/>
+  </module>
+  <module name="modules.pages.homepage.FHomepage_flowToLoginAccount">
+    <parameter name="email" value="${email_varDynamic}"/>
+    <parameter name="password" value="${password_varDynamic}"/>
+  </module>
+  <codecomment># Scope</codecomment>
+  <codecomment>## Payment Settings
+
+- Go to payment settings
+- Validate nav
+- Validate page
+- Validate empty list</codecomment>
+  <action name="GoToPaymentSettings"/>
+  <module name="modules.pages.account.menu.MAccount_Menu_clickGoToPaymentSettings"/>
+  <module name="modules.pages.account.VAccount_validateNav"/>
+  <module name="modules.pages.account.paymentsettings.VAccount_PaymentSettings_validatePage"/>
+  <module name="modules.pages.account.paymentsettings.VAccount_PaymentSettings_validateEmptyCreditCardList"/>
+  <codecomment>## Payment Settings
+
+- Add credit card
+- Cancel
+- Validate empty list</codecomment>
+  <action name="AddCreditCard"/>
+  <module name="modules.pages.account.paymentsettings.MAccount_PaymentSettings_clickAddCreditCard"/>
+  <module name="modules.pages.account.paymentsettings.VAccount_PaymentSettings_validateDialog"/>
+  <action name="CancelCreditCardDialog"/>
+  <module name="modules.pages.account.paymentsettings.MAccount_PaymentSettings_Dialog_clickCancel"/>
+  <module name="modules.pages.account.paymentsettings.VAccount_PaymentSettings_validateEmptyCreditCardList"/>
+  <codecomment>## Payment Settings
+
+- Add visa credit card
+- Enter data
+- Submit data
+- Validate data</codecomment>
+  <action name="AddCreditCard"/>
+  <module name="modules.pages.account.paymentsettings.MAccount_PaymentSettings_clickAddCreditCard"/>
+  <module name="modules.pages.account.paymentsettings.VAccount_PaymentSettings_validateDialog"/>
+  <action name="ApplyCreditCardDialog"/>
+  <module name="modules.pages.account.paymentsettings.MAccount_PaymentSettings_Dialog_enterCreditCard">
+    <parameter name="owner" value="${owner_01}"/>
+    <parameter name="type" value="${type_01}"/>
+    <parameter name="number" value="${number_01}"/>
+    <parameter name="month" value="${month_01}"/>
+    <parameter name="year" value="${year_01}"/>
+  </module>
+  <module name="modules.pages.account.paymentsettings.MAccount_PaymentSettings_Dialog_clickApply"/>
+  <module name="modules.pages.account.paymentsettings.VAccount_PaymentSettings_validateCreditCard">
+    <parameter name="position" value="1"/>
+    <parameter name="owner" value="${owner_01}"/>
+    <parameter name="typeShort" value="${typeShort_01}"/>
+    <parameter name="number" value="${number_01}"/>
+    <parameter name="month" value="${month_01}"/>
+    <parameter name="year" value="${year_01}"/>
+  </module>
+  <codecomment>## Payment Settings
+
+- Add amex credit card
+- Enter data
+- Submit data
+- Validate data</codecomment>
+  <action name="AddCreditCard"/>
+  <module name="modules.pages.account.paymentsettings.MAccount_PaymentSettings_clickAddCreditCard"/>
+  <module name="modules.pages.account.paymentsettings.VAccount_PaymentSettings_validateDialog"/>
+  <action name="ApplyCreditCardDialog"/>
+  <module name="modules.pages.account.paymentsettings.MAccount_PaymentSettings_Dialog_enterCreditCard">
+    <parameter name="owner" value="${owner_02}"/>
+    <parameter name="type" value="${type_02}"/>
+    <parameter name="number" value="${number_02}"/>
+    <parameter name="month" value="${month_02}"/>
+    <parameter name="year" value="${year_02}"/>
+  </module>
+  <module name="modules.pages.account.paymentsettings.MAccount_PaymentSettings_Dialog_clickApply"/>
+  <module name="modules.pages.account.paymentsettings.VAccount_PaymentSettings_validateCreditCard">
+    <parameter name="position" value="2"/>
+    <parameter name="owner" value="${owner_02}"/>
+    <parameter name="typeShort" value="${typeShort_02}"/>
+    <parameter name="number" value="${number_02}"/>
+    <parameter name="month" value="${month_02}"/>
+    <parameter name="year" value="${year_02}"/>
+  </module>
+  <codecomment>## Payment Settings
+
+- Delete first credit card
+- Validate that second credit card is sorted to first position
+- Delete second credit card
+- Validate empty payment settings</codecomment>
+  <action name="DeleteCreditCard"/>
+  <module name="modules.pages.account.paymentsettings.MAccount_PaymentSettings_clickDeleteCreditCard">
+    <parameter name="position" value="1"/>
+  </module>
+  <codecomment>__Caution:__ Remaining address can not be validated at high stability at the moment, because Site Genesis occasionally mixes up the ordering of the address book.</codecomment>
+  <module name="modules.pages.account.paymentsettings.VAccount_PaymentSettings_validateCreditCard" disabled="true">
+    <parameter name="position" value="1"/>
+    <parameter name="owner" value="${owner_02}"/>
+    <parameter name="typeShort" value="${typeShort_02}"/>
+    <parameter name="number" value="${number_02}"/>
+    <parameter name="month" value="${month_02}"/>
+    <parameter name="year" value="${year_02}"/>
+  </module>
+  <action name="DeleteCreditCard"/>
+  <module name="modules.pages.account.paymentsettings.MAccount_PaymentSettings_clickDeleteCreditCard">
+    <parameter name="position" value="1"/>
+  </module>
+  <module name="modules.pages.account.paymentsettings.VAccount_PaymentSettings_validateEmptyCreditCardList"/>
+  <codecomment># Teardown
+
+- Go to account menu
+- Logout
+- End session</codecomment>
+  <action name="GoToAccount"/>
+  <module name="modules.global.headerfooternav.MGlobal_Header_clickGoToAccountMenuViaCustomerName"/>
+  <action name="Logout"/>
+  <module name="modules.global.headerfooternav.MGlobal_Header_clickLogoutViaNotCustomerName"/>
+  <module name="modules.helper.FHelper_Session_flowToEndSession"/>
+</testcase>

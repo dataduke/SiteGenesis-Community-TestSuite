@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate minicart on homepage header.</description>
+  <command name="store" target="css=#header header #mini-cart .mini-cart-total" value="minicartTotal"/>
+  <command name="assertElementPresent" target="${minicartTotal} a.mini-cart-link"/>
+  <command name="assertElementPresent" target="${minicartTotal} span.mini-cart-label"/>
+  <command name="assertElementPresent" target="${minicartTotal} span.mini-cart-item-word"/>
+  <command name="assertText" target="${minicartTotal} span.mini-cart-label" value="regexpi:CART"/>
+</scriptmodule>

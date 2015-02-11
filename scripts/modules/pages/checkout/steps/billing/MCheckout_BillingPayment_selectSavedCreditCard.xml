@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Select credit card from saved credit card list.</description>
+  <parameter name="typeShort" desc="type short"/>
+  <parameter name="owner" desc="owner"/>
+  <parameter name="number" desc="number"/>
+  <parameter name="month" desc="month"/>
+  <parameter name="year" desc="year"/>
+  <module name="modules.helper.MHelper_Number_sliceLastFourDigits">
+    <parameter name="number" value="@{number}"/>
+    <parameter name="numberLastFourDigits_varName" value="numberLastFourDigits"/>
+  </module>
+  <module name="modules.helper.MHelper_Date_convertIntoMonthNumberShort">
+    <parameter name="monthName" value="@{month}"/>
+    <parameter name="monthNumberShort_varName" value="monthNumberShort"/>
+  </module>
+  <module name="modules.helper.MHelper_Number_sliceLastTwoDigits">
+    <parameter name="number" value="${monthNumberShort}"/>
+    <parameter name="numberLastTwoDigits_varName" value="monthNumber"/>
+  </module>
+  <command name="waitForText" target="css=select[name=&quot;dwfrm_billing_paymentMethods_creditCardList&quot;]" value="*@{typeShort}*${numberLastFourDigits}*${monthNumber}.@{year}*"/>
+  <command name="assertNotText" target="css=select[name=&quot;dwfrm_billing_paymentMethods_creditCardList&quot;]" value="*@{number}*"/>
+  <command name="select" target="css=select[name=&quot;dwfrm_billing_paymentMethods_creditCardList&quot;]" value="*@{typeShort}*${numberLastFourDigits}*${monthNumber}.@{year}*"/>
+  <command name="waitForText" target="css=input[name=&quot;dwfrm_billing_paymentMethods_creditCard_owner&quot;]" value="@{owner}"/>
+</scriptmodule>

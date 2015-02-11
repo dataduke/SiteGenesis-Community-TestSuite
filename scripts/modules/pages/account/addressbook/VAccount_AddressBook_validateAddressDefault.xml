@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptmodule xmlns="http://xlt.xceptance.com/xlt-script/2" version="6">
+  <description>Validate default address label.</description>
+  <parameter name="position" desc="position"/>
+  <command name="assertText" target="css=#main #primary #addresses .address-list li:nth-of-type(@{position}) h3" value="*Default Address*"/>
+</scriptmodule>
