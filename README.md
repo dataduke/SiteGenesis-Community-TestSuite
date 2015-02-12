@@ -29,7 +29,6 @@ The following prerequisites and installation steps are needed to run the test su
 - Import test suite by clicking the `folder` icon above the navigation panel.
 - Set the `storefront_url` of the shop system under test in `XLT Script Developer > Manage Global Test Data`.
 - Open a test case in the navigation panel and click the replay button in the toolbar.
-- __Optional:__ Configure product inventory to be perpetual inside Site Gensis to make sure products can't be sold out. All product numbers are listed in `XLT Scipt Developer > Manage Global Test Data`.
 
 ### XLT Framework for WebDriver-based Execution
 
