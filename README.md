@@ -30,7 +30,7 @@ The following prerequisites and installation steps are needed to run the test su
 - Set the `storefront_url` of the shop system under test in `XLT Script Developer > Manage Global Test Data`.
 - Open a test case in the navigation panel and click the replay button in the toolbar.
 
-### XLT Framework for Webdriver-based Execution
+### XLT Framework for WebDriver-based Execution
 
 #### Prerequisites
 
