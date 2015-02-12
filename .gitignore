@@ -5,3 +5,5 @@ classes
 /.settings/
 /results/
 
+/bin/
+/target/
