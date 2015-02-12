@@ -19,7 +19,7 @@ The following prerequisites and installation steps are needed to run the test su
 
 - XLT&reg; Script Developer 4.5.0 (or higher)
 - Firefox 31.0 (or higher)
-- A [Demandware](http://www.demandware.com/) SiteGenesis v15.1 or higher reference store installation
+- A [Demandware](http://www.demandware.com/) SiteGenesis v15.1 or higher reference shop installation
 
 #### Installation
 
