@@ -87,7 +87,7 @@ We have already build a __foundation__ of over __200 modules__ structured in ove
 
 ### Packages
 
-__Packages__ form the main tree structure of the test suite. Each package may consists of other subpackages (layers) and contains test cases (named `tests.subpackage`), script modules (named `modules.subpackage`) or optional Java modules. The file system implements them as folders.
+__Packages__ form the main structure of the test suite (project tree). Each package may consist of other subpackages (layers) and contains test cases (named `tests.subpackage`), script modules (named `modules.subpackage`) or optional Java modules. The file system implements them as folders.
 
 ### Tests
 
